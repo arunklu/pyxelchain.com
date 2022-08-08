@@ -12,7 +12,6 @@ import useHorizontalScroll from '@hooks/use-horizontal-scroll'
 
 import { CopyEntity, ArticleEntity, ArticleTagEntity } from 'types/index'
 import { ARTICLES_QUERY } from '@graphql/queries/articles'
-import { useFooterData } from '@store/useFooterData'
 import { useArticleData } from '@store/useArticleData'
 
 interface PageProps {
@@ -33,13 +32,11 @@ const Index: React.FC<PageProps> = ({ data }) => {
   const [selectedTag, setSelectedTag] = React.useState<string>('All')
   const { elRef } = useHorizontalScroll()
 
-  const { setAllStrapiFooterCopy } = useFooterData()
   const { setAllStrapiArticleCopy } = useArticleData()
 
   React.useEffect(() => {
     setAllStrapiArticleCopy(data.allStrapiCopy.nodes)
-    setAllStrapiFooterCopy(data.allStrapiCopy.nodes)
-  }, [setAllStrapiArticleCopy, setAllStrapiFooterCopy, data])
+  }, [setAllStrapiArticleCopy, data])
 
   const articles = data.allStrapiArticle.nodes
   const filteredArticles = data.allStrapiArticle.nodes

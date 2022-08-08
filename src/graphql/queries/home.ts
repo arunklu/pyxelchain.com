@@ -17,8 +17,6 @@ export const HOME_QUERY = gql`
             "home-solution"
             "home-team"
             "home-vision"
-            "footer-footnote"
-            "footer-newsletter"
           ]
         }
       }

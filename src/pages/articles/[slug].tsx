@@ -8,27 +8,18 @@ import { Heading } from '@components/typography'
 import Article from '@modules/article/article'
 import ArticlesCard from '@modules/articles/articles-card'
 
-import { Article as ArticleType, ArticleEntity, CopyEntity } from 'types/index'
+import { Article as ArticleType, ArticleEntity } from 'types/index'
 import { ARTICLE_SLUGS_QUERY, GET_ARTICLE_BY_SLUG_QUERY } from '@graphql/queries/articles'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { getImageUrl } from '@utils/url-utils'
-import { ARTICLE_QUERY } from '@graphql/queries/article'
-import { useFooterData } from '@store/useFooterData'
 
 interface ArticleTemplateProps {
   data: NonNullable<ArticleEntity['attributes']>
-  copies: NonNullable<CopyEntity['attributes']>[]
 }
 
-const ArticlePage: React.FC<ArticleTemplateProps> = ({ data, copies }) => {
+const ArticlePage: React.FC<ArticleTemplateProps> = ({ data }) => {
   const relatedArticles = data.related_articles?.data || []
   const seoimage = getImageUrl(data.blogImage.data?.attributes?.url)
-
-  const { setAllStrapiFooterCopy } = useFooterData()
-
-  React.useEffect(() => {
-    setAllStrapiFooterCopy(copies)
-  }, [setAllStrapiFooterCopy, copies])
 
   return (
     <>
@@ -91,16 +82,8 @@ interface QueryResult {
   }
 }
 
-interface CopyResult {
-  data: {
-    allStrapiCopy: {
-      data: CopyEntity[]
-    }
-  }
-}
-
 export const getStaticProps: GetStaticProps<
-  { data: NonNullable<ArticleEntity['attributes']>; copies: NonNullable<CopyEntity['attributes']>[] },
+  { data: NonNullable<ArticleEntity['attributes']> },
   { slug: string }
 > = async (context) => {
   const result = await axios.post<QueryResult>(process.env.NEXT_PUBLIC_API_URL as string, {
@@ -110,18 +93,10 @@ export const getStaticProps: GetStaticProps<
     },
   })
 
-  const copyResult = await axios.post<CopyResult>(process.env.NEXT_PUBLIC_API_URL as string, {
-    query: print(ARTICLE_QUERY),
-  })
-
-  const copyNodes = copyResult.data.data.allStrapiCopy.data.map(
-    (c) => c.attributes as NonNullable<CopyEntity['attributes']>
-  )
-
   const [article] = result.data.data.articles.data
 
   return {
-    props: { data: article.attributes as ArticleType, copies: copyNodes },
+    props: { data: article.attributes as ArticleType },
     revalidate: 10,
   }
 }

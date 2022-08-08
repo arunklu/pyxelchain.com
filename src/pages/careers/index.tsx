@@ -10,7 +10,6 @@ import Culture from '@modules/careers/culture'
 import OurPerks from '@modules/careers/our-perks'
 import Careers from '@modules/careers/careers'
 import { useCareersData } from '@store/useCareersData'
-import { useFooterData } from '@store/useFooterData'
 import { CAREER_QUERY } from '@graphql/queries/career'
 
 import { CopyEntity, FeatureEntity } from 'types/index'
@@ -28,12 +27,10 @@ interface PageProps {
 
 const Index: React.FC<PageProps> = ({ data }) => {
   const { setAllStrapiCareersCopy, setAllStrapiCareersFeature } = useCareersData()
-  const { setAllStrapiFooterCopy } = useFooterData()
 
   React.useEffect(() => {
     setAllStrapiCareersCopy(data.allStrapiCopy.nodes)
-    setAllStrapiFooterCopy(data.allStrapiCopy.nodes)
-  }, [setAllStrapiCareersCopy, setAllStrapiFooterCopy, data])
+  }, [setAllStrapiCareersCopy, data])
 
   React.useEffect(() => {
     setAllStrapiCareersFeature(data.allStrapiFeature.nodes)

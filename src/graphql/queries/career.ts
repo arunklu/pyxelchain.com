@@ -10,8 +10,6 @@ export const CAREER_QUERY = gql`
             "careers-culture"
             "careers-key-values"
             "careers-perks"
-            "footer-footnote"
-            "footer-newsletter"
           ]
         }
       }

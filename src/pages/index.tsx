@@ -13,7 +13,6 @@ import Roadmap from '@modules/home/roadmap'
 import Partnership from '@modules/home/partnership'
 import Pyxis from '@modules/home/pyxis/pyxis'
 import { useHomeData } from '@store/useHomeData'
-import { useFooterData } from '@store/useFooterData'
 
 import { CopyEntity, FeatureEntity, TeamEntity } from 'types/index'
 import { HOME_QUERY } from '@graphql/queries/home'
@@ -34,12 +33,10 @@ interface PageProps {
 
 const Index: React.FC<PageProps> = ({ data }) => {
   const { setAllStrapiHomeCopy, setAllStrapiHomeFeature, setAllStrapiTeams } = useHomeData()
-  const { setAllStrapiFooterCopy } = useFooterData()
 
   React.useEffect(() => {
     setAllStrapiHomeCopy(data.allStrapiCopy.nodes)
-    setAllStrapiFooterCopy(data.allStrapiCopy.nodes)
-  }, [setAllStrapiHomeCopy, setAllStrapiFooterCopy, data])
+  }, [setAllStrapiHomeCopy, data])
 
   React.useEffect(() => {
     setAllStrapiHomeFeature(data.allStrapiFeature.nodes)

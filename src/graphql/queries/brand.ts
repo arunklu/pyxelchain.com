@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 export const BRAND_QUERY = gql`
   query BrandQuery {
     allStrapiCopy: copies(
-      filters: { sectionId: { in: ["brand-hero", "footer-footnote", "footer-newsletter"] } }
+      filters: { sectionId: { in: ["brand-hero"] } }
       pagination: { limit: 100 }
     ) {
       data {
