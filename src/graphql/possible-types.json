@@ -1,0 +1,21 @@
+{
+  "GenericMorph": [
+    "ComponentArticlesSeo",
+    "UploadFile",
+    "CmsAnalyzerAnalyse",
+    "CmsAnalyzerMatch",
+    "CmsAnalyzerMedia",
+    "CmsAnalyzerSummary",
+    "I18NLocale",
+    "UsersPermissionsPermission",
+    "UsersPermissionsRole",
+    "UsersPermissionsUser",
+    "Article",
+    "ArticleTag",
+    "Author",
+    "Copy",
+    "CopyTag",
+    "Feature",
+    "Team"
+  ]
+}
