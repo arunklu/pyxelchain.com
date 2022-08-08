@@ -6,12 +6,12 @@ import HexagonCondensed from '@components/node-graph/hexagon-condensed'
 import HexagonDynamic from '@components/node-graph/hexagon-dynamic'
 import useMobileState from '@hooks/use-mobile-state'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { useHomeData } from '@store/useHomeData'
 import useDuplicateEmail from '@hooks/use-duplicate-email'
 import { showToast } from '@utils/toast-utils'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const Landing = () => {
-  const { getCopyBySectionId } = useHomeData()
+  const { getCopyBySectionId } = useStrapiContextValue()
   const landingCopy = getCopyBySectionId('home-hero')
 
   const isMobile = useMobileState()

@@ -1,14 +1,14 @@
 import React from 'react'
+import { useMutation } from '@tanstack/react-query'
 import { Box, FormControl, Input, Textarea, VStack, SimpleGrid } from '@chakra-ui/react'
 
 import Button from '@components/button'
 import useAppToast from '@hooks/use-app-toast'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { useHomeData } from '@store/useHomeData'
-import { useMutation } from '@tanstack/react-query'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const Partnership: React.FC = () => {
-  const { getCopyBySectionId } = useHomeData()
+  const { getCopyBySectionId } = useStrapiContextValue()
   const partnerCopy = getCopyBySectionId('home-partner')
   const { showToast } = useAppToast()
   const [fullName, setFullName] = React.useState<string>('')

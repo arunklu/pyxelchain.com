@@ -6,10 +6,10 @@ import BorderBox from '@components/border-box'
 import { splitNewLines } from '@utils/text-utils'
 import { getImageUrl } from '@utils/url-utils'
 import { HeadingRenderer } from '@components/markdown-renderer'
-import { useHomeData } from '@store/useHomeData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const Team = () => {
-  const { getCopyBySectionId, allStrapiTeams } = useHomeData()
+  const { getCopyBySectionId, teams } = useStrapiContextValue()
   const teamCopy = getCopyBySectionId('home-team')
 
   return (
@@ -18,7 +18,7 @@ const Team = () => {
         <HeadingRenderer title={teamCopy?.title} titleWithGradient={teamCopy?.titleWithGradient} />
       </Box>
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="30px">
-        {allStrapiTeams.map((team, idx) => {
+        {teams.map((team, idx) => {
           const currentNumber = idx + 1
           const isCenter = currentNumber % 3 === 2
           const isLastColumn = currentNumber % 3 === 0

@@ -4,12 +4,12 @@ import { Box, SimpleGrid, Image, Divider } from '@chakra-ui/react'
 import BorderBox from '@components/border-box'
 import { Text } from '@components/typography'
 import { getImageUrl } from '@utils/url-utils'
-import { useHomeData } from '@store/useHomeData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const PredatoryPractices = () => {
-  const { getHomeFeatureBySectionId } = useHomeData()
+  const { getFeatureBySectionId } = useStrapiContextValue()
 
-  const predatoryPracticesFeatures = getHomeFeatureBySectionId('home-about-1')
+  const predatoryPracticesFeatures = getFeatureBySectionId('home-about-1')
 
   return (
     <BorderBox>

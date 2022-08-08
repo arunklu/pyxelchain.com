@@ -12,7 +12,7 @@ import Team from '@modules/home/team'
 import Roadmap from '@modules/home/roadmap'
 import Partnership from '@modules/home/partnership'
 import Pyxis from '@modules/home/pyxis/pyxis'
-import { useHomeData } from '@store/useHomeData'
+import { StrapiContextProvider } from '@context/strapi-context'
 
 import { CopyEntity, FeatureEntity, TeamEntity } from 'types/index'
 import { HOME_QUERY } from '@graphql/queries/home'
@@ -32,34 +32,28 @@ interface PageProps {
 }
 
 const Index: React.FC<PageProps> = ({ data }) => {
-  const { setAllStrapiHomeCopy, setAllStrapiHomeFeature, setAllStrapiTeams } = useHomeData()
-
-  React.useEffect(() => {
-    setAllStrapiHomeCopy(data.allStrapiCopy.nodes)
-  }, [setAllStrapiHomeCopy, data])
-
-  React.useEffect(() => {
-    setAllStrapiHomeFeature(data.allStrapiFeature.nodes)
-  }, [setAllStrapiHomeFeature, data])
-
-  React.useEffect(() => {
-    setAllStrapiTeams(data.allStrapiTeam.nodes)
-  }, [setAllStrapiTeams, data])
+  const values = {
+    copies: data.allStrapiCopy.nodes,
+    features: data.allStrapiFeature.nodes,
+    teams: data.allStrapiTeam.nodes,
+  }
 
   return (
-    <Box mb={36}>
-      <SEO
-        title={data?.allStrapiCopy?.nodes[0]?.seo?.metatitle}
-        description={data?.allStrapiCopy?.nodes[0]?.seo?.metadescription}
-      />
-      <Landing />
-      <About />
-      <Vision />
-      <Pyxis />
-      <Team />
-      <Roadmap />
-      <Partnership />
-    </Box>
+    <StrapiContextProvider values={values}>
+      <Box mb={36}>
+        <SEO
+          title={data?.allStrapiCopy?.nodes[0]?.seo?.metatitle}
+          description={data?.allStrapiCopy?.nodes[0]?.seo?.metadescription}
+        />
+        <Landing />
+        <About />
+        <Vision />
+        <Pyxis />
+        <Team />
+        <Roadmap />
+        <Partnership />
+      </Box>
+    </StrapiContextProvider>
   )
 }
 

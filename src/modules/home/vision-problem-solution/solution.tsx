@@ -5,10 +5,10 @@ import HexagonDynamic from '@components/node-graph/hexagon-dynamic'
 import HexagonExpanded from '@components/node-graph/hexagon-expanded'
 import useMobileState from '@hooks/use-mobile-state'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { useHomeData } from '@store/useHomeData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const Solution = () => {
-  const { getCopyBySectionId } = useHomeData()
+  const { getCopyBySectionId } = useStrapiContextValue()
   const solutionCopy = getCopyBySectionId('home-solution')
   const isMobile = useMobileState()
   return (
