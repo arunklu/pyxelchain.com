@@ -1,16 +1,12 @@
 import React from 'react'
-import { Box, FormControl, Input, VStack, Image, Flex } from '@chakra-ui/react'
+import { Box, FormControl, Input, VStack, Image, Flex, Text } from '@chakra-ui/react'
 
 import Button from '../button'
 import Link from '../link'
-import { useFooterData } from '@store/useFooterData'
-import MarkdownRenderer from '@components/markdown-renderer'
 import useDuplicateEmail from '@hooks/use-duplicate-email'
 import { showToast } from '@utils/toast-utils'
 
 const FooterAction = () => {
-  const { getCopyBySectionId } = useFooterData()
-  const newsLetterCopy = getCopyBySectionId('footer-newsletter')
   const [email, setEmail] = React.useState<string>('')
 
   const isDuplicate = useDuplicateEmail(email)
@@ -43,7 +39,8 @@ const FooterAction = () => {
           <Image alt="PyxelChain Logo" src="/svg/navigation-logo.svg" />
         </Link>
         <Flex flexDir="column" gap={3} sx={{ p: { color: 'white', fontWeight: 'normal', fontSize: 'sm' } }}>
-          <MarkdownRenderer markdown={newsLetterCopy?.description} />
+          <Text>Want to stay up-to-date with PyxelChain?</Text>
+          <Text>We don't spam, sell, or shill.</Text>
         </Flex>
         <form method="post" className="embeddable-buttondown-form" onSubmit={handleSubscribe}>
           <VStack mt={5} spacing={7} alignItems="flex-start">

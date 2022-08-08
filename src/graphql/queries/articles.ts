@@ -2,7 +2,7 @@ import { gql } from '@apollo/client'
 
 export const ARTICLES_QUERY = gql`
   query ArticlesQuery {
-    allStrapiCopy: copies(filters: { sectionId: { in: ["articles-hero", "footer-footnote", "footer-newsletter"] } }) {
+    allStrapiCopy: copies(filters: { sectionId: { in: ["articles-hero"] } }) {
       data {
         attributes {
           sectionId

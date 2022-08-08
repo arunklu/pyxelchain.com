@@ -9,7 +9,6 @@ import { useBrandData } from '@store/useBrandData'
 import { BRAND_QUERY } from '@graphql/queries/brand'
 
 import { CopyEntity, FeatureEntity } from 'types/index'
-import { useFooterData } from '@store/useFooterData'
 
 interface PageProps {
   data: {
@@ -24,12 +23,10 @@ interface PageProps {
 
 const Index: React.FC<PageProps> = ({ data }) => {
   const { setAllStrapiBrandCopy, setAllStrapiBrandFeature } = useBrandData()
-  const { setAllStrapiFooterCopy } = useFooterData()
 
   React.useEffect(() => {
     setAllStrapiBrandCopy(data.allStrapiCopy.nodes)
-    setAllStrapiFooterCopy(data.allStrapiCopy.nodes)
-  }, [setAllStrapiBrandCopy, setAllStrapiFooterCopy, data])
+  }, [setAllStrapiBrandCopy, data])
 
   React.useEffect(() => {
     setAllStrapiBrandFeature(data.allStrapiFeature.nodes)
