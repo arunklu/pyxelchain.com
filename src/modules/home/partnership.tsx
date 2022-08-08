@@ -5,7 +5,9 @@ import Button from '@components/button'
 import useAppToast from '@hooks/use-app-toast'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { useHomeData } from '@store/useHomeData'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation } from '@apollo/client'
+import { CREATE_PARTNERSHIP } from '@graphql/mutations/partnership'
+import useDuplicatePartnership from '@hooks/use-duplicate-partnership'
 
 const Partnership: React.FC = () => {
   const { getCopyBySectionId } = useHomeData()
@@ -16,25 +18,28 @@ const Partnership: React.FC = () => {
   const [partnershipDescription, setPartnershipDescription] = React.useState<string>('')
   const [howToPartner, setHowToPartner] = React.useState<string>('')
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const isDuplicate = useDuplicatePartnership(email)
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    mutateAsync({ fullName, email, partnershipDescription, howToPartner })
+    if (isDuplicate) {
+      showToast("You've already submitted partnership form.", 'error')
+    } else {
+      createpartnership({
+        variables: {
+          data: {
+            fullName,
+            email,
+            collaborationNetwork: partnershipDescription,
+            howToPartner,
+            publishedAt: new Date().toISOString(),
+          },
+        },
+      })
+    }
   }
-
-  const postPartnershipForm = async (data: {
-    fullName: string
-    email: string
-    partnershipDescription: string
-    howToPartner: string
-  }) => {
-    await fetch('https://formbucket.com/f/buk_4ZIdibmPdW8ITR8BFIAqyzL3', {
-      method: 'post',
-      body: JSON.stringify(data),
-    }).then((res) => res.json())
-  }
-
-  const { isLoading, mutateAsync } = useMutation(postPartnershipForm, {
-    onSuccess: () => {
+  const [createpartnership, { loading }] = useMutation(CREATE_PARTNERSHIP, {
+    onCompleted: () => {
       showToast('Successfully submitted Partnership form.', 'success')
       setFullName('')
       setEmail('')
@@ -93,7 +98,7 @@ const Partnership: React.FC = () => {
             </FormControl>
           </VStack>
           <Button w="full" type="submit">
-            {isLoading ? 'Submitting' : 'Express Interest'}
+            {loading ? 'Submitting' : 'Express Interest'}
           </Button>
         </form>
       </Box>

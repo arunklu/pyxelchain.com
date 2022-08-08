@@ -24,7 +24,7 @@ const Landing = () => {
     e.preventDefault()
 
     if (isDuplicate) {
-      showToast('You are already subscribed to our Newsletter.', 'error')
+      showToast('You already subscribed to our Newsletter.', 'error')
     } else {
       fetch('https://api.buttondown.email/v1/subscribers', {
         method: 'POST',
