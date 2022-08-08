@@ -5,13 +5,13 @@ import TwoByTwoGrid from '@components/tow-by-two-grid'
 import PyxButton from './pyx-button'
 import PyxCard from './pyx-card'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { useHomeData } from 'store/useHomeData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const Pyxis: React.FC = () => {
-  const { getCopyBySectionId, getHomeFeatureBySectionId } = useHomeData()
+  const { getCopyBySectionId, getFeatureBySectionId } = useStrapiContextValue()
   const appDownloadCopy = getCopyBySectionId('home-app-download')
 
-  const pyxisFeatures = getHomeFeatureBySectionId('home-app-download')
+  const pyxisFeatures = getFeatureBySectionId('home-app-download')
 
   return (
     <VStack mb="183px" mx="auto">

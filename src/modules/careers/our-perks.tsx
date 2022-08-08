@@ -3,14 +3,14 @@ import { Text } from '@components/typography'
 import React from 'react'
 import { getImageUrl } from '@utils/url-utils'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { useCareersData } from '@store/useCareersData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 interface OurPerksProps {}
 
 const OurPerks: React.FC<OurPerksProps> = () => {
-  const { getCopyBySectionId, getCareersFeatureBySectionId } = useCareersData()
+  const { getCopyBySectionId, getFeatureBySectionId } = useStrapiContextValue()
   const perksCopy = getCopyBySectionId('careers-perks')
-  const ourPerksFeatures = getCareersFeatureBySectionId('careers-perks')
+  const ourPerksFeatures = getFeatureBySectionId('careers-perks')
 
   return (
     <Flex flexDir={{ base: 'column', lg: 'row' }} mt="172px">

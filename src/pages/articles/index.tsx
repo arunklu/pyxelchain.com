@@ -12,7 +12,7 @@ import useHorizontalScroll from '@hooks/use-horizontal-scroll'
 
 import { CopyEntity, ArticleEntity, ArticleTagEntity } from 'types/index'
 import { ARTICLES_QUERY } from '@graphql/queries/articles'
-import { useArticleData } from '@store/useArticleData'
+import { StrapiContextProvider } from '@context/strapi-context'
 
 interface PageProps {
   data: {
@@ -32,12 +32,6 @@ const Index: React.FC<PageProps> = ({ data }) => {
   const [selectedTag, setSelectedTag] = React.useState<string>('All')
   const { elRef } = useHorizontalScroll()
 
-  const { setAllStrapiArticleCopy } = useArticleData()
-
-  React.useEffect(() => {
-    setAllStrapiArticleCopy(data.allStrapiCopy.nodes)
-  }, [setAllStrapiArticleCopy, data])
-
   const articles = data.allStrapiArticle.nodes
   const filteredArticles = data.allStrapiArticle.nodes
     .filter((element) => element.article_tags?.data.some((tag) => tag.attributes?.tagName === selectedTag))
@@ -54,34 +48,45 @@ const Index: React.FC<PageProps> = ({ data }) => {
 
   const articleCopy = data.allStrapiCopy.nodes.find((n) => n.sectionId === 'articles-hero')
   return (
-    <Box my={{ base: '64px', md: '80px', lg: '110px' }}>
-      <SEO title={articleCopy?.seo?.metatitle} description={articleCopy?.seo?.metadescription} />
-      <VStack mb={{ base: '110px', md: '125px', lg: '150px' }}>
-        <HeadingRenderer center title={articleCopy?.title} titleWithGradient={articleCopy?.titleWithGradient} />
-        <Center maxW="791px" textAlign="center">
-          <MarkdownRenderer markdown={articleCopy?.description} />
-        </Center>
-      </VStack>
-      <ArticlesCard article={articles[0]} highlighted />
-      <Divider color="#C9D2D8" mt="59px" opacity={0.1} />
-      <Flex overflowX="hidden" mt="60px" ref={elRef}>
-        {ARTICLES_TAGS.map((tag) => (
-          <ArticleTag
-            selectedTag={selectedTag}
-            onClick={(e: string) => setSelectedTag(e)}
-            key={tag.tagName}
-            tagName={tag.tagName}
-          ></ArticleTag>
-        ))}
-      </Flex>
-      <Grid gap="30px" mt="52px" templateColumns={{ base: 'repeat(1,1fr)', lg: 'repeat(2,1fr)', xl: 'repeat(3,1fr)' }}>
-        {articlesData.map((article, i: number) => (
-          <GridItem h="602px" key={i}>
-            <ArticlesCard hoverable={true} article={article} />
-          </GridItem>
-        ))}
-      </Grid>
-    </Box>
+    <StrapiContextProvider
+      values={{
+        copies: data.allStrapiCopy.nodes,
+        features: [],
+      }}
+    >
+      <Box my={{ base: '64px', md: '80px', lg: '110px' }}>
+        <SEO title={articleCopy?.seo?.metatitle} description={articleCopy?.seo?.metadescription} />
+        <VStack mb={{ base: '110px', md: '125px', lg: '150px' }}>
+          <HeadingRenderer center title={articleCopy?.title} titleWithGradient={articleCopy?.titleWithGradient} />
+          <Center maxW="791px" textAlign="center">
+            <MarkdownRenderer markdown={articleCopy?.description} />
+          </Center>
+        </VStack>
+        <ArticlesCard article={articles[0]} highlighted />
+        <Divider color="#C9D2D8" mt="59px" opacity={0.1} />
+        <Flex overflowX="hidden" mt="60px" ref={elRef}>
+          {ARTICLES_TAGS.map((tag) => (
+            <ArticleTag
+              selectedTag={selectedTag}
+              onClick={(e: string) => setSelectedTag(e)}
+              key={tag.tagName}
+              tagName={tag.tagName}
+            ></ArticleTag>
+          ))}
+        </Flex>
+        <Grid
+          gap="30px"
+          mt="52px"
+          templateColumns={{ base: 'repeat(1,1fr)', lg: 'repeat(2,1fr)', xl: 'repeat(3,1fr)' }}
+        >
+          {articlesData.map((article, i: number) => (
+            <GridItem h="602px" key={i}>
+              <ArticlesCard hoverable={true} article={article} />
+            </GridItem>
+          ))}
+        </Grid>
+      </Box>
+    </StrapiContextProvider>
   )
 }
 

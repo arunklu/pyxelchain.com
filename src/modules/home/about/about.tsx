@@ -5,10 +5,10 @@ import { Text } from '@components/typography'
 import PredatoryPractices from './predatory-practices'
 import CombatPredatoryPractices from './combat-predatory-practices'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { useHomeData } from '@store/useHomeData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const About = () => {
-  const { getCopyBySectionId } = useHomeData()
+  const { getCopyBySectionId } = useStrapiContextValue()
   const aboutCopy = getCopyBySectionId('home-about')
   const about1Copy = getCopyBySectionId('home-about-1')
   const about2Copy = getCopyBySectionId('home-about-2')

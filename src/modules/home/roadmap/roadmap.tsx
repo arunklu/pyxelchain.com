@@ -5,10 +5,10 @@ import RoadmapCard from './roadmap-card'
 import { FIRST_HALF } from '@constants/roadmap-items'
 import Rocket from './rocket'
 import { HeadingRenderer } from '@components/markdown-renderer'
-import { useHomeData } from '@store/useHomeData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const Roadmap = () => {
-  const { getCopyBySectionId } = useHomeData()
+  const { getCopyBySectionId } = useStrapiContextValue()
   const roadmapCopy = getCopyBySectionId('home-roadmap')
   return (
     <Box mb={{ base: 20, md: 44 }} style={{ userSelect: 'none' }}>

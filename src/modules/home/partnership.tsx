@@ -4,13 +4,13 @@ import { Box, FormControl, Input, Textarea, VStack, SimpleGrid } from '@chakra-u
 import Button from '@components/button'
 import useAppToast from '@hooks/use-app-toast'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { useHomeData } from '@store/useHomeData'
 import { useMutation } from '@apollo/client'
 import { CREATE_PARTNERSHIP } from '@graphql/mutations/partnership'
 import useDuplicatePartnership from '@hooks/use-duplicate-partnership'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const Partnership: React.FC = () => {
-  const { getCopyBySectionId } = useHomeData()
+  const { getCopyBySectionId } = useStrapiContextValue()
   const partnerCopy = getCopyBySectionId('home-partner')
   const { showToast } = useAppToast()
   const [fullName, setFullName] = React.useState<string>('')

@@ -3,10 +3,10 @@ import { Box, Image } from '@chakra-ui/react'
 
 import { Text } from '@components/typography'
 import { HeadingRenderer } from '@components/markdown-renderer'
-import { useHomeData } from '@store/useHomeData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const Vision: React.FC = () => {
-  const { getCopyBySectionId } = useHomeData()
+  const { getCopyBySectionId } = useStrapiContextValue()
   const visionCopy = getCopyBySectionId('home-vision')
   return (
     <Box position="relative" w="full">

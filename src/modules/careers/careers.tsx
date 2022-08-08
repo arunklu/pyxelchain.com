@@ -1,13 +1,14 @@
+import React from 'react'
 import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
+import { useQuery } from '@tanstack/react-query'
+
 import Button from '@components/button'
 import { PageGradientFilter } from '@components/gradient-fillter'
 import Link from '@components/link'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { Heading, Text } from '@components/typography'
-import React from 'react'
-import { useCareersData } from '@store/useCareersData'
+import { useStrapiContextValue } from '@context/strapi-context'
 import Job from './job'
-import { useQuery } from '@tanstack/react-query'
 
 interface JobProps {
   id: number
@@ -20,7 +21,7 @@ interface JobProps {
 }
 
 const Careers: React.FC = () => {
-  const { getCopyBySectionId } = useCareersData()
+  const { getCopyBySectionId } = useStrapiContextValue()
   const careersCopy = getCopyBySectionId('careers-hero')
 
   const { isLoading, data } = useQuery(['jobsData'], () =>
