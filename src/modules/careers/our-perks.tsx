@@ -10,7 +10,7 @@ interface OurPerksProps {}
 const OurPerks: React.FC<OurPerksProps> = () => {
   const { getCopyBySectionId, getCareersFeatureBySectionId } = useCareersData()
   const perksCopy = getCopyBySectionId('careers-perks')
-  const ourPerksFeatures = getCareersFeatureBySectionId('careers-key-values')
+  const ourPerksFeatures = getCareersFeatureBySectionId('careers-perks')
 
   return (
     <Flex flexDir={{ base: 'column', lg: 'row' }} mt="172px">
