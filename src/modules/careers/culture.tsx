@@ -1,10 +1,10 @@
 import { Box, Flex, SimpleGrid, VStack } from '@chakra-ui/react'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import React from 'react'
-import { useCareersData } from '@store/useCareersData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const Culture: React.FC = () => {
-  const { getCopyBySectionId } = useCareersData()
+  const { getCopyBySectionId } = useStrapiContextValue()
   const cultureCopy = getCopyBySectionId('careers-culture')
   return (
     <Box mt="120px">

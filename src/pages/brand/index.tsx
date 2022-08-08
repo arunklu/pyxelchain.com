@@ -5,7 +5,7 @@ import { GetServerSideProps } from 'next'
 
 import { SEO } from '@components/seo'
 import Brand from '@modules/brand/brand'
-import { useBrandData } from '@store/useBrandData'
+import { StrapiContextProvider } from '@context/strapi-context'
 import { BRAND_QUERY } from '@graphql/queries/brand'
 
 import { CopyEntity, FeatureEntity } from 'types/index'
@@ -22,22 +22,17 @@ interface PageProps {
 }
 
 const Index: React.FC<PageProps> = ({ data }) => {
-  const { setAllStrapiBrandCopy, setAllStrapiBrandFeature } = useBrandData()
-
-  React.useEffect(() => {
-    setAllStrapiBrandCopy(data.allStrapiCopy.nodes)
-  }, [setAllStrapiBrandCopy, data])
-
-  React.useEffect(() => {
-    setAllStrapiBrandFeature(data.allStrapiFeature.nodes)
-  }, [setAllStrapiBrandFeature, data])
+  const values = {
+    copies: data.allStrapiCopy.nodes,
+    features: data.allStrapiFeature.nodes,
+  }
 
   const brandCopy = data.allStrapiCopy.nodes.find((n) => n.sectionId === 'brand-hero')
   return (
-    <>
+    <StrapiContextProvider values={values}>
       <SEO title={brandCopy?.seo?.metatitle} description={brandCopy?.seo?.metadescription} />
       <Brand />
-    </>
+    </StrapiContextProvider>
   )
 }
 

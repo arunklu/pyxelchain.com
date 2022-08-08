@@ -3,14 +3,14 @@ import React from 'react'
 import BrandCard from './brand-card'
 import { PageGradientFilter } from '@components/gradient-fillter'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { useBrandData } from '@store/useBrandData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 interface BrandProps {}
 
 const Brand: React.FC<BrandProps> = () => {
-  const { getCopyBySectionId, getBrandFeatureBySectionId } = useBrandData()
+  const { getCopyBySectionId, getFeatureBySectionId } = useStrapiContextValue()
   const brandHeroCopy = getCopyBySectionId('brand-hero')
-  const brandAssets = getBrandFeatureBySectionId('brand-assets')
+  const brandAssets = getFeatureBySectionId('brand-assets')
 
   return (
     <Box my={{ base: '64px', md: '80px', lg: '110px' }}>

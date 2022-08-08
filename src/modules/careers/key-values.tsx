@@ -5,11 +5,11 @@ import TwoByTwoGrid from '@components/tow-by-two-grid'
 import { PageGradientFilter } from '@components/gradient-fillter'
 import { getImageUrl } from '@utils/url-utils'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { useCareersData } from '@store/useCareersData'
+import { useStrapiContextValue } from '@context/strapi-context'
 
 const KeyValues: React.FC = () => {
-  const { getCareersFeatureBySectionId, getCopyBySectionId } = useCareersData()
-  const keyValuesFeatures = getCareersFeatureBySectionId('careers-key-values')
+  const { getFeatureBySectionId, getCopyBySectionId } = useStrapiContextValue()
+  const keyValuesFeatures = getFeatureBySectionId('careers-key-values')
   const keyValuesCopy = getCopyBySectionId('careers-key-values')
 
   return (

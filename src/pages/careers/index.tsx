@@ -9,10 +9,10 @@ import KeyValues from '@modules/careers/key-values'
 import Culture from '@modules/careers/culture'
 import OurPerks from '@modules/careers/our-perks'
 import Careers from '@modules/careers/careers'
-import { useCareersData } from '@store/useCareersData'
 import { CAREER_QUERY } from '@graphql/queries/career'
 
 import { CopyEntity, FeatureEntity } from 'types/index'
+import { StrapiContextProvider } from '@context/strapi-context'
 
 interface PageProps {
   data: {
@@ -26,25 +26,22 @@ interface PageProps {
 }
 
 const Index: React.FC<PageProps> = ({ data }) => {
-  const { setAllStrapiCareersCopy, setAllStrapiCareersFeature } = useCareersData()
-
-  React.useEffect(() => {
-    setAllStrapiCareersCopy(data.allStrapiCopy.nodes)
-  }, [setAllStrapiCareersCopy, data])
-
-  React.useEffect(() => {
-    setAllStrapiCareersFeature(data.allStrapiFeature.nodes)
-  }, [setAllStrapiCareersFeature, data])
+  const values = {
+    copies: data.allStrapiCopy.nodes,
+    features: data.allStrapiFeature.nodes,
+  }
 
   const careersCopy = data.allStrapiCopy.nodes.find((n) => n.sectionId === 'careers-hero')
   return (
-    <Box mt={{ base: '64px', md: '80px', lg: '110px' }}>
-      <SEO title={careersCopy?.seo?.metatitle} description={careersCopy?.seo?.metadescription} />
-      <Careers />
-      <KeyValues />
-      <OurPerks />
-      <Culture />
-    </Box>
+    <StrapiContextProvider values={values}>
+      <Box mt={{ base: '64px', md: '80px', lg: '110px' }}>
+        <SEO title={careersCopy?.seo?.metatitle} description={careersCopy?.seo?.metadescription} />
+        <Careers />
+        <KeyValues />
+        <OurPerks />
+        <Culture />
+      </Box>
+    </StrapiContextProvider>
   )
 }
 

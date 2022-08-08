@@ -16,7 +16,7 @@ interface StrapiContextProviderProps {
   values: {
     copies: Copy[]
     features: Feature[]
-    teams: Team[]
+    teams?: Team[]
   }
 }
 
@@ -41,6 +41,7 @@ const StrapiContextProvider: React.FC<PropsWithChildren<StrapiContextProviderPro
     <StrapiContext.Provider
       value={{
         ...values,
+        teams: values.teams || [],
         getCopyBySectionId,
         getFeatureBySectionId,
       }}
