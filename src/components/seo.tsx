@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React from 'react'
 
 interface SEOTypes {
@@ -21,7 +22,7 @@ export const SEO: React.FC<SEOTypes> = ({
     url: pathname,
   }
   return (
-    <>
+    <Head>
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
@@ -44,6 +45,6 @@ export const SEO: React.FC<SEOTypes> = ({
       {/* <meta name="twitter:creator" content={seo.twitterUsername} /> */}
       <link rel="icon" href="/svg/logo.svg" />
       {children}
-    </>
+    </Head>
   )
 }

@@ -49,8 +49,8 @@ const Index: React.FC<PageProps> = ({ data }) => {
   return (
     <Box mb={36}>
       <SEO
-        title="PyxelChain Technology"
-        description="We are building blockchain software to put power and security back in the hands of the users."
+        title={data?.allStrapiCopy?.nodes[0]?.seo?.metatitle}
+        description={data?.allStrapiCopy?.nodes[0]?.seo?.metadescription}
       />
       <Landing />
       <About />
