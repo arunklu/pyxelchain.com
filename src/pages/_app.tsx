@@ -15,7 +15,7 @@ import { FC } from 'react'
 import Head from 'next/head'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ApolloProvider } from '@apollo/client'
-import { ChakraProvider, Container, Divider } from '@chakra-ui/react'
+import { Box, ChakraProvider, Container, Divider } from '@chakra-ui/react'
 import { AppProps } from 'next/app'
 
 import Navbar from '@components/navbar'
@@ -33,20 +33,22 @@ const App: FC<AppProps> = ({ Component, pageProps }) => (
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <ChakraProvider theme={theme}>
-        <Container maxWidth="container.2xl" px={{ base: '30px', md: '50px', xl: '96px' }}>
-          <Navbar />
-          <Component {...pageProps} />
-        </Container>
-        <Divider
-          mt="60px"
-          opacity={0.2}
-          css={{
-            borderBottomWidth: '1.5px',
-          }}
-        />
-        <Container maxWidth="container.2xl" px={{ base: '30px', md: '50px', xl: '96px' }} pt={20} pb={10}>
-          <Footer />
-        </Container>
+        <Box overflow="hidden">
+          <Container maxWidth="container.2xl" px={{ base: '30px', md: '50px', xl: '96px' }}>
+            <Navbar />
+            <Component {...pageProps} />
+          </Container>
+          <Divider
+            mt="60px"
+            opacity={0.2}
+            css={{
+              borderBottomWidth: '1.5px',
+            }}
+          />
+          <Container maxWidth="container.2xl" px={{ base: '30px', md: '50px', xl: '96px' }} pt={20} pb={10}>
+            <Footer />
+          </Container>
+        </Box>
       </ChakraProvider>
     </ApolloProvider>
   </QueryClientProvider>

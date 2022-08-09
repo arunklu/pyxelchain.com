@@ -24,7 +24,10 @@ const Landing = () => {
     e.preventDefault()
 
     if (isDuplicate) {
-      showToast('You already subscribed to our Newsletter.', 'error')
+      showToast(
+        "We've already got you on the list, but we're flattered you want to sign up for our email newsletters again.",
+        'error'
+      )
     } else {
       fetch('https://api.buttondown.email/v1/subscribers', {
         method: 'POST',

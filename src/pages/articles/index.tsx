@@ -63,7 +63,7 @@ const Index: React.FC<PageProps> = ({ data }) => {
           </Center>
         </VStack>
         <ArticlesCard article={articles[0]} highlighted />
-        <Divider color="#C9D2D8" mt="59px" opacity={0.1} />
+        <Divider w={5000} ml="-2500" color="#C9D2D8" mt="59px" opacity={0.1} />
         <Flex overflowX="hidden" mt="60px" ref={elRef}>
           {ARTICLES_TAGS.map((tag) => (
             <ArticleTag
