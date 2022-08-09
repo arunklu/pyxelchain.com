@@ -1,0 +1,53 @@
+name: ci_cd for pyxelchain.com
+
+
+on:
+  push:
+    branches: [main]
+    
+env:
+  USERNAME: ubuntu
+  REMOTE_FOLDER: ~/websites/pyxelchain_website
+  
+jobs:
+  build_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy Repo
+        uses: actions/checkout@v3
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_BPPAPI_HOST: bppapi-staging.gameficap.com
+      #- name: Build Docker Compose
+      #  uses: isbang/compose-action@v1.0.0
+      #  with:
+      #    compose-file: './docker-compose-develop.yml'
+      #    down-flags: '--volumes'
+#       - name: Build the code
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version:  14.x
+#           cache: npm
+#           command: |
+#             ls -lrt && pwd 
+#             cd websites/pyxelchain_website 
+#             pwd && ls -lrt && npm i --legacy-peer-deps && npm run build && ls -lrt 
+      - name: Copy Files to Remote Host
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.PRIVATE_KEY }}
+        with:
+          flags: '-avzr'
+          options: ''
+          ssh_options: ''
+          src: ''
+          dest: '$USERNAME@${{ secrets.PROD_HOST }}:$REMOTE_FOLDER'
+      - name: Deploy on Remote Host
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            pwd && cd websites/pyxelchain_website && npm i --legacy-peer-deps && npm run build && ls -lrt
+          host: ${{ secrets.PROD_HOST }}
+          user: $USERNAME
+          key: ${{ secrets.PRIVATE_KEY }}
