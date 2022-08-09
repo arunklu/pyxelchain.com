@@ -1,12 +1,15 @@
 import { gql } from '@apollo/client'
 
 export const CREATE_PARTNERSHIP = gql`
-  mutation CreatePartnership($data: PartnershipInput!) {
+  mutation partnershipFormMutation($data: PartnershipInput!) {
     createPartnership(data: $data) {
       data {
-        id
         attributes {
           fullName
+          email
+          howToPartner
+          collaborationNetwork
+          publishedAt
         }
       }
     }
