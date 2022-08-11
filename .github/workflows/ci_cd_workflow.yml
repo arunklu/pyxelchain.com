@@ -41,7 +41,7 @@ jobs:
           options: ''
           ssh_options: ''
           src: ''
-          dest: '$USERNAME@${{ secrets.PROD_HOST }}:$REMOTE_FOLDER'
+          dest: '$USERNAME@${{ secrets.STAGING_HOST }}:$REMOTE_FOLDER'
       - name: Deploy on Remote Host
         uses: fifsky/ssh-action@master
         with:
