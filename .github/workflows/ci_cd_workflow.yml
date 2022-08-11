@@ -47,7 +47,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            pwd && cd websites/pyxelchain_website && npm i && npm run build && ls -lrt
+            pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && node --version && npm --version && npm i && npm run build && ls -lrt
           host: ${{ secrets.STAGING_HOST }}
           user: $USERNAME
           key: ${{ secrets.PRIVATE_KEY }}
