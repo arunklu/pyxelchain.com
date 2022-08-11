@@ -1,6 +1,5 @@
 name: ci_cd for pyxelchain.com
 
-
 on:
   push:
     branches: [main]
@@ -47,7 +46,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            pwd && cd websites/pyxelchain_website && npm i --legacy-peer-deps && npm run build && ls -lrt
-          host: ${{ secrets.PROD_HOST }}
+            pwd && cd websites/pyxelchain_website && npm i && npm run build && ls -lrt
+          host: ${{ secrets.HOST }}
           user: $USERNAME
           key: ${{ secrets.PRIVATE_KEY }}
