@@ -47,6 +47,6 @@ jobs:
         with:
           command: |
             pwd && cd websites/pyxelchain_website && npm i && npm run build && ls -lrt
-          host: ${{ secrets.HOST }}
+          host: ${{ secrets.STAGING_HOST }}
           user: $USERNAME
           key: ${{ secrets.PRIVATE_KEY }}
