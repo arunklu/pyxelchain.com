@@ -23,12 +23,13 @@ const FooterAction = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Token bb2629d3edee4aa29d6a4ab03b1cdd46',
+          Authorization: `Token ${process.env.NEXT_PUBLIC_BUTTONDOWN_TOKEN}`,
         },
         body: JSON.stringify({ email }),
       }).then(async (res) => {
         if (res) {
           showToast("You've subscribed to PyxelNews. Please check your email for confirmation.", 'error')
+          setEmail('')
         }
         setEmail('')
       })
