@@ -19,20 +19,15 @@ jobs:
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_BPPAPI_HOST: bppapi-staging.gameficap.com
-      #- name: Build Docker Compose
-      #  uses: isbang/compose-action@v1.0.0
-      #  with:
-      #    compose-file: './docker-compose-develop.yml'
-      #    down-flags: '--volumes'
-#       - name: Build the code
-#         uses: actions/setup-node@v3
-#         with:
-#           node-version:  14.x
-#           cache: npm
-#           command: |
-#             ls -lrt && pwd 
-#             cd websites/pyxelchain_website 
-#             pwd && ls -lrt && npm i --legacy-peer-deps && npm run build && ls -lrt 
+      - name: Build the code using Node 16.16.0
+        uses: actions/setup-node@v3
+        with:
+          node-version:  16.16.0
+          cache: npm
+          command: |
+            pwd && cd websites/pyxelchain_website  
+            cp env_latest.txt .env && node --version && npm --version  
+            npm i && npm run build && ls -lrt
       - name: Copy Files to Remote Host
         uses: Pendect/action-rsyncer@v1.1.0
         env:
@@ -47,7 +42,6 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && node --version && npm --version && npm i && npm run build && ls -lrt
             pwd && cd websites/pyxelchain_website && cp -r .next/server/pages . && cp DevOps/* . && ls -lrt 
           host: ${{ secrets.STAGING_HOST }}
           user: $USERNAME
