@@ -19,13 +19,13 @@ jobs:
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_BPPAPI_HOST: bppapi-staging.gameficap.com
-      - name: Build the code using Node 16.16.0
+      - name: Build the code
         uses: actions/setup-node@v3
         with:
-          node-version:  16.16.0
+          node-version:  16.16.x
           cache: npm
-          command: |
-            pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run build && ls -lrt
+          cache-dependency-path: front_next/package-lock.json
+      - run: pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run build && ls -lrt
       - name: Copy Files to Remote Host
         uses: Pendect/action-rsyncer@v1.1.0
         env:
