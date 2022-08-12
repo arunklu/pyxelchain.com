@@ -25,7 +25,7 @@ jobs:
           node-version:  16.16.x
           cache: npm
           cache-dependency-path: package-lock.json
-      - run: pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run build && ls -lrt
+      - run: pwd && ls -lrt && cd websites/pyxelchain_website && cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run build && ls -lrt
       - name: Copy Files to Remote Host
         uses: Pendect/action-rsyncer@v1.1.0
         env:
