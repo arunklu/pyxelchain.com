@@ -25,9 +25,7 @@ jobs:
           node-version:  16.16.0
           cache: npm
           command: |
-            pwd && cd websites/pyxelchain_website  
-            cp env_latest.txt .env && node --version && npm --version  
-            npm i && npm run build && ls -lrt
+            pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run build && ls -lrt
       - name: Copy Files to Remote Host
         uses: Pendect/action-rsyncer@v1.1.0
         env:
@@ -42,7 +40,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            pwd && cd websites/pyxelchain_website && cp -r .next/server/pages . && cp DevOps/* . && ls -lrt 
+            pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && cp -r .next/server/pages . && cp DevOps/* . && ls -lrt 
           host: ${{ secrets.STAGING_HOST }}
           user: $USERNAME
           key: ${{ secrets.PRIVATE_KEY }}
