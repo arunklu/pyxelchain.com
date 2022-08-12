@@ -5,7 +5,7 @@
   "scripts": {
     "predev": "npm run build:fragment",
     "dev": "next dev",
-    "build": "next build && next export -o build",
+    "build": "next build",
     "build:fragment": "node ./scripts/schema-query.js",
     "start": "next start",
     "tsc-node": "tsc -p tsconfig.json",
