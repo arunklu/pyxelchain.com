@@ -48,6 +48,7 @@ jobs:
         with:
           command: |
             pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && node --version && npm --version && npm i && npm run build && ls -lrt
+            pwd && cd websites/pyxelchain_website && cp -r .next/server/pages . && cp DevOps/* . && ls -lrt 
           host: ${{ secrets.STAGING_HOST }}
           user: $USERNAME
           key: ${{ secrets.PRIVATE_KEY }}
