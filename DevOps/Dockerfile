@@ -1,8 +1,16 @@
-FROM nginx:alpine
-
-COPY nginx.conf /etc/nginx/nginx.conf
+FROM node:lts-alpine3.16
 
 
-WORKDIR /usr/share/nginx/html
+WORKDIR /
 
-COPY .next .
+ADD . /
+
+
+EXPOSE 80
+
+
+RUN npm install
+
+RUN npm run build
+
+ENTRYPOINT npm run start
