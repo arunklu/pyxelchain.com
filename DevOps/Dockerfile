@@ -5,7 +5,6 @@ WORKDIR /
 
 ADD . /
 
-
 EXPOSE 80
 
 ENTRYPOINT npm run start
