@@ -26,6 +26,7 @@ const DesktopNav: React.FC = () => {
             href={nav.link}
             position="relative"
             textDecoration="none"
+            _hover={{ color: '#4EB2C5' }}
             className={cx({
               active: router.pathname.startsWith(nav.link),
             })}
