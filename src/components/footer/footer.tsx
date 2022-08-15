@@ -20,6 +20,7 @@ const Footer = () => {
               h="max-content"
               color="#C3C4C3"
               href={link.link}
+              _hover={{ color: '#4EB2C5' }}
               className={cx({
                 active: router.pathname.startsWith(link.link),
               })}
@@ -32,6 +33,7 @@ const Footer = () => {
             color="#C3C4C3"
             href="https://www.linkedin.com/company/pyxelcahin/mycompany/"
             target="_blank"
+            _hover={{ color: '#4EB2C5' }}
           >
             LinkedIn
           </Link>
