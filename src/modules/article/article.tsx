@@ -41,9 +41,7 @@ const Article: React.FC<BlogProps> = ({ data }) => {
         >
           {data.title}
         </Heading>
-        <Text as="h1" fontWeight={400} fontSize="md" mt="18px" color="#C3C3C3">
-          {data.TLDR}
-        </Text>
+        <MarkdownRenderer markdown={data.TLDR} />
       </Box>
       <Flex
         direction={{ base: 'column', lg: 'row' }}
