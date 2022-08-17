@@ -18,21 +18,17 @@ import { Text } from '@components/typography'
 import Link from '@components/link'
 import { useRouter } from 'next/router'
 
-interface MobileNavProps {
-  hidden?: boolean
-}
-
 interface NavLinkProps {
   name: string
   link?: string
 }
-const MobileNav: React.FC<MobileNavProps> = ({ hidden }) => {
+const MobileNav: React.FC = () => {
   const { isOpen, onClose, onOpen } = useDisclosure()
   const router = useRouter()
   const ref = React.useRef<HTMLDivElement>(null)
   return (
     <Box>
-      <Flex py="9" display={hidden ? 'none' : 'flex'} justifyContent="space-between" alignItems="center">
+      <Flex py="9" display={{ sm: 'flex', md: 'none' }} justifyContent="space-between" alignItems="center">
         <Link onClick={() => onClose()} href="/" display="flex" flexShrink={0}>
           <Image alt="PyxelChain Logo" width={100} height={21} src="/svg/navigation-logo-mobile.svg" />
         </Link>

@@ -6,15 +6,12 @@ import { Box, Flex, HStack, Image } from '@chakra-ui/react'
 import Link from '@components/link'
 import NAVIGATION_LINKS from '@constants/navigation-links'
 import EcosystemCard from '@components/ecosystem-card'
-interface DesktopNavProps {
-  hidden?: boolean
-}
 
-const DesktopNav: React.FC<DesktopNavProps> = ({ hidden }) => {
+const DesktopNav: React.FC = () => {
   const [expandEcosystem, setExpandEcosystem] = React.useState<boolean>(false)
   const router = useRouter()
   return (
-    <Flex py="14" display={hidden ? 'none' : 'flex'} justifyContent="space-between" alignItems="center">
+    <Flex py="14" display={{ sm: 'none', md: 'flex' }} justifyContent="space-between" alignItems="center">
       <Link href="/" display="flex" flexShrink={0}>
         <Image alt="PyxelChain Logo" width={195} height={41} src="/svg/navigation-logo.svg" />
       </Link>
@@ -29,6 +26,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ hidden }) => {
             href={nav.link}
             position="relative"
             textDecoration="none"
+            _hover={{ color: '#4EB2C5' }}
             className={cx({
               active: router.pathname.startsWith(nav.link),
             })}

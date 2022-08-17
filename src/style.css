@@ -7,3 +7,7 @@
   -webkit-box-decoration-break: clone;
   -webkit-mask-image: linear-gradient(to bottom, #5cd1b4, #47a5cb);
 }
+
+.chakra-portal {
+  color: black;
+}
