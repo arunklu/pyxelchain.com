@@ -1,4 +1,4 @@
-import '@fontsource/inter/'
+import '@fontsource/inter'
 import '@fontsource/iosevka'
 
 import 'tippy.js/dist/tippy.css'
