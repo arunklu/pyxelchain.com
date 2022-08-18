@@ -36,7 +36,7 @@ const Article: React.FC<BlogProps> = ({ data }) => {
           lineHeight={{ base: '46px', lg: '76px' }}
           as="h1"
           textTransform="capitalize"
-          fontWeight="bold"
+          fontWeight="700"
           fontSize={{ base: '36px', lg: '64px' }}
         >
           {data.title}
