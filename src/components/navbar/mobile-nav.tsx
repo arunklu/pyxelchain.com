@@ -28,7 +28,7 @@ const MobileNav: React.FC = () => {
   const ref = React.useRef<HTMLDivElement>(null)
   return (
     <Box>
-      <Flex py="9" display={{ sm: 'flex', md: 'none' }} justifyContent="space-between" alignItems="center">
+      <Flex py="9" display={{ base: 'flex', md: 'none' }} justifyContent="space-between" alignItems="center">
         <Link onClick={() => onClose()} href="/" display="flex" flexShrink={0}>
           <Image alt="PyxelChain Logo" width={100} height={21} src="/svg/navigation-logo-mobile.svg" />
         </Link>

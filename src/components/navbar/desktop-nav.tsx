@@ -11,7 +11,7 @@ const DesktopNav: React.FC = () => {
   const [expandEcosystem, setExpandEcosystem] = React.useState<boolean>(false)
   const router = useRouter()
   return (
-    <Flex py="14" display={{ sm: 'none', md: 'flex' }} justifyContent="space-between" alignItems="center">
+    <Flex py="14" display={{ base: 'none', md: 'flex' }} justifyContent="space-between" alignItems="center">
       <Link href="/" display="flex" flexShrink={0}>
         <Image alt="PyxelChain Logo" width={195} height={41} src="/svg/navigation-logo.svg" />
       </Link>
