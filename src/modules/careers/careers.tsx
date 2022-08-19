@@ -45,7 +45,7 @@ const Careers: React.FC = () => {
           <Job key={job.id} job={job} />
         ))}
       </SimpleGrid>
-      {data?.jobs.length === 0 && (
+      {!isLoading && data?.jobs.length === 0 && (
         <Box
           maxW="585px"
           w="full"
