@@ -2295,6 +2295,18 @@
     "@typescript-eslint/types" "5.33.1"
     eslint-visitor-keys "^3.3.0"
 
+"@uiw/react-affix@^5.0.0-bate-0":
+  version "5.0.0-bate-0"
+  resolved "https://registry.yarnpkg.com/@uiw/react-affix/-/react-affix-5.0.0-bate-0.tgz#f74172fd16abdc49015340ff94a36b7baeb3746c"
+  integrity sha512-FKMpOGwTbKIkWg/r5UiQVJZwMEODMRhDvDCNAjdLXe6YpCgJqqbbv9rOJ/7MftXckVZSiqNnImTZgtNUJemJgQ==
+  dependencies:
+    "@uiw/utils" "^5.0.0-bate-0"
+
+"@uiw/utils@^5.0.0-bate-0":
+  version "5.0.0-bate-0"
+  resolved "https://registry.yarnpkg.com/@uiw/utils/-/utils-5.0.0-bate-0.tgz#f24f77c26092a7cba334104296fd5ca03acef458"
+  integrity sha512-6RU5pgo2D3QRIodYtE2yMhkXZL2bGcf+OcAvmYku7WRbDLN9fuY7wru8tLxLm1+aG8WUAY/XsLsRhjRKRUqDrA==
+
 "@whatwg-node/fetch@^0.2.3", "@whatwg-node/fetch@^0.2.9":
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/@whatwg-node/fetch/-/fetch-0.2.9.tgz#0f0e72f79957a0544d2a9455082802d87be93ffe"
@@ -6519,6 +6531,11 @@ react-hook-form@^7.33.1:
   version "7.34.2"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.34.2.tgz#9ac6d1a309a7c4aaa369d1269357a70e9e9bf4de"
   integrity sha512-1lYWbEqr0GW7HHUjMScXMidGvV0BE2RJV3ap2BL7G0EJirkqpccTaawbsvBO8GZaB3JjCeFBEbnEWI1P8ZoLRQ==
+
+react-intersection-observer@^9.4.0:
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-9.4.0.tgz#f6b6e616e625f9bf255857c5cba9dbf7b1825ec7"
+  integrity sha512-v0403CmomOVlzhqFXlzOxg0ziLcVq8mfbP0AwAcEQWgZmR2OulOT79Ikznw4UlB3N+jlUYqLMe4SDHUOyp0t2A==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
