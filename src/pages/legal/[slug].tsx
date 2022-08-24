@@ -80,7 +80,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
                     className={cx({
                       active: currentSection === header.replace('### ', ''),
                     })}
-                    // color={currentSection === header.replace('### ', '') ? 'red' : ''}
+                    cursor="pointer"
                     onClick={() => scrollOnClick(header.replace('### ', ''))}
                     mt={2}
                     key={header}
