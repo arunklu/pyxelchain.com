@@ -108,11 +108,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
 export default Legal
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = [
-    { params: { slug: 'terms-of-service' } },
-    { params: { slug: 'privacy-policy' } },
-    { params: { slug: 'cookie-policy' } },
-  ]
+  const paths = [{ params: { slug: 'terms-of-service' } }]
   return {
     paths,
     fallback: false,
