@@ -111,7 +111,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = [
     { params: { slug: 'terms-of-service' } },
     { params: { slug: 'privacy-policy' } },
-    { params: { slug: 'cookie policy' } },
+    { params: { slug: 'cookie-policy' } },
   ]
   return {
     paths,
