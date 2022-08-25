@@ -1,33 +1,48 @@
 import React from 'react'
 import cx from 'classnames'
-import { Flex, Box, Divider } from '@chakra-ui/react'
+import { Flex, Divider, SimpleGrid, Box, Grid, GridItem } from '@chakra-ui/react'
 import NAVIGATION_LINKS from '@constants/navigation-links'
 import Link from '../link'
 import FootNote from './foot-note'
 import FooterAction from './footer-action'
 import { useRouter } from 'next/router'
+import { Text } from '@components/typography'
 
 const Footer = () => {
   const router = useRouter()
   return (
     <Box>
-      <Flex flexDir={{ base: 'column', md: 'row' }} justifyContent="space-between">
-        <FooterAction />
-        <Flex w="full" justifyContent="space-between" flexDir={{ base: 'column', md: 'row' }} gap={{ base: 8, md: 0 }}>
-          {NAVIGATION_LINKS.map((link) => (
-            <Link
-              key={link.name}
-              h="max-content"
-              color="#C3C4C3"
-              href={link.link}
-              _hover={{ color: '#4EB2C5' }}
-              className={cx({
-                active: router.pathname.startsWith(link.link),
-              })}
-            >
-              {link.name}
-            </Link>
-          ))}
+      <Grid gap={10} templateColumns="repeat(10,1fr)">
+        <GridItem colSpan={{ base: 10, md: 4 }}>
+          <FooterAction />
+        </GridItem>
+        <GridItem colSpan={{ base: 5, md: 2 }}>
+          <Text mb="11px" fontWeight={500} color="white">
+            Company
+          </Text>
+          <Flex w="full" flexDir="column">
+            {NAVIGATION_LINKS.map((link) => (
+              <Link
+                mt="11px"
+                fontSize="sm"
+                key={link.name}
+                h="max-content"
+                color="#C3C4C3"
+                href={link.link}
+                _hover={{ color: '#4EB2C5' }}
+                className={cx({
+                  active: router.pathname.startsWith(link.link),
+                })}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </Flex>
+        </GridItem>
+        <GridItem colSpan={{ base: 5, md: 2 }}>
+          <Text mb="11px" fontWeight={500} color="white">
+            Community
+          </Text>
           <Link
             h="max-content"
             color="#C3C4C3"
@@ -37,8 +52,16 @@ const Footer = () => {
           >
             LinkedIn
           </Link>
-        </Flex>
-      </Flex>
+        </GridItem>
+        <GridItem colSpan={{ base: 5, md: 2 }}>
+          <Text mb="11px" fontWeight={500} color="white">
+            Legal
+          </Text>
+          <Link h="max-content" color="#C3C4C3" href="/legal/terms-of-service" _hover={{ color: '#4EB2C5' }}>
+            Terms of Service
+          </Link>
+        </GridItem>
+      </Grid>
       <Divider
         visibility={{ base: 'hidden', md: 'visible' }}
         mt={16}
