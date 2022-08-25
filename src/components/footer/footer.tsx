@@ -1,6 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-import { Flex, Divider, SimpleGrid, Box, Grid, GridItem } from '@chakra-ui/react'
+import { Flex, Divider, Box, Grid, GridItem } from '@chakra-ui/react'
 import NAVIGATION_LINKS from '@constants/navigation-links'
 import Link from '../link'
 import FootNote from './foot-note'
