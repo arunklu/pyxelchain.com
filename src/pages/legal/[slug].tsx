@@ -34,7 +34,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
     <Box mt="103px">
       <HeadingRenderer center title={data.header}></HeadingRenderer>
       <Text textAlign="center" color="white" mt="29px">
-        Last Updted: {LocalDate(data.publishedAt)}.
+        Last Updated: {LocalDate(data.publishedAt)}.
       </Text>
       <VStack mt={10}>
         <Button>Download as PDF</Button>
