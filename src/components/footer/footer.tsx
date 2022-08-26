@@ -48,6 +48,7 @@ const Footer = () => {
             color="#C3C4C3"
             href="https://www.linkedin.com/company/pyxelcahin/mycompany/"
             target="_blank"
+            fontSize="sm"
             _hover={{ color: '#4EB2C5' }}
           >
             LinkedIn
@@ -57,7 +58,13 @@ const Footer = () => {
           <Text mb="11px" fontWeight={500} color="white">
             Legal
           </Text>
-          <Link h="max-content" color="#C3C4C3" href="/legal/terms-of-service" _hover={{ color: '#4EB2C5' }}>
+          <Link
+            h="max-content"
+            fontSize="sm"
+            color="#C3C4C3"
+            href="/legal/terms-of-service"
+            _hover={{ color: '#4EB2C5' }}
+          >
             Terms of Service
           </Link>
         </GridItem>
