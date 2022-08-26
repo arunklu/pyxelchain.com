@@ -39,7 +39,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
       <VStack mt={10}>
         <Button>Download as PDF</Button>
       </VStack>
-      <Grid gap={10} mt={{ base: '106px', lg: '230px' }} templateColumns="repeat(12,1fr)">
+      <Grid gap={{ base: 0, md: 10 }} mt={{ base: '106px', lg: '230px' }} templateColumns="repeat(12,1fr)">
         <GridItem colSpan={{ base: 12, lg: 3 }} placeItems="center">
           <VStack display={{ base: 'flex', lg: 'none' }}>
             <Affix offsetTop={0}>
