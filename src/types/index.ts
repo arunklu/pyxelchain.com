@@ -1207,8 +1207,9 @@ export type PrivacyTermsCookie = {
   createdAt?: Maybe<Scalars['DateTime']>
   description: Scalars['String']
   header: Scalars['String']
-  pdfLink: Scalars['String']
+  pdf?: Maybe<UploadFileEntityResponse>
   publishedAt?: Maybe<Scalars['DateTime']>
+  seo?: Maybe<ComponentArticlesSeo>
   slug: Scalars['String']
   updatedAt?: Maybe<Scalars['DateTime']>
 }
@@ -1238,8 +1239,8 @@ export type PrivacyTermsCookieFiltersInput = {
   id?: InputMaybe<IdFilterInput>
   not?: InputMaybe<PrivacyTermsCookieFiltersInput>
   or?: InputMaybe<Array<InputMaybe<PrivacyTermsCookieFiltersInput>>>
-  pdfLink?: InputMaybe<StringFilterInput>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  seo?: InputMaybe<ComponentArticlesSeoFiltersInput>
   slug?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
 }
@@ -1247,8 +1248,9 @@ export type PrivacyTermsCookieFiltersInput = {
 export type PrivacyTermsCookieInput = {
   description?: InputMaybe<Scalars['String']>
   header?: InputMaybe<Scalars['String']>
-  pdfLink?: InputMaybe<Scalars['String']>
+  pdf?: InputMaybe<Scalars['ID']>
   publishedAt?: InputMaybe<Scalars['DateTime']>
+  seo?: InputMaybe<ComponentArticlesSeoInput>
   slug?: InputMaybe<Scalars['String']>
 }
 

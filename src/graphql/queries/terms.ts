@@ -8,7 +8,13 @@ export const GET_TERMS_PRIVACY_COOKIE_QUERY = gql`
           header
           publishedAt
           description
-          pdfLink
+          pdf {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
         }
       }
     }

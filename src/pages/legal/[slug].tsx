@@ -11,6 +11,8 @@ import { LocalDate } from '@utils/local-date'
 import Button from '@components/button'
 import Affix from '@uiw/react-affix'
 import cx from 'classnames'
+import { getDownloadLink } from '@utils/url-utils'
+import { SEO } from '@components/seo'
 
 interface LegalProps {
   data: PrivacyTermsCookie
@@ -25,6 +27,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
     const element = document.getElementById(e.target.value.replace('### ', ''))
     element!.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
+
   const scrollOnClick = (e: string) => {
     const element = document.getElementById(e)
     element!.scrollIntoView({ behavior: 'smooth', block: 'center' })
@@ -32,12 +35,19 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
 
   return (
     <Box mt="103px">
+      <SEO
+        title="PyxelChain Privacy Policy"
+        description="Pyxis is designed to never collect or store any sensitive information. Pyxis keys cannot be accessed by us or other third parties because they are always end-to-end encrypted, private, and secure. Our Terms of Service and Privacy Policy are available below.
+"
+      />
       <HeadingRenderer center title={data.header}></HeadingRenderer>
       <Text textAlign="center" color="white" mt="29px">
         Last Updated: {LocalDate(data.publishedAt)}.
       </Text>
       <VStack mt={10}>
-        <Button>Download as PDF</Button>
+        <a href={getDownloadLink(data?.pdf?.data?.attributes?.url)} target="_blank" download rel="noreferrer">
+          <Button>Download as PDF</Button>
+        </a>
       </VStack>
       <Grid gap={{ base: 0, md: 10 }} mt={{ base: '106px', lg: '230px' }} templateColumns="repeat(12,1fr)">
         <GridItem colSpan={{ base: 12, lg: 3 }} placeItems="center">
