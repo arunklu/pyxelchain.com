@@ -19,9 +19,13 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown = '', setC
         code: ({ children }) => <Text withGradient>{children}</Text>,
         pre: ({ children }) => <Text withGradient>{children}</Text>,
         img: (image) => <Image w="full" src={getImageUrl(image.src)}></Image>,
-        ol: ({ children }) => <OrderedList>{children}</OrderedList>,
+        ol: ({ children }) => <OrderedList mb={3}>{children}</OrderedList>,
         ul: ({ children }) => <UnorderedList>{children}</UnorderedList>,
-        li: ({ children }) => <ListItem color="#C3C4C3">{children}</ListItem>,
+        li: ({ children }) => (
+          <ListItem mb={3} color="#C3C4C3">
+            {children}
+          </ListItem>
+        ),
         h3: ({ children }) => {
           return (
             <InView
