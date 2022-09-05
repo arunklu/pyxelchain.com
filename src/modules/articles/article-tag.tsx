@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import React from 'react'
 
 type ArticleTagProps = {
@@ -7,11 +7,12 @@ type ArticleTagProps = {
   selectedTag?: string
   isArticleDetails?: boolean
   small?: boolean
+  isLast?: boolean
 }
 
-const ArticleTag: React.FC<ArticleTagProps> = ({ tagName, onClick, selectedTag, isArticleDetails }) => {
+const ArticleTag: React.FC<ArticleTagProps> = ({ tagName, onClick, selectedTag, isArticleDetails, isLast }) => {
   return (
-    <Flex
+    <Box
       onClick={() => {
         if (onClick) onClick(tagName)
       }}
@@ -20,17 +21,14 @@ const ArticleTag: React.FC<ArticleTagProps> = ({ tagName, onClick, selectedTag, 
       h={isArticleDetails ? '33px' : '43px'}
       bg="rgba(92, 209, 180, 0.1)"
       py={isArticleDetails ? '4px' : '12px'}
-      mr={isArticleDetails ? 0 : '20px'}
+      mr={isArticleDetails || isLast ? 0 : '20px'}
       ml={{ base: 0, md: isArticleDetails ? '20px' : 0 }}
       px={isArticleDetails ? '10px' : '23px'}
       cursor="pointer"
-      w="max-content"
-      mt={{ base: 5, md: 0 }}
-      lineHeight={0}
-      alignItems="center"
+      whiteSpace="nowrap"
     >
       {tagName}
-    </Flex>
+    </Box>
   )
 }
 

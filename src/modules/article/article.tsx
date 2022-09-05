@@ -67,7 +67,7 @@ const Article: React.FC<BlogProps> = ({ data }) => {
         </Box>
       </Flex>
       <Image rounded="10px" src={getImageUrl(data.blogImage.data?.attributes?.url)} alt={data.title} />
-      <Flex flexDir="column" gap={3} my={10}>
+      <Flex flexDir="column" gap={4} my={10}>
         <MarkdownRenderer markdown={data.blogBody} />
       </Flex>
     </Box>
