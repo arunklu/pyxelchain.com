@@ -1,11 +1,11 @@
-import { Heading, Text } from '@components/typography'
+import { Text } from '@components/typography'
 import { Box, Flex, HStack, Image } from '@chakra-ui/react'
 import React from 'react'
 import { AiTwotoneCalendar } from '@react-icons/all-files/ai/AiTwotoneCalendar'
 
 import ReadTime from '@components/read-time'
 import ArticleTag from '@modules/articles/article-tag'
-import MarkdownRenderer from '@components/markdown-renderer'
+import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { calculateReadTime } from '@utils/calculate-read-time'
 import { LocalDate } from '@utils/local-date'
 
@@ -30,24 +30,16 @@ const Article: React.FC<BlogProps> = ({ data }) => {
         ))}
       </Flex>
       <Box my="18px">
-        <Heading
-          fontFamily="Iosevka"
-          color="white"
-          lineHeight={{ base: '46px', lg: '76px' }}
-          as="h1"
-          textTransform="capitalize"
-          fontWeight="700"
-          fontSize={{ base: '36px', lg: '64px' }}
-        >
-          {data.title}
-        </Heading>
+        <Box mb={4}>
+          <HeadingRenderer title={data.title} />
+        </Box>
         <MarkdownRenderer markdown={data.TLDR} />
       </Box>
       <Flex
         direction={{ base: 'column', lg: 'row' }}
         justifyContent="space-between"
         alignItems={{ base: 'start', lg: 'center' }}
-        mb="104px"
+        mb={16}
         fontWeight="medium"
       >
         <Flex direction={{ base: 'column', lg: 'row' }}>
@@ -75,7 +67,7 @@ const Article: React.FC<BlogProps> = ({ data }) => {
         </Box>
       </Flex>
       <Image rounded="10px" src={getImageUrl(data.blogImage.data?.attributes?.url)} alt={data.title} />
-      <Flex flexDir="column" gap={3} my={10}>
+      <Flex flexDir="column" gap={4} my={10}>
         <MarkdownRenderer markdown={data.blogBody} />
       </Flex>
     </Box>

@@ -33,7 +33,16 @@ const AnimatedLogo = () => {
 
   return (
     <VStack minH="100vh" justifyContent="center">
-      <Icon id="logo" width="363" height="363" viewBox="0 0 363 363" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Icon
+        id="logo"
+        width="100%"
+        height="100%"
+        maxWidth="363"
+        maxHeight="363"
+        viewBox="0 0 363 363"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           ref={pathRef}
           fillRule="evenodd"

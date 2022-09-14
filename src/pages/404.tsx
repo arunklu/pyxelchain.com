@@ -17,6 +17,7 @@ const NotFound: React.FC = () => {
         color="white"
         lineHeight={{ base: '42px', lg: '58px' }}
         as="h1"
+        textAlign="center"
         textTransform="capitalize"
         fontWeight="bold"
         fontSize={{ base: '32px', lg: '48px' }}

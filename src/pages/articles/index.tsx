@@ -8,11 +8,11 @@ import { SEO } from '@components/seo'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import ArticleTag from '@modules/articles/article-tag'
 import ArticlesCard from '@modules/articles/articles-card'
-import useHorizontalScroll from '@hooks/use-horizontal-scroll'
 
 import { CopyEntity, ArticleEntity, ArticleTagEntity } from 'types/index'
 import { ARTICLES_QUERY } from '@graphql/queries/articles'
 import { StrapiContextProvider } from '@context/strapi-context'
+import useHorizontalScroll from '@hooks/use-horizontal-scroll'
 
 interface PageProps {
   data: {
@@ -29,8 +29,8 @@ interface PageProps {
 }
 
 const Index: React.FC<PageProps> = ({ data }) => {
-  const [selectedTag, setSelectedTag] = React.useState<string>('All')
   const { elRef } = useHorizontalScroll()
+  const [selectedTag, setSelectedTag] = React.useState<string>('All')
 
   const articles = data.allStrapiArticle.nodes
   const filteredArticles = data.allStrapiArticle.nodes
@@ -64,14 +64,35 @@ const Index: React.FC<PageProps> = ({ data }) => {
         </VStack>
         <ArticlesCard article={articles[0]} highlighted />
         <Divider w={5000} ml="-2500" color="#C9D2D8" mt="59px" opacity={0.1} />
-        <Flex overflowX="hidden" mt="60px" ref={elRef}>
-          {ARTICLES_TAGS.map((tag) => (
+        <Flex
+          mt="60px"
+          pb="10px"
+          overflow="auto"
+          ref={elRef}
+          css={{
+            '::-webkit-scrollbar': {
+              height: 5,
+            },
+            '::-webkit-scrollbar-track': {
+              background: 'transparent',
+            },
+            '::-webkit-scrollbar-thumb': {
+              background: '#888',
+              borderRadius: 8,
+            },
+            '::-webkit-scrollbar-thumb:hover': {
+              background: '#555',
+            },
+          }}
+        >
+          {ARTICLES_TAGS.map((tag, i) => (
             <ArticleTag
               selectedTag={selectedTag}
               onClick={(e: string) => setSelectedTag(e)}
               key={tag.tagName}
               tagName={tag.tagName}
-            ></ArticleTag>
+              isLast={ARTICLES_TAGS.length === i + 1}
+            />
           ))}
         </Flex>
         <Grid

@@ -17,7 +17,7 @@ export type Scalars = {
 
 export type Article = {
   __typename?: 'Article'
-  TLDR?: Maybe<Scalars['String']>
+  TLDR: Scalars['String']
   article_tags?: Maybe<ArticleTagRelationResponseCollection>
   author?: Maybe<AuthorEntityResponse>
   blogBody: Scalars['String']
@@ -26,7 +26,7 @@ export type Article = {
   publishedAt?: Maybe<Scalars['DateTime']>
   related_articles?: Maybe<ArticleRelationResponseCollection>
   seo?: Maybe<ComponentArticlesSeo>
-  slug?: Maybe<Scalars['String']>
+  slug: Scalars['String']
   title: Scalars['String']
   updatedAt?: Maybe<Scalars['DateTime']>
 }
@@ -699,6 +699,8 @@ export type GenericMorph =
   | CopyTag
   | Feature
   | I18NLocale
+  | Partnership
+  | PrivacyTermsCookie
   | Team
   | UploadFile
   | UsersPermissionsPermission
@@ -822,6 +824,8 @@ export type Mutation = {
   createCopy?: Maybe<CopyEntityResponse>
   createCopyTag?: Maybe<CopyTagEntityResponse>
   createFeature?: Maybe<FeatureEntityResponse>
+  createPartnership?: Maybe<PartnershipEntityResponse>
+  createPrivacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
   createTeam?: Maybe<TeamEntityResponse>
   createUploadFile?: Maybe<UploadFileEntityResponse>
   /** Create a new role */
@@ -838,6 +842,8 @@ export type Mutation = {
   deleteCopy?: Maybe<CopyEntityResponse>
   deleteCopyTag?: Maybe<CopyTagEntityResponse>
   deleteFeature?: Maybe<FeatureEntityResponse>
+  deletePartnership?: Maybe<PartnershipEntityResponse>
+  deletePrivacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
   deleteTeam?: Maybe<TeamEntityResponse>
   deleteUploadFile?: Maybe<UploadFileEntityResponse>
   /** Delete an existing role */
@@ -866,6 +872,8 @@ export type Mutation = {
   updateCopyTag?: Maybe<CopyTagEntityResponse>
   updateFeature?: Maybe<FeatureEntityResponse>
   updateFileInfo: UploadFileEntityResponse
+  updatePartnership?: Maybe<PartnershipEntityResponse>
+  updatePrivacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
   updateTeam?: Maybe<TeamEntityResponse>
   updateUploadFile?: Maybe<UploadFileEntityResponse>
   /** Update an existing role */
@@ -913,6 +921,14 @@ export type MutationCreateCopyTagArgs = {
 
 export type MutationCreateFeatureArgs = {
   data: FeatureInput
+}
+
+export type MutationCreatePartnershipArgs = {
+  data: PartnershipInput
+}
+
+export type MutationCreatePrivacyTermsCookieArgs = {
+  data: PrivacyTermsCookieInput
 }
 
 export type MutationCreateTeamArgs = {
@@ -968,6 +984,14 @@ export type MutationDeleteCopyTagArgs = {
 }
 
 export type MutationDeleteFeatureArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationDeletePartnershipArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationDeletePrivacyTermsCookieArgs = {
   id: Scalars['ID']
 }
 
@@ -1075,6 +1099,16 @@ export type MutationUpdateFileInfoArgs = {
   info?: InputMaybe<FileInfoInput>
 }
 
+export type MutationUpdatePartnershipArgs = {
+  data: PartnershipInput
+  id: Scalars['ID']
+}
+
+export type MutationUpdatePrivacyTermsCookieArgs = {
+  data: PrivacyTermsCookieInput
+  id: Scalars['ID']
+}
+
 export type MutationUpdateTeamArgs = {
   data: TeamInput
   id: Scalars['ID']
@@ -1118,6 +1152,108 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']>
 }
 
+export type Partnership = {
+  __typename?: 'Partnership'
+  collaborationNetwork?: Maybe<Scalars['String']>
+  createdAt?: Maybe<Scalars['DateTime']>
+  email?: Maybe<Scalars['String']>
+  fullName?: Maybe<Scalars['String']>
+  howToPartner?: Maybe<Scalars['String']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type PartnershipEntity = {
+  __typename?: 'PartnershipEntity'
+  attributes?: Maybe<Partnership>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type PartnershipEntityResponse = {
+  __typename?: 'PartnershipEntityResponse'
+  data?: Maybe<PartnershipEntity>
+}
+
+export type PartnershipEntityResponseCollection = {
+  __typename?: 'PartnershipEntityResponseCollection'
+  data: Array<PartnershipEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type PartnershipFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PartnershipFiltersInput>>>
+  collaborationNetwork?: InputMaybe<StringFilterInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  email?: InputMaybe<StringFilterInput>
+  fullName?: InputMaybe<StringFilterInput>
+  howToPartner?: InputMaybe<StringFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  not?: InputMaybe<PartnershipFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<PartnershipFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type PartnershipInput = {
+  collaborationNetwork?: InputMaybe<Scalars['String']>
+  email?: InputMaybe<Scalars['String']>
+  fullName?: InputMaybe<Scalars['String']>
+  howToPartner?: InputMaybe<Scalars['String']>
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+}
+
+export type PrivacyTermsCookie = {
+  __typename?: 'PrivacyTermsCookie'
+  createdAt?: Maybe<Scalars['DateTime']>
+  description: Scalars['String']
+  header: Scalars['String']
+  pdf?: Maybe<UploadFileEntityResponse>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  seo?: Maybe<ComponentArticlesSeo>
+  slug: Scalars['String']
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type PrivacyTermsCookieEntity = {
+  __typename?: 'PrivacyTermsCookieEntity'
+  attributes?: Maybe<PrivacyTermsCookie>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type PrivacyTermsCookieEntityResponse = {
+  __typename?: 'PrivacyTermsCookieEntityResponse'
+  data?: Maybe<PrivacyTermsCookieEntity>
+}
+
+export type PrivacyTermsCookieEntityResponseCollection = {
+  __typename?: 'PrivacyTermsCookieEntityResponseCollection'
+  data: Array<PrivacyTermsCookieEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type PrivacyTermsCookieFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PrivacyTermsCookieFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  header?: InputMaybe<StringFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  not?: InputMaybe<PrivacyTermsCookieFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<PrivacyTermsCookieFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  seo?: InputMaybe<ComponentArticlesSeoFiltersInput>
+  slug?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type PrivacyTermsCookieInput = {
+  description?: InputMaybe<Scalars['String']>
+  header?: InputMaybe<Scalars['String']>
+  pdf?: InputMaybe<Scalars['ID']>
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+  seo?: InputMaybe<ComponentArticlesSeoInput>
+  slug?: InputMaybe<Scalars['String']>
+}
+
 export enum PublicationState {
   Live = 'LIVE',
   Preview = 'PREVIEW',
@@ -1148,6 +1284,10 @@ export type Query = {
   i18NLocale?: Maybe<I18NLocaleEntityResponse>
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>
   me?: Maybe<UsersPermissionsMe>
+  partnership?: Maybe<PartnershipEntityResponse>
+  partnerships?: Maybe<PartnershipEntityResponseCollection>
+  privacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
+  privacyTermsCookies?: Maybe<PrivacyTermsCookieEntityResponseCollection>
   team?: Maybe<TeamEntityResponse>
   teams?: Maybe<TeamEntityResponseCollection>
   uploadFile?: Maybe<UploadFileEntityResponse>
@@ -1271,6 +1411,28 @@ export type QueryI18NLocaleArgs = {
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>
   pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QueryPartnershipArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryPartnershipsArgs = {
+  filters?: InputMaybe<PartnershipFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QueryPrivacyTermsCookieArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryPrivacyTermsCookiesArgs = {
+  filters?: InputMaybe<PrivacyTermsCookieFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
