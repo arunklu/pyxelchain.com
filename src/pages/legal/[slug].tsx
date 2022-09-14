@@ -35,11 +35,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
 
   return (
     <Box mt="103px">
-      <SEO
-        title="PyxelChain Privacy Policy"
-        description="Pyxis is designed to never collect or store any sensitive information. Pyxis keys cannot be accessed by us or other third parties because they are always end-to-end encrypted, private, and secure. Our Terms of Service and Privacy Policy are available below.
-"
-      />
+      <SEO title={data.seo?.metatitle} description={data.seo?.metadescription} />
       <HeadingRenderer center title={data.header}></HeadingRenderer>
       <Text textAlign="center" color="white" mt="29px">
         Last Updated: {LocalDate(data.publishedAt)}.

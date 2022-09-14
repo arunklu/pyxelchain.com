@@ -15,6 +15,10 @@ export const GET_TERMS_PRIVACY_COOKIE_QUERY = gql`
               }
             }
           }
+          seo {
+            metatitle
+            metadescription
+          }
         }
       }
     }
