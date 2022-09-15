@@ -1,9 +1,8 @@
 name: ci_cd for pyxelchain.com
 
-
 on:
   push:
-    branches: [staging]
+    branches: [master]
     
 env:
   USERNAME: ubuntu
@@ -35,12 +34,12 @@ jobs:
           options: ''
           ssh_options: ''
           src: ''
-          dest: '$USERNAME@${{ secrets.STAGING_HOST }}:$REMOTE_FOLDER'
+          dest: '$USERNAME@${{ secrets.PROD_HOST }}:$REMOTE_FOLDER'
       - name: Deploy on Remote Host
         uses: fifsky/ssh-action@master
         with:
           command: |
             pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && cp DevOps/* . && ls -lrt && docker-compose up -d --build 
-          host: ${{ secrets.STAGING_HOST }}
+          host: ${{ secrets.PROD_HOST }}
           user: $USERNAME
           key: ${{ secrets.PRIVATE_KEY }}
