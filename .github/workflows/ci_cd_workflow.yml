@@ -2,7 +2,7 @@ name: ci_cd for pyxelchain.com
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     
 env:
   USERNAME: ubuntu
