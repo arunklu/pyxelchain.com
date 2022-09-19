@@ -60,7 +60,11 @@ const Landing = () => {
       >
         <Box mb={12}>
           <Box mb={5}>
-            <HeadingRenderer center title={landingCopy?.title} titleWithGradient={landingCopy?.titleWithGradient} />
+            <HeadingRenderer
+              mobilecenter
+              title={landingCopy?.title}
+              titleWithGradient={landingCopy?.titleWithGradient}
+            />
           </Box>
           <Box maxW="container.sm" mx={{ base: 'auto', lg: 'inherit' }}>
             <Flex flexDir="column" gap={3}>
