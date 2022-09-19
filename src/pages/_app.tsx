@@ -32,28 +32,25 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <ChakraProvider theme={theme}>
-          {isReady ? (
-            <Fade in={isReady} transition={{ enter: { duration: 1 } }}>
-              <Box overflow="hidden">
-                <Container maxWidth="container.2xl" px={{ base: '30px', md: '50px', xl: '96px' }}>
-                  <Navbar />
-                  <Component {...pageProps} />
-                </Container>
-                <Divider
-                  mt="60px"
-                  opacity={0.2}
-                  css={{
-                    borderBottomWidth: '1.5px',
-                  }}
-                />
-                <Container maxWidth="container.2xl" px={{ base: '30px', md: '50px', xl: '96px' }} pt={20} pb={10}>
-                  <Footer />
-                </Container>
-              </Box>
-            </Fade>
-          ) : (
-            <AnimatedLogo />
-          )}
+          {!isReady && <AnimatedLogo />}
+          <Fade in={isReady} transition={{ enter: { duration: 1 } }}>
+            <Box overflow="hidden">
+              <Container maxWidth="container.2xl" px={{ base: '30px', md: '50px', xl: '96px' }}>
+                <Navbar />
+                <Component {...pageProps} />
+              </Container>
+              <Divider
+                mt="60px"
+                opacity={0.2}
+                css={{
+                  borderBottomWidth: '1.5px',
+                }}
+              />
+              <Container maxWidth="container.2xl" px={{ base: '30px', md: '50px', xl: '96px' }} pt={20} pb={10}>
+                <Footer />
+              </Container>
+            </Box>
+          </Fade>
         </ChakraProvider>
       </ApolloProvider>
     </QueryClientProvider>
