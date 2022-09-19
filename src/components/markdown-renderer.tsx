@@ -61,12 +61,18 @@ interface HeadingRendererProps {
   title?: string | null
   titleWithGradient?: string | null
   center?: boolean
+  mobilecenter?: boolean
 }
 
-export const HeadingRenderer: React.FC<HeadingRendererProps> = ({ center, title = '', titleWithGradient = '' }) => {
+export const HeadingRenderer: React.FC<HeadingRendererProps> = ({
+  mobilecenter,
+  center,
+  title = '',
+  titleWithGradient = '',
+}) => {
   const segments = titleWithGradient?.split(' ') || []
   return (
-    <Heading textAlign={center ? 'center' : 'start'}>
+    <Heading textAlign={{ base: mobilecenter ? 'center' : 'start', lg: center ? 'center' : 'start' }}>
       {title}
       {segments.map((s, idx) => (
         <Heading withGradient key={`${s}-${idx}`}>
