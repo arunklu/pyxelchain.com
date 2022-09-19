@@ -1,3 +1,9 @@
+## Build Instructions
+
+- `npm i`
+- `cp .env.example .env` and ask a dev team member for the strings
+- `npm run build`
+
 ## Directory Structure
 
 The top level directory structure will be as follows:

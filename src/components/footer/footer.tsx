@@ -53,6 +53,24 @@ const Footer = () => {
           >
             LinkedIn
           </Link>
+          <Link
+            h="max-content"
+            color="#C3C4C3"
+            href="https://instagram.com/pyxelchain"
+            target="_blank"
+            _hover={{ color: '#4EB2C5' }}
+          >
+            Instagram
+          </Link>
+          <Link
+            h="max-content"
+            color="#C3C4C3"
+            href="https://twitter.com/PyxelChain"
+            target="_blank"
+            _hover={{ color: '#4EB2C5' }}
+          >
+            Twitter
+          </Link>
         </GridItem>
         <GridItem colSpan={{ base: 5, md: 2 }}>
           <Text mb="11px" fontWeight={500} color="white">
