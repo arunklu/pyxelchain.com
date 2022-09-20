@@ -3,14 +3,12 @@ import { getImageUrl } from '@utils/url-utils'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import { Text, Heading } from './typography'
-import { InView } from 'react-intersection-observer'
 
 interface MarkdownRendererProps {
   markdown?: string | null
-  setCurrentSection?: (e: string | boolean) => void
 }
 
-const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown = '', setCurrentSection }) => {
+const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown = '' }) => {
   return markdown ? (
     <ReactMarkdown
       components={{
@@ -28,26 +26,16 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown = '', setC
         ),
         h3: ({ children }) => {
           return (
-            <InView
-              as="div"
-              rootMargin="-320px"
-              onChange={(inView) => {
-                if (inView) {
-                  setCurrentSection!(children[0] as string)
-                }
-              }}
+            <Heading
+              id={children[0] as string}
+              mt="35px"
+              fontWeight={800}
+              lineHeight={{ base: '31px', md: '47px' }}
+              fontSize={{ base: '24px', md: '36px' }}
+              color="#fff"
             >
-              <Heading
-                id={children[0] as string}
-                mt="35px"
-                fontWeight={800}
-                lineHeight={{ base: '31px', md: '47px' }}
-                fontSize={{ base: '24px', md: '36px' }}
-                color="#fff"
-              >
-                {children}
-              </Heading>
-            </InView>
+              {children}
+            </Heading>
           )
         },
       }}
