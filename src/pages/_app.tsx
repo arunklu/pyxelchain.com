@@ -35,7 +35,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           {!isReady && <AnimatedLogo />}
           <Fade in={isReady} transition={{ enter: { duration: 1 } }}>
             <Box overflow="hidden">
-              <Container maxWidth="container.2xl" px={{ base: '30px', md: '50px', xl: '96px' }}>
+              <Container maxWidth="container.2xl" px={{ base: '30px', lg: '50px', xl: '96px' }}>
                 <Navbar />
                 <Component {...pageProps} />
               </Container>

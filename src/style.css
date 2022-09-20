@@ -11,3 +11,7 @@
 .chakra-portal {
   color: black;
 }
+
+html {
+  scroll-padding-top: 120px;
+}
