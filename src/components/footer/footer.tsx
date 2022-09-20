@@ -43,16 +43,39 @@ const Footer = () => {
           <Text mb="11px" fontWeight={500} color="white">
             Community
           </Text>
-          <Link
-            h="max-content"
-            color="#C3C4C3"
-            href="https://www.linkedin.com/company/pyxelcahin/mycompany/"
-            target="_blank"
-            fontSize="sm"
-            _hover={{ color: '#4EB2C5' }}
-          >
-            LinkedIn
-          </Link>
+          <Flex w="full" flexDir="column">
+            <Link
+              mt="11px"
+              h="max-content"
+              color="#C3C4C3"
+              href="https://www.linkedin.com/company/pyxelcahin/mycompany/"
+              target="_blank"
+              fontSize="sm"
+              _hover={{ color: '#4EB2C5' }}
+            >
+              LinkedIn
+            </Link>
+            <Link
+              mt="11px"
+              h="max-content"
+              color="#C3C4C3"
+              href="https://instagram.com/pyxelchain"
+              target="_blank"
+              _hover={{ color: '#4EB2C5' }}
+            >
+              Instagram
+            </Link>
+            <Link
+              mt="11px"
+              h="max-content"
+              color="#C3C4C3"
+              href="https://twitter.com/PyxelChain"
+              target="_blank"
+              _hover={{ color: '#4EB2C5' }}
+            >
+              Twitter
+            </Link>
+          </Flex>
         </GridItem>
         <GridItem colSpan={{ base: 5, md: 2 }}>
           <Text mb="11px" fontWeight={500} color="white">
