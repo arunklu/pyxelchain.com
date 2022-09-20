@@ -3,34 +3,43 @@ import { PrivacyTermsCookie } from 'types/index'
 import axios, { AxiosResponse } from 'axios'
 import { print } from 'graphql'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import React from 'react'
+import React, { useState } from 'react'
 import { Box, Flex, Grid, GridItem, Select, VStack } from '@chakra-ui/react'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { Text } from '@components/typography'
 import { LocalDate } from '@utils/local-date'
 import Button from '@components/button'
 import Affix from '@uiw/react-affix'
-import cx from 'classnames'
 import { getDownloadLink } from '@utils/url-utils'
 import { SEO } from '@components/seo'
+import dynamic from 'next/dynamic'
+import cx from 'classnames'
 
+const ScrollSpy = dynamic(() => import('react-ui-scrollspy'), {
+  ssr: false,
+})
 interface LegalProps {
   data: PrivacyTermsCookie
 }
 
 const Legal: React.FC<LegalProps> = ({ data }) => {
-  const [currentSection, setCurrentSection] = React.useState<string | boolean>('')
   const regXHeader = /#{3}.+/g
-  const headers = data.description.match(regXHeader)
+  const headers = data.description.match(regXHeader)?.map((header) => header.replace('### ', ''))
+  const [currentSection, setCurrentSection] = useState<string | undefined>(headers ? headers[0] : '')
 
-  const scrollOnSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const element = document.getElementById(e.target.value.replace('### ', ''))
-    element!.scrollIntoView({ behavior: 'smooth', block: 'center' })
-  }
+  const onPress = (e: string) => {
+    setCurrentSection(e)
+    const target = document.getElementById(e)
+    if (target) {
+      const headerOffset = 0
+      const elementPosition = target.getBoundingClientRect().top
+      const offsetPosition = elementPosition - headerOffset
 
-  const scrollOnClick = (e: string) => {
-    const element = document.getElementById(e)
-    element!.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      window.scrollBy({
+        top: offsetPosition,
+        behavior: 'smooth',
+      })
+    }
   }
 
   return (
@@ -46,7 +55,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
         </a>
       </VStack>
       <Grid gap={{ base: 0, md: 10 }} mt={{ base: '106px', lg: '230px' }} templateColumns="repeat(12,1fr)">
-        <GridItem colSpan={{ base: 12, lg: 3 }} placeItems="center">
+        <GridItem mt={10} colSpan={{ base: 12, lg: 3 }} placeItems="center">
           <VStack display={{ base: 'flex', lg: 'none' }}>
             <Affix offsetTop={0}>
               <Select
@@ -58,7 +67,6 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
                 fontSize="sm"
                 color="#C3C4C3"
                 placeholder="Table of Contents"
-                onChange={scrollOnSelect}
               >
                 {headers?.map((header: string) => (
                   <option key={header} value={header.replace('### ', '')}>
@@ -69,29 +77,24 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
             </Affix>
           </VStack>
           <Affix offsetTop={0}>
-            <Box
-              display={{
-                base: 'none',
-                lg:
-                  currentSection === '11.0 Other instances where Pyxis may need to share your data' ||
-                  currentSection === '12.0 Contact Us'
-                    ? 'none'
-                    : 'flex',
-              }}
-              flexDir="column"
-            >
+            <Box w="80%" flexDir="column" pos="relative">
               {headers?.map((header: string, i: number) => {
                 return (
                   <Text
+                    display={
+                      currentSection === headers[headers.length - 1] || currentSection === headers[headers.length - 2]
+                        ? 'none'
+                        : ''
+                    }
                     className={cx({
-                      active: currentSection === header.replace('### ', ''),
+                      active: header === currentSection,
                     })}
+                    data-to-scrollspy-id={header}
                     cursor="pointer"
-                    onClick={() => scrollOnClick(header.replace('### ', ''))}
                     mt={2}
                     key={header}
                   >
-                    {header.replace(`### ${i + 1}.0`, '')}
+                    <a onClick={() => onPress(header)}>{header.replace(`${i + 1}.0 `, '')}</a>
                   </Text>
                 )
               })}
@@ -100,10 +103,9 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
         </GridItem>
         <GridItem colSpan={{ base: 12, lg: 9 }}>
           <Flex flexDir="column" gap={2} maxW="794px">
-            <MarkdownRenderer
-              setCurrentSection={(e: string | boolean) => setCurrentSection(e)}
-              markdown={data.description}
-            />
+            <ScrollSpy onUpdateCallback={(e) => setCurrentSection(e)}>
+              <MarkdownRenderer markdown={data.description} />
+            </ScrollSpy>
           </Flex>
         </GridItem>
       </Grid>
