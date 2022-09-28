@@ -13,6 +13,7 @@ type ArticleTagProps = {
 const ArticleTag: React.FC<ArticleTagProps> = ({ tagName, onClick, selectedTag, isArticleDetails, isLast }) => {
   return (
     <Box
+      w="max-content"
       onClick={() => {
         if (onClick) onClick(tagName)
       }}
