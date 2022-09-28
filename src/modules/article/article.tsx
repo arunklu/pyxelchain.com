@@ -23,7 +23,7 @@ const Article: React.FC<BlogProps> = ({ data }) => {
   const location = isBrowser ? window.location.href : ''
   return (
     <Box>
-      <Flex gap={3} flexWrap="wrap" justifyContent={{ base: 'space-between', md: 'left' }}>
+      <Flex gap="10px" flexWrap="wrap" justifyContent={{ base: 'left', sm: 'space-between', md: 'left' }}>
         <ReadTime readTime={calculateReadTime(data?.blogBody)} />
         {data?.article_tags?.data.map((tag, i: number) => (
           <ArticleTag isArticleDetails key={i + 1} tagName={tag.attributes?.tagName || ''} />
