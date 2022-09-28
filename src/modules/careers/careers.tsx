@@ -32,7 +32,7 @@ const Careers: React.FC = () => {
     <Box>
       <VStack mb={{ base: '110px', md: '125px', lg: '150px' }} position="relative">
         <PageGradientFilter />
-        <HeadingRenderer center title={careersCopy?.title} titleWithGradient={careersCopy?.titleWithGradient} />
+        <HeadingRenderer mobilecenter title={careersCopy?.title} titleWithGradient={careersCopy?.titleWithGradient} />
         <Flex dir="column" gap={3} textAlign="center" maxW="790px">
           <MarkdownRenderer markdown={careersCopy?.description} />
         </Flex>
