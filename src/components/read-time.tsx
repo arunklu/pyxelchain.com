@@ -1,4 +1,4 @@
-import { Image } from '@chakra-ui/react'
+import { Box, Image } from '@chakra-ui/react'
 import React from 'react'
 import { Text } from './typography'
 
@@ -8,7 +8,7 @@ interface readTimeProps {
 
 const ReadTime: React.FC<readTimeProps> = ({ readTime }) => {
   return (
-    <Text
+    <Box
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -23,7 +23,7 @@ const ReadTime: React.FC<readTimeProps> = ({ readTime }) => {
       <Text as="span" fontSize="md" color="white" ml="10px">
         {readTime}
       </Text>
-    </Text>
+    </Box>
   )
 }
 
