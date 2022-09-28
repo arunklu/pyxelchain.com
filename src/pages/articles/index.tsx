@@ -57,7 +57,7 @@ const Index: React.FC<PageProps> = ({ data }) => {
       <Box my={{ base: '64px', md: '80px', lg: '110px' }}>
         <SEO title={articleCopy?.seo?.metatitle} description={articleCopy?.seo?.metadescription} />
         <VStack mb={{ base: '110px', md: '125px', lg: '150px' }}>
-          <HeadingRenderer center title={articleCopy?.title} titleWithGradient={articleCopy?.titleWithGradient} />
+          <HeadingRenderer mobilecenter title={articleCopy?.title} titleWithGradient={articleCopy?.titleWithGradient} />
           <Center maxW="791px" textAlign="center">
             <MarkdownRenderer markdown={articleCopy?.description} />
           </Center>

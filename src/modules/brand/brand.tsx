@@ -16,7 +16,11 @@ const Brand: React.FC<BrandProps> = () => {
     <Box my={{ base: '64px', md: '80px', lg: '110px' }}>
       <VStack mb={{ base: '110px', md: '125px', lg: '150px' }} position="relative">
         <PageGradientFilter />
-        <HeadingRenderer center title={brandHeroCopy?.title} titleWithGradient={brandHeroCopy?.titleWithGradient} />
+        <HeadingRenderer
+          mobilecenter
+          title={brandHeroCopy?.title}
+          titleWithGradient={brandHeroCopy?.titleWithGradient}
+        />
         <Box textAlign="center" maxW="790px">
           <MarkdownRenderer markdown={brandHeroCopy?.description} />
         </Box>
