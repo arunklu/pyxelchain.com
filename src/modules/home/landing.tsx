@@ -1,49 +1,18 @@
 import React from 'react'
-import { Box, Flex, FormControl, Input } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 
-import Button from '@components/button'
 import HexagonCondensed from '@components/node-graph/hexagon-condensed'
 import HexagonDynamic from '@components/node-graph/hexagon-dynamic'
 import useMobileState from '@hooks/use-mobile-state'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import useDuplicateEmail from '@hooks/use-duplicate-email'
-import { showToast } from '@utils/toast-utils'
 import { useStrapiContextValue } from '@context/strapi-context'
+import NewsletterForm from '@components/newsletter-form'
 
 const Landing = () => {
   const { getCopyBySectionId } = useStrapiContextValue()
   const landingCopy = getCopyBySectionId('home-hero')
 
   const isMobile = useMobileState()
-
-  const [email, setEmail] = React.useState<string>('')
-
-  const isDuplicate = useDuplicateEmail(email)
-
-  const handleSubscribe = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (isDuplicate) {
-      showToast(
-        "We've already got you on the list, but we're flattered you want to sign up for our email newsletters again.",
-        'error'
-      )
-    } else {
-      fetch('https://api.buttondown.email/v1/subscribers', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${process.env.NEXT_PUBLIC_BUTTONDOWN_TOKEN}`,
-        },
-        body: JSON.stringify({ email }),
-      }).then(async (res) => {
-        if (res) {
-          showToast("You've subscribed to PyxelNews. Please check your email for confirmation.", 'error')
-          setEmail('')
-        }
-      })
-    }
-  }
 
   return (
     <Flex
@@ -72,29 +41,7 @@ const Landing = () => {
             </Flex>
           </Box>
         </Box>
-        <form method="post" className="embeddable-buttondown-form" onSubmit={handleSubscribe}>
-          <Flex
-            direction={{ base: 'column', lg: 'row' }}
-            justifyContent="space-between"
-            mx={{ base: 'auto', lg: 0 }}
-            maxW="600px"
-            bg="rgba(255, 255, 255, 0.07)"
-            p={2}
-            rounded="lg"
-          >
-            <FormControl isRequired mr={{ base: 0, md: 6 }} mb={{ base: 3, lg: 0 }}>
-              <Input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                name="email"
-                type="email"
-                placeholder="Email address"
-                _placeholder={{ color: '#C3C4C3' }}
-              />
-            </FormControl>
-            <Button type="submit">Get Early Access</Button>
-          </Flex>
-        </form>
+        <NewsletterForm />
       </Box>
       <Flex flexDir={{ base: 'column-reverse', xl: 'row' }}>
         <Box mt={{ base: 0, md: 20 }} display={{ base: 'flex', xl: 'block' }} justifyContent={{ base: 'center' }}>
