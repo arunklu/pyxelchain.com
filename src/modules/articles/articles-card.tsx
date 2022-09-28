@@ -10,6 +10,7 @@ import { calculateReadTime } from '@utils/calculate-read-time'
 import useMobileState from '@hooks/use-mobile-state'
 import { ArticleEntity } from 'types/index'
 import { getImageUrl } from '@utils/url-utils'
+import MarkdownRenderer from '@components/markdown-renderer'
 
 interface ArticlesCardProps extends BoxProps {
   article: NonNullable<ArticleEntity['attributes']>
@@ -69,17 +70,9 @@ const ArticlesCard: React.FC<ArticlesCardProps> = ({ highlighted, hoverable, art
             >
               {article.title}
             </Text>
-            <Text
-              mt="5px"
-              as="h2"
-              color="#C3C3C3"
-              fontWeight="medium"
-              fontSize={{ base: 'sm', md: 'md' }}
-              lineHeight={{ base: '20px', md: '25px' }}
-            >
-              {article.blogBody.slice(0, sliceValue)}
-              {' ...'}
-            </Text>
+            <Flex flexDir="column" my="5px">
+              <MarkdownRenderer markdown={article.TLDR.slice(0, sliceValue) + ' ...'} />
+            </Flex>
             <Flex mt="32px" fontWeight="medium" fontSize="sm">
               <Image
                 src={getImageUrl(article.author?.data?.attributes?.profileImage?.data?.attributes?.url)}

@@ -19,21 +19,21 @@ interface BlogProps {
 }
 
 const Article: React.FC<BlogProps> = ({ data }) => {
-  const tags = data.article_tags?.data.map((tag) => tag.attributes?.tagName)
+  const tags = data?.article_tags?.data.map((tag) => tag.attributes?.tagName)
   const location = isBrowser ? window.location.href : ''
   return (
     <Box>
       <Flex flexDirection={{ base: 'column', md: 'row' }}>
-        <ReadTime readTime={calculateReadTime(data.blogBody)} />
-        {data.article_tags?.data.map((tag, i: number) => (
+        <ReadTime readTime={calculateReadTime(data?.blogBody)} />
+        {data?.article_tags?.data.map((tag, i: number) => (
           <ArticleTag isArticleDetails key={i + 1} tagName={tag.attributes?.tagName || ''} />
         ))}
       </Flex>
       <Box my="18px">
         <Box mb={4}>
-          <HeadingRenderer title={data.title} />
+          <HeadingRenderer title={data?.title} />
         </Box>
-        <MarkdownRenderer markdown={data.TLDR} />
+        <MarkdownRenderer markdown={data?.TLDR} />
       </Box>
       <Flex
         direction={{ base: 'column', lg: 'row' }}
@@ -48,27 +48,27 @@ const Article: React.FC<BlogProps> = ({ data }) => {
               h="44px"
               w="44px"
               rounded="full"
-              src={getImageUrl(data.author?.data?.attributes?.profileImage?.data?.attributes?.url)}
+              src={getImageUrl(data?.author?.data?.attributes?.profileImage?.data?.attributes?.url)}
               alt="profile pic"
             />
             <Text ml="13px" as="h1" color="#fff" fontSize="md" lineHeight="25px">
-              by {data.author?.data?.attributes?.userName}
+              by {data?.author?.data?.attributes?.userName}
             </Text>
           </Flex>
           <HStack ml={{ base: 0, lg: '50px' }} mt={{ base: 7, lg: 0 }}>
             <AiTwotoneCalendar style={{ width: '24px', height: '24px' }} />
             <Text color="#fff" as="h2">
-              {LocalDate(data.publishedAt!)}.
+              {LocalDate(data?.publishedAt!)}.
             </Text>
           </HStack>
         </Flex>
         <Box mt={{ base: 9, lg: 0 }}>
-          <SocialShare hashtags={tags as string[]} url={location} title={data.title} description={data.blogBody} />
+          <SocialShare hashtags={tags as string[]} url={location} title={data?.title} description={data?.blogBody} />
         </Box>
       </Flex>
-      <Image rounded="10px" src={getImageUrl(data.blogImage.data?.attributes?.url)} alt={data.title} />
+      <Image w="full" rounded="10px" src={getImageUrl(data?.blogImage.data?.attributes?.url)} alt={data?.title} />
       <Flex flexDir="column" gap={4} my={10}>
-        <MarkdownRenderer markdown={data.blogBody} />
+        <MarkdownRenderer markdown={data?.blogBody} />
       </Flex>
     </Box>
   )
