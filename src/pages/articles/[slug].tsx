@@ -12,8 +12,7 @@ import { Article as ArticleType, ArticleEntity } from 'types/index'
 import { ARTICLE_SLUGS_QUERY, GET_ARTICLE_BY_SLUG_QUERY } from '@graphql/queries/articles'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { getImageUrl } from '@utils/url-utils'
-import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
+import NotFound from 'pages/404'
 
 interface ArticleTemplateProps {
   data: NonNullable<ArticleEntity['attributes']>
@@ -22,11 +21,11 @@ interface ArticleTemplateProps {
 const ArticlePage: React.FC<ArticleTemplateProps> = ({ data }) => {
   const relatedArticles = data?.related_articles?.data || []
   const seoimage = getImageUrl(data?.blogImage.data?.attributes?.url)
-  const router = useRouter()
 
-  if (!router.isFallback && typeof data?.slug === 'undefined') {
-    return <ErrorPage statusCode={404} />
+  if (typeof data?.slug === 'undefined') {
+    return <NotFound />
   }
+
   return (
     <>
       <SEO seoimage={seoimage} title={data?.seo?.metatitle} description={data?.seo?.metadescription} />
@@ -68,14 +67,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
     query: print(ARTICLE_SLUGS_QUERY),
   })
 
-  const paths = result.data.data.allStrapiArticlesTitle.data.map((d) => ({
-    params: {
-      slug: d.attributes?.slug,
-    },
-  }))
+  const paths =
+    result.data.data.allStrapiArticlesTitle.data.map((d) => ({
+      params: {
+        slug: d.attributes?.slug,
+      },
+    })) || []
 
   return {
-    paths: paths || [],
+    paths,
     fallback: true,
   }
 }
@@ -102,7 +102,7 @@ export const getStaticProps: GetStaticProps<
   const [article] = result.data.data.articles.data
 
   return {
-    props: { data: article.attributes as ArticleType },
+    props: { data: article?.attributes as ArticleType },
     revalidate: 10,
   }
 }
