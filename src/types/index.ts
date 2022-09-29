@@ -10,6 +10,7 @@ export type Scalars = {
   Boolean: boolean
   Int: number
   Float: number
+  Date: any
   DateTime: any
   JSON: any
   Upload: any
@@ -24,6 +25,7 @@ export type Article = {
   blogImage: UploadFileEntityResponse
   createdAt?: Maybe<Scalars['DateTime']>
   publishedAt?: Maybe<Scalars['DateTime']>
+  publishedDate: Scalars['Date']
   related_articles?: Maybe<ArticleRelationResponseCollection>
   seo?: Maybe<ComponentArticlesSeo>
   slug: Scalars['String']
@@ -73,6 +75,7 @@ export type ArticleFiltersInput = {
   not?: InputMaybe<ArticleFiltersInput>
   or?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>
   publishedAt?: InputMaybe<DateTimeFilterInput>
+  publishedDate?: InputMaybe<DateFilterInput>
   related_articles?: InputMaybe<ArticleFiltersInput>
   seo?: InputMaybe<ComponentArticlesSeoFiltersInput>
   slug?: InputMaybe<StringFilterInput>
@@ -87,6 +90,7 @@ export type ArticleInput = {
   blogBody?: InputMaybe<Scalars['String']>
   blogImage?: InputMaybe<Scalars['ID']>
   publishedAt?: InputMaybe<Scalars['DateTime']>
+  publishedDate?: InputMaybe<Scalars['Date']>
   related_articles?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
   seo?: InputMaybe<ComponentArticlesSeoInput>
   slug?: InputMaybe<Scalars['String']>
@@ -575,6 +579,29 @@ export type CopyTagFiltersInput = {
 export type CopyTagInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>
   tagName?: InputMaybe<Scalars['String']>
+}
+
+export type DateFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  between?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  contains?: InputMaybe<Scalars['Date']>
+  containsi?: InputMaybe<Scalars['Date']>
+  endsWith?: InputMaybe<Scalars['Date']>
+  eq?: InputMaybe<Scalars['Date']>
+  gt?: InputMaybe<Scalars['Date']>
+  gte?: InputMaybe<Scalars['Date']>
+  in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  lt?: InputMaybe<Scalars['Date']>
+  lte?: InputMaybe<Scalars['Date']>
+  ne?: InputMaybe<Scalars['Date']>
+  not?: InputMaybe<DateFilterInput>
+  notContains?: InputMaybe<Scalars['Date']>
+  notContainsi?: InputMaybe<Scalars['Date']>
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  notNull?: InputMaybe<Scalars['Boolean']>
+  null?: InputMaybe<Scalars['Boolean']>
+  or?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
+  startsWith?: InputMaybe<Scalars['Date']>
 }
 
 export type DateTimeFilterInput = {
