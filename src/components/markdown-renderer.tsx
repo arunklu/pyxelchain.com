@@ -41,7 +41,6 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown = '' }) =>
         h3: ({ children }) => {
           return (
             <Heading
-              as="span"
               id={children[0] as string}
               mt="35px"
               fontWeight={800}
