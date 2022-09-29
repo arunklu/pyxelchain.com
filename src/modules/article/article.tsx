@@ -58,7 +58,7 @@ const Article: React.FC<BlogProps> = ({ data }) => {
           <HStack ml={{ base: 0, lg: '50px' }} mt={{ base: 7, lg: 0 }}>
             <AiTwotoneCalendar style={{ width: '24px', height: '24px' }} />
             <Text color="#fff" as="h2">
-              {LocalDate(data?.publishedAt!)}.
+              {LocalDate(data?.publishedDate!)}.
             </Text>
           </HStack>
         </Flex>
