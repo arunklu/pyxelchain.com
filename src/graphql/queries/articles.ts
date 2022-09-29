@@ -30,7 +30,7 @@ export const ARTICLES_QUERY = gql`
         }
       }
     }
-    allStrapiArticle: articles(sort: ["publishedAt:DESC"]) {
+    allStrapiArticle: articles(sort: ["publishedDate:DESC"]) {
       data {
         attributes {
           title
@@ -65,7 +65,7 @@ export const ARTICLES_QUERY = gql`
               }
             }
           }
-          publishedAt
+          publishedDate
         }
       }
     }
@@ -74,7 +74,7 @@ export const ARTICLES_QUERY = gql`
 
 export const ARTICLE_SLUGS_QUERY = gql`
   query ArticleSlugsQuery {
-    allStrapiArticlesTitle: articles(sort: ["publishedAt:DESC"], pagination: { limit: 100 }) {
+    allStrapiArticlesTitle: articles(sort: ["publishedDate:DESC"], pagination: { limit: 100 }) {
       data {
         attributes {
           slug
@@ -121,7 +121,7 @@ export const GET_ARTICLE_BY_SLUG_QUERY = gql`
               }
             }
           }
-          publishedAt
+          publishedDate
           seo {
             metatitle
             metadescription

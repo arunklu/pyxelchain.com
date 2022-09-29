@@ -43,7 +43,7 @@ const ArticlesCard: React.FC<ArticlesCardProps> = ({ highlighted, hoverable, art
             <Image
               w="full"
               h={isMobile ? '280px' : highlighted ? '399px' : '280px'}
-              objectFit="fill"
+              objectFit="cover"
               src={getImageUrl(article.blogImage.data?.attributes?.url)}
               alt={article.title}
             />
@@ -86,7 +86,7 @@ const ArticlesCard: React.FC<ArticlesCardProps> = ({ highlighted, hoverable, art
                   {article.author?.data?.attributes?.userName}
                 </Text>
                 <Text fontSize="sm" as="span" opacity={0.7} fontWeight="light">
-                  {LocalDate(article!.publishedAt!)}.
+                  {LocalDate(article!.publishedDate!)}.
                 </Text>
               </Flex>
             </Flex>

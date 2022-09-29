@@ -1,4 +1,4 @@
-import { Image, ListItem, OrderedList, UnorderedList } from '@chakra-ui/react'
+import { Box, Image, ListItem, OrderedList, UnorderedList } from '@chakra-ui/react'
 import { getImageUrl } from '@utils/url-utils'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
@@ -14,9 +14,11 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown = '' }) =>
       components={{
         p: ({ children }) => <Text as="span">{children}</Text>,
         strong: ({ children }) => (
-          <Text as="span" fontWeight="bold">
-            {children}
-          </Text>
+          <Box>
+            <Text as="span" fontWeight="bold">
+              {children}
+            </Text>
+          </Box>
         ),
         code: ({ children }) => (
           <Text as="span" withGradient>
