@@ -14,11 +14,9 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown = '' }) =>
       components={{
         p: ({ children }) => <Text as="div">{children}</Text>,
         strong: ({ children }) => (
-          <Box>
-            <Text as="span" fontWeight="bold">
-              {children}
-            </Text>
-          </Box>
+          <Text as="span" fontWeight="bold">
+            {children}
+          </Text>
         ),
         code: ({ children }) => (
           <Text as="span" withGradient>
