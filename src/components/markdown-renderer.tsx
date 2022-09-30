@@ -12,7 +12,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown = '' }) =>
   return markdown ? (
     <ReactMarkdown
       components={{
-        p: ({ children }) => <Text as="span">{children}</Text>,
+        p: ({ children }) => <Text as="div">{children}</Text>,
         strong: ({ children }) => (
           <Box>
             <Text as="span" fontWeight="bold">
@@ -31,7 +31,11 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ markdown = '' }) =>
           </Text>
         ),
         img: (image) => <Image w="full" src={getImageUrl(image.src)}></Image>,
-        ol: ({ children }) => <OrderedList mb={4}>{children}</OrderedList>,
+        ol: ({ children }) => (
+          <Box>
+            <OrderedList mb={4}>{children}</OrderedList>
+          </Box>
+        ),
         ul: ({ children }) => <UnorderedList>{children}</UnorderedList>,
         li: ({ children }) => (
           <ListItem mb={4} color="#C3C4C3">
