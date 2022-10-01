@@ -45,7 +45,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
   return (
     <Box mt="103px">
       <SEO title={data.seo?.metatitle} description={data.seo?.metadescription} />
-      <HeadingRenderer center title={data.header}></HeadingRenderer>
+      <HeadingRenderer mobilecenter center title={data.header}></HeadingRenderer>
       <Text textAlign="center" color="white" mt="29px">
         Last Updated: {LocalDate(data.publishedAt)}.
       </Text>
@@ -67,6 +67,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
                 fontSize="sm"
                 color="#C3C4C3"
                 placeholder="Table of Contents"
+                onChange={(e) => onPress(e.target.value)}
               >
                 {headers?.map((header: string) => (
                   <option key={header} value={header.replace('### ', '')}>
@@ -77,7 +78,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
             </Affix>
           </VStack>
           <Affix offsetTop={0}>
-            <Box w="80%" flexDir="column" pos="relative">
+            <Box display={{ base: 'none', lg: 'inline' }} w="80%" flexDir="column" pos="relative">
               {headers?.map((header: string, i: number) => {
                 return (
                   <Text
