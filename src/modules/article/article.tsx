@@ -4,7 +4,7 @@ import React from 'react'
 import { AiTwotoneCalendar } from '@react-icons/all-files/ai/AiTwotoneCalendar'
 
 import ReadTime from '@components/read-time'
-import ArticleTag from '@modules/articles/article-tag'
+import Tag from '@modules/articles/tag'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { calculateReadTime } from '@utils/calculate-read-time'
 import { LocalDate } from '@utils/local-date'
@@ -26,7 +26,7 @@ const Article: React.FC<BlogProps> = ({ data }) => {
       <Flex gap="10px" flexWrap="wrap" justifyContent={{ base: 'left', sm: 'space-between', md: 'left' }}>
         <ReadTime readTime={calculateReadTime(data?.blogBody)} />
         {data?.article_tags?.data.map((tag, i: number) => (
-          <ArticleTag isArticleDetails key={i + 1} tagName={tag.attributes?.tagName || ''} />
+          <Tag isArticleDetails key={i + 1} tagName={tag.attributes?.tagName || ''} />
         ))}
       </Flex>
       <Box my="18px">
