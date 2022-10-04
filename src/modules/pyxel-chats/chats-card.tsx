@@ -4,24 +4,20 @@ import BorderBox from '@components/border-box'
 import ReadTime from '@components/read-time'
 import Link from '@components/link'
 import { Text } from '@components/typography'
-import { LocalDate } from '@utils/local-date'
-import { calculateReadTime } from '@utils/calculate-read-time'
 import useMobileState from '@hooks/use-mobile-state'
-import { ArticleEntity } from 'types/index'
-import { getImageUrl } from '@utils/url-utils'
 import MarkdownRenderer from '@components/markdown-renderer'
 
-interface ArticlesCardProps extends BoxProps {
-  article: NonNullable<ArticleEntity['attributes']>
+interface ChatsCardProps extends BoxProps {
+  chat: string
   highlighted?: boolean
   hoverable?: boolean
 }
 
-const ArticlesCard: React.FC<ArticlesCardProps> = ({ highlighted, hoverable, article, ...rest }) => {
+const ChatsCard: React.FC<ChatsCardProps> = ({ highlighted, hoverable, chat, ...rest }) => {
   const isMobile = useMobileState()
-  const sliceValue = isMobile ? 73 : highlighted ? 148 : 73
+  //  const sliceValue = isMobile ? 73 : highlighted ? 148 : 73
   return (
-    <Link href={`/articles/${article.slug}`}>
+    <Link href={`/pyxel-chats/abcx`}>
       <BorderBox hoverable={hoverable} {...rest}>
         <Flex
           h={{ base: '602px', lg: highlighted ? '426px' : '602px' }}
@@ -43,8 +39,8 @@ const ArticlesCard: React.FC<ArticlesCardProps> = ({ highlighted, hoverable, art
               w="full"
               h={isMobile ? '280px' : highlighted ? '399px' : '280px'}
               objectFit="cover"
-              src={getImageUrl(article.blogImage.data?.attributes?.url)}
-              alt={article.title}
+              src="/svg/seoimage.svg"
+              alt="chat"
             />
           </Box>
           <Flex
@@ -56,7 +52,7 @@ const ArticlesCard: React.FC<ArticlesCardProps> = ({ highlighted, hoverable, art
             mt="25px"
             mx={{ base: 0, lg: highlighted ? '66px' : 0 }}
           >
-            <ReadTime readTime={calculateReadTime(article.blogBody)} />
+            <ReadTime audio readTime="4 mins Listen" />
             <Text
               mt="25px"
               as="h1"
@@ -67,25 +63,19 @@ const ArticlesCard: React.FC<ArticlesCardProps> = ({ highlighted, hoverable, art
               lineHeight={{ base: '29px', md: highlighted ? '48px' : '31px' }}
               _hover={{ textDecoration: 'underline' }}
             >
-              {article.title}
+              Title
             </Text>
             <Flex flexDir="column" my="5px">
-              <MarkdownRenderer markdown={article.TLDR.slice(0, sliceValue) + ' ...'} />
+              <MarkdownRenderer markdown={'Hello World Hello World' + ' ...'} />
             </Flex>
             <Flex mt="32px" fontWeight="medium" fontSize="sm">
-              <Image
-                src={getImageUrl(article.author?.data?.attributes?.profileImage?.data?.attributes?.url)}
-                w="44px"
-                h="44px"
-                rounded="full"
-                alt="profile image"
-              />
+              <Image src="/svg/seoimage.svg" w="44px" h="44px" rounded="full" alt="profile image" />
               <Flex direction="column" ml="9px" alignItems="start" justifyContent="center">
                 <Text fontWeight="medium" fontSize="sm" color="#fff">
-                  {article.author?.data?.attributes?.userName}
+                  Sanji
                 </Text>
                 <Text fontSize="sm" as="span" opacity={0.7} fontWeight="light">
-                  {LocalDate(article!.publishedDate!)}.
+                  2022, Oct 10.
                 </Text>
               </Flex>
             </Flex>
@@ -96,4 +86,4 @@ const ArticlesCard: React.FC<ArticlesCardProps> = ({ highlighted, hoverable, art
   )
 }
 
-export default ArticlesCard
+export default ChatsCard
