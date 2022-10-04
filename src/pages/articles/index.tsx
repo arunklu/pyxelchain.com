@@ -6,7 +6,7 @@ import { Box, Center, Divider, Flex, Grid, GridItem, VStack } from '@chakra-ui/r
 
 import { SEO } from '@components/seo'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import ArticleTag from '@modules/articles/article-tag'
+import ArticleTag from '@modules/articles/tag'
 import ArticlesCard from '@modules/articles/articles-card'
 
 import { CopyEntity, ArticleEntity, ArticleTagEntity } from 'types/index'
