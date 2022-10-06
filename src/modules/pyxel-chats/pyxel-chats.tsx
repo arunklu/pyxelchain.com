@@ -4,10 +4,13 @@ import { HeadingRenderer } from '@components/markdown-renderer'
 import { randomNumber } from '@utils/random-number'
 import React from 'react'
 import { RiHeadphoneFill } from '@react-icons/all-files/ri/RiHeadphoneFill'
+import { Copy, Maybe } from 'types/index'
 
-interface PyxelChatsProps {}
+interface PyxelChatsProps {
+  copy: Maybe<Copy> | undefined | undefined
+}
 
-const PyxelChats: React.FC<PyxelChatsProps> = () => {
+const PyxelChats: React.FC<PyxelChatsProps> = ({ copy }) => {
   const [randomNum, setRandomNum] = React.useState<number>(1)
 
   React.useEffect(() => {
@@ -26,11 +29,8 @@ const PyxelChats: React.FC<PyxelChatsProps> = () => {
       mt="117px"
     >
       <Box maxW="531px">
-        <HeadingRenderer title="Discover Better Insights with Our" titleWithGradient="PyxelChats" />
-        <Text mt="10px">
-          This is a dummy text and another one to make this section long and longer. This is a dummy text and another
-          one to make this section long and longeis is a dummy text and another{' '}
-        </Text>
+        <HeadingRenderer title={copy?.title} titleWithGradient={copy?.titleWithGradient} />
+        <Text mt="10px">{copy?.description}</Text>
         <Button mt="33.23px">
           <RiHeadphoneFill />
           <Text color="white" ml="14.71px">
