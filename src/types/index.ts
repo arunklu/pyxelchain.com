@@ -19,7 +19,7 @@ export type Scalars = {
 export type Article = {
   __typename?: 'Article'
   TLDR: Scalars['String']
-  article_tags?: Maybe<ArticleTagRelationResponseCollection>
+  article_tags?: Maybe<TagRelationResponseCollection>
   author?: Maybe<AuthorEntityResponse>
   blogBody: Scalars['String']
   blogImage: UploadFileEntityResponse
@@ -34,7 +34,7 @@ export type Article = {
 }
 
 export type ArticleArticle_TagsArgs = {
-  filters?: InputMaybe<ArticleTagFiltersInput>
+  filters?: InputMaybe<TagFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
@@ -67,7 +67,7 @@ export type ArticleEntityResponseCollection = {
 export type ArticleFiltersInput = {
   TLDR?: InputMaybe<StringFilterInput>
   and?: InputMaybe<Array<InputMaybe<ArticleFiltersInput>>>
-  article_tags?: InputMaybe<ArticleTagFiltersInput>
+  article_tags?: InputMaybe<TagFiltersInput>
   author?: InputMaybe<AuthorFiltersInput>
   blogBody?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
@@ -100,52 +100,6 @@ export type ArticleInput = {
 export type ArticleRelationResponseCollection = {
   __typename?: 'ArticleRelationResponseCollection'
   data: Array<ArticleEntity>
-}
-
-export type ArticleTag = {
-  __typename?: 'ArticleTag'
-  createdAt?: Maybe<Scalars['DateTime']>
-  publishedAt?: Maybe<Scalars['DateTime']>
-  tagName: Scalars['String']
-  updatedAt?: Maybe<Scalars['DateTime']>
-}
-
-export type ArticleTagEntity = {
-  __typename?: 'ArticleTagEntity'
-  attributes?: Maybe<ArticleTag>
-  id?: Maybe<Scalars['ID']>
-}
-
-export type ArticleTagEntityResponse = {
-  __typename?: 'ArticleTagEntityResponse'
-  data?: Maybe<ArticleTagEntity>
-}
-
-export type ArticleTagEntityResponseCollection = {
-  __typename?: 'ArticleTagEntityResponseCollection'
-  data: Array<ArticleTagEntity>
-  meta: ResponseCollectionMeta
-}
-
-export type ArticleTagFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ArticleTagFiltersInput>>>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  not?: InputMaybe<ArticleTagFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<ArticleTagFiltersInput>>>
-  publishedAt?: InputMaybe<DateTimeFilterInput>
-  tagName?: InputMaybe<StringFilterInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-}
-
-export type ArticleTagInput = {
-  publishedAt?: InputMaybe<Scalars['DateTime']>
-  tagName?: InputMaybe<Scalars['String']>
-}
-
-export type ArticleTagRelationResponseCollection = {
-  __typename?: 'ArticleTagRelationResponseCollection'
-  data: Array<ArticleTagEntity>
 }
 
 export type Author = {
@@ -484,6 +438,42 @@ export type ComponentArticlesSeoInput = {
   metatitle?: InputMaybe<Scalars['String']>
 }
 
+export type ComponentPodcastPodcastLinks = {
+  __typename?: 'ComponentPodcastPodcastLinks'
+  amazon?: Maybe<Scalars['String']>
+  apple?: Maybe<Scalars['String']>
+  google?: Maybe<Scalars['String']>
+  id: Scalars['ID']
+  listennotes?: Maybe<Scalars['String']>
+  spotify?: Maybe<Scalars['String']>
+  stitcher?: Maybe<Scalars['String']>
+  youtube?: Maybe<Scalars['String']>
+}
+
+export type ComponentPodcastPodcastLinksFiltersInput = {
+  amazon?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<ComponentPodcastPodcastLinksFiltersInput>>>
+  apple?: InputMaybe<StringFilterInput>
+  google?: InputMaybe<StringFilterInput>
+  listennotes?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<ComponentPodcastPodcastLinksFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ComponentPodcastPodcastLinksFiltersInput>>>
+  spotify?: InputMaybe<StringFilterInput>
+  stitcher?: InputMaybe<StringFilterInput>
+  youtube?: InputMaybe<StringFilterInput>
+}
+
+export type ComponentPodcastPodcastLinksInput = {
+  amazon?: InputMaybe<Scalars['String']>
+  apple?: InputMaybe<Scalars['String']>
+  google?: InputMaybe<Scalars['String']>
+  id?: InputMaybe<Scalars['ID']>
+  listennotes?: InputMaybe<Scalars['String']>
+  spotify?: InputMaybe<Scalars['String']>
+  stitcher?: InputMaybe<Scalars['String']>
+  youtube?: InputMaybe<Scalars['String']>
+}
+
 export type Copy = {
   __typename?: 'Copy'
   createdAt?: Maybe<Scalars['DateTime']>
@@ -715,19 +705,21 @@ export type FloatFilterInput = {
 
 export type GenericMorph =
   | Article
-  | ArticleTag
   | Author
   | CmsAnalyzerAnalyse
   | CmsAnalyzerMatch
   | CmsAnalyzerMedia
   | CmsAnalyzerSummary
   | ComponentArticlesSeo
+  | ComponentPodcastPodcastLinks
   | Copy
   | CopyTag
   | Feature
   | I18NLocale
   | Partnership
+  | Podcast
   | PrivacyTermsCookie
+  | Tag
   | Team
   | UploadFile
   | UsersPermissionsPermission
@@ -842,7 +834,6 @@ export type JsonFilterInput = {
 export type Mutation = {
   __typename?: 'Mutation'
   createArticle?: Maybe<ArticleEntityResponse>
-  createArticleTag?: Maybe<ArticleTagEntityResponse>
   createAuthor?: Maybe<AuthorEntityResponse>
   createCmsAnalyzerAnalyse?: Maybe<CmsAnalyzerAnalyseEntityResponse>
   createCmsAnalyzerMatch?: Maybe<CmsAnalyzerMatchEntityResponse>
@@ -852,7 +843,9 @@ export type Mutation = {
   createCopyTag?: Maybe<CopyTagEntityResponse>
   createFeature?: Maybe<FeatureEntityResponse>
   createPartnership?: Maybe<PartnershipEntityResponse>
+  createPodcast?: Maybe<PodcastEntityResponse>
   createPrivacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
+  createTag?: Maybe<TagEntityResponse>
   createTeam?: Maybe<TeamEntityResponse>
   createUploadFile?: Maybe<UploadFileEntityResponse>
   /** Create a new role */
@@ -860,7 +853,6 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse
   deleteArticle?: Maybe<ArticleEntityResponse>
-  deleteArticleTag?: Maybe<ArticleTagEntityResponse>
   deleteAuthor?: Maybe<AuthorEntityResponse>
   deleteCmsAnalyzerAnalyse?: Maybe<CmsAnalyzerAnalyseEntityResponse>
   deleteCmsAnalyzerMatch?: Maybe<CmsAnalyzerMatchEntityResponse>
@@ -870,7 +862,9 @@ export type Mutation = {
   deleteCopyTag?: Maybe<CopyTagEntityResponse>
   deleteFeature?: Maybe<FeatureEntityResponse>
   deletePartnership?: Maybe<PartnershipEntityResponse>
+  deletePodcast?: Maybe<PodcastEntityResponse>
   deletePrivacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
+  deleteTag?: Maybe<TagEntityResponse>
   deleteTeam?: Maybe<TeamEntityResponse>
   deleteUploadFile?: Maybe<UploadFileEntityResponse>
   /** Delete an existing role */
@@ -889,7 +883,6 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>
   updateArticle?: Maybe<ArticleEntityResponse>
-  updateArticleTag?: Maybe<ArticleTagEntityResponse>
   updateAuthor?: Maybe<AuthorEntityResponse>
   updateCmsAnalyzerAnalyse?: Maybe<CmsAnalyzerAnalyseEntityResponse>
   updateCmsAnalyzerMatch?: Maybe<CmsAnalyzerMatchEntityResponse>
@@ -900,7 +893,9 @@ export type Mutation = {
   updateFeature?: Maybe<FeatureEntityResponse>
   updateFileInfo: UploadFileEntityResponse
   updatePartnership?: Maybe<PartnershipEntityResponse>
+  updatePodcast?: Maybe<PodcastEntityResponse>
   updatePrivacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
+  updateTag?: Maybe<TagEntityResponse>
   updateTeam?: Maybe<TeamEntityResponse>
   updateUploadFile?: Maybe<UploadFileEntityResponse>
   /** Update an existing role */
@@ -912,10 +907,6 @@ export type Mutation = {
 
 export type MutationCreateArticleArgs = {
   data: ArticleInput
-}
-
-export type MutationCreateArticleTagArgs = {
-  data: ArticleTagInput
 }
 
 export type MutationCreateAuthorArgs = {
@@ -954,8 +945,16 @@ export type MutationCreatePartnershipArgs = {
   data: PartnershipInput
 }
 
+export type MutationCreatePodcastArgs = {
+  data: PodcastInput
+}
+
 export type MutationCreatePrivacyTermsCookieArgs = {
   data: PrivacyTermsCookieInput
+}
+
+export type MutationCreateTagArgs = {
+  data: TagInput
 }
 
 export type MutationCreateTeamArgs = {
@@ -975,10 +974,6 @@ export type MutationCreateUsersPermissionsUserArgs = {
 }
 
 export type MutationDeleteArticleArgs = {
-  id: Scalars['ID']
-}
-
-export type MutationDeleteArticleTagArgs = {
   id: Scalars['ID']
 }
 
@@ -1018,7 +1013,15 @@ export type MutationDeletePartnershipArgs = {
   id: Scalars['ID']
 }
 
+export type MutationDeletePodcastArgs = {
+  id: Scalars['ID']
+}
+
 export type MutationDeletePrivacyTermsCookieArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationDeleteTagArgs = {
   id: Scalars['ID']
 }
 
@@ -1076,11 +1079,6 @@ export type MutationUpdateArticleArgs = {
   id: Scalars['ID']
 }
 
-export type MutationUpdateArticleTagArgs = {
-  data: ArticleTagInput
-  id: Scalars['ID']
-}
-
 export type MutationUpdateAuthorArgs = {
   data: AuthorInput
   id: Scalars['ID']
@@ -1131,8 +1129,18 @@ export type MutationUpdatePartnershipArgs = {
   id: Scalars['ID']
 }
 
+export type MutationUpdatePodcastArgs = {
+  data: PodcastInput
+  id: Scalars['ID']
+}
+
 export type MutationUpdatePrivacyTermsCookieArgs = {
   data: PrivacyTermsCookieInput
+  id: Scalars['ID']
+}
+
+export type MutationUpdateTagArgs = {
+  data: TagInput
   id: Scalars['ID']
 }
 
@@ -1229,6 +1237,91 @@ export type PartnershipInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>
 }
 
+export type Podcast = {
+  __typename?: 'Podcast'
+  TLDR: Scalars['String']
+  audioFile: UploadFileEntityResponse
+  createdAt?: Maybe<Scalars['DateTime']>
+  links?: Maybe<ComponentPodcastPodcastLinks>
+  podcastImage: UploadFileEntityResponse
+  podcast_tags?: Maybe<TagRelationResponseCollection>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  publishedDate: Scalars['Date']
+  related_podcasts?: Maybe<PodcastRelationResponseCollection>
+  seo?: Maybe<ComponentArticlesSeo>
+  slug: Scalars['String']
+  title: Scalars['String']
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type PodcastPodcast_TagsArgs = {
+  filters?: InputMaybe<TagFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type PodcastRelated_PodcastsArgs = {
+  filters?: InputMaybe<PodcastFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type PodcastEntity = {
+  __typename?: 'PodcastEntity'
+  attributes?: Maybe<Podcast>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type PodcastEntityResponse = {
+  __typename?: 'PodcastEntityResponse'
+  data?: Maybe<PodcastEntity>
+}
+
+export type PodcastEntityResponseCollection = {
+  __typename?: 'PodcastEntityResponseCollection'
+  data: Array<PodcastEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type PodcastFiltersInput = {
+  TLDR?: InputMaybe<StringFilterInput>
+  and?: InputMaybe<Array<InputMaybe<PodcastFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  links?: InputMaybe<ComponentPodcastPodcastLinksFiltersInput>
+  not?: InputMaybe<PodcastFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<PodcastFiltersInput>>>
+  podcast_tags?: InputMaybe<TagFiltersInput>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  publishedDate?: InputMaybe<DateFilterInput>
+  related_podcasts?: InputMaybe<PodcastFiltersInput>
+  seo?: InputMaybe<ComponentArticlesSeoFiltersInput>
+  slug?: InputMaybe<StringFilterInput>
+  title?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type PodcastInput = {
+  TLDR?: InputMaybe<Scalars['String']>
+  audioFile?: InputMaybe<Scalars['ID']>
+  links?: InputMaybe<ComponentPodcastPodcastLinksInput>
+  podcastImage?: InputMaybe<Scalars['ID']>
+  podcast_tags?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+  publishedDate?: InputMaybe<Scalars['Date']>
+  related_podcasts?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
+  seo?: InputMaybe<ComponentArticlesSeoInput>
+  slug?: InputMaybe<Scalars['String']>
+  title?: InputMaybe<Scalars['String']>
+}
+
+export type PodcastRelationResponseCollection = {
+  __typename?: 'PodcastRelationResponseCollection'
+  data: Array<PodcastEntity>
+}
+
 export type PrivacyTermsCookie = {
   __typename?: 'PrivacyTermsCookie'
   createdAt?: Maybe<Scalars['DateTime']>
@@ -1289,8 +1382,6 @@ export enum PublicationState {
 export type Query = {
   __typename?: 'Query'
   article?: Maybe<ArticleEntityResponse>
-  articleTag?: Maybe<ArticleTagEntityResponse>
-  articleTags?: Maybe<ArticleTagEntityResponseCollection>
   articles?: Maybe<ArticleEntityResponseCollection>
   author?: Maybe<AuthorEntityResponse>
   authors?: Maybe<AuthorEntityResponseCollection>
@@ -1313,8 +1404,12 @@ export type Query = {
   me?: Maybe<UsersPermissionsMe>
   partnership?: Maybe<PartnershipEntityResponse>
   partnerships?: Maybe<PartnershipEntityResponseCollection>
+  podcast?: Maybe<PodcastEntityResponse>
+  podcasts?: Maybe<PodcastEntityResponseCollection>
   privacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
   privacyTermsCookies?: Maybe<PrivacyTermsCookieEntityResponseCollection>
+  tag?: Maybe<TagEntityResponse>
+  tags?: Maybe<TagEntityResponseCollection>
   team?: Maybe<TeamEntityResponse>
   teams?: Maybe<TeamEntityResponseCollection>
   uploadFile?: Maybe<UploadFileEntityResponse>
@@ -1327,17 +1422,6 @@ export type Query = {
 
 export type QueryArticleArgs = {
   id?: InputMaybe<Scalars['ID']>
-}
-
-export type QueryArticleTagArgs = {
-  id?: InputMaybe<Scalars['ID']>
-}
-
-export type QueryArticleTagsArgs = {
-  filters?: InputMaybe<ArticleTagFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  publicationState?: InputMaybe<PublicationState>
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
 export type QueryArticlesArgs = {
@@ -1452,12 +1536,34 @@ export type QueryPartnershipsArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export type QueryPodcastArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryPodcastsArgs = {
+  filters?: InputMaybe<PodcastFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
 export type QueryPrivacyTermsCookieArgs = {
   id?: InputMaybe<Scalars['ID']>
 }
 
 export type QueryPrivacyTermsCookiesArgs = {
   filters?: InputMaybe<PrivacyTermsCookieFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QueryTagArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryTagsArgs = {
+  filters?: InputMaybe<TagFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
@@ -1530,6 +1636,52 @@ export type StringFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>
   or?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
   startsWith?: InputMaybe<Scalars['String']>
+}
+
+export type Tag = {
+  __typename?: 'Tag'
+  createdAt?: Maybe<Scalars['DateTime']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  tagName?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type TagEntity = {
+  __typename?: 'TagEntity'
+  attributes?: Maybe<Tag>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type TagEntityResponse = {
+  __typename?: 'TagEntityResponse'
+  data?: Maybe<TagEntity>
+}
+
+export type TagEntityResponseCollection = {
+  __typename?: 'TagEntityResponseCollection'
+  data: Array<TagEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type TagFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<TagFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  not?: InputMaybe<TagFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<TagFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  tagName?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type TagInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+  tagName?: InputMaybe<Scalars['String']>
+}
+
+export type TagRelationResponseCollection = {
+  __typename?: 'TagRelationResponseCollection'
+  data: Array<TagEntity>
 }
 
 export type Team = {
