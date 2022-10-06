@@ -61,7 +61,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       slug: context.params?.slug,
     },
   })
-
   const [podcast] = result.data.data.podcasts.data
   return {
     props: { data: podcast.attributes as PodcastTypes },
