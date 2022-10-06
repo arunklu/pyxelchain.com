@@ -18,7 +18,8 @@ interface PyxelChatProps {
 
 const PyxelChat: React.FC<PyxelChatProps> = ({ data }) => {
   const location = isBrowser ? window.location.href : ''
-  const links = data!.links!
+  const links = data?.links
+
   return (
     <Box maxW="828px" mx="auto">
       <Flex gap="10px" flexWrap="wrap" justifyContent={{ base: 'left', sm: 'space-between', md: 'left' }}>
@@ -59,37 +60,37 @@ const PyxelChat: React.FC<PyxelChatProps> = ({ data }) => {
       <Box mt="50px">
         <Text color="white">Listen to full podcast on:</Text>
         <SimpleGrid mt="26.5px" columns={4} gap={8}>
-          {links.spotify !== null && (
+          {links?.spotify !== null && (
             <Link href={links?.spotify as string}>
               <Image src={GetPodcastLink('spotify')} alt="player" />
             </Link>
           )}
-          {links.apple !== null && (
+          {links?.apple !== null && (
             <Link href={links?.apple as string}>
               <Image src={GetPodcastLink('apple')} alt="player" />
             </Link>
           )}
-          {links.google !== null && (
+          {links?.google !== null && (
             <Link href={links?.google as string}>
               <Image src={GetPodcastLink('google')} alt="player" />
             </Link>
           )}
-          {links.amazon !== null && (
+          {links?.amazon !== null && (
             <Link href={links?.amazon as string}>
               <Image src={GetPodcastLink('amazon')} alt="player" />
             </Link>
           )}
-          {links.youtube !== null && (
+          {links?.youtube !== null && (
             <Link href={links?.youtube as string}>
               <Image src={GetPodcastLink('youtube')} alt="player" />
             </Link>
           )}
-          {links.listennotes !== null && (
+          {links?.listennotes !== null && (
             <Link href={links?.listennotes as string}>
               <Image src={GetPodcastLink('listennotes')} alt="player" />
             </Link>
           )}
-          {links.stitcher !== null && (
+          {links?.stitcher !== null && (
             <Link href={links?.stitcher as string}>
               <Image src={GetPodcastLink('stitcher')} alt="player" />
             </Link>
