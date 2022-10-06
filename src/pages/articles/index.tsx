@@ -9,7 +9,7 @@ import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer
 import ArticleTag from '@modules/articles/tag'
 import ArticlesCard from '@modules/articles/articles-card'
 
-import { CopyEntity, ArticleEntity, ArticleTagEntity } from 'types/index'
+import { CopyEntity, ArticleEntity, TagEntity } from 'types/index'
 import { ARTICLES_QUERY } from '@graphql/queries/articles'
 import { StrapiContextProvider } from '@context/strapi-context'
 import useHorizontalScroll from '@hooks/use-horizontal-scroll'
@@ -23,7 +23,7 @@ interface PageProps {
       nodes: NonNullable<ArticleEntity['attributes']>[]
     }
     allStrapiArticleTag: {
-      nodes: NonNullable<ArticleTagEntity['attributes']>[]
+      nodes: NonNullable<TagEntity['attributes']>[]
     }
   }
 }
@@ -90,7 +90,7 @@ const Index: React.FC<PageProps> = ({ data }) => {
               selectedTag={selectedTag}
               onClick={(e: string) => setSelectedTag(e)}
               key={tag.tagName}
-              tagName={tag.tagName}
+              tagName={tag?.tagName as string}
               isLast={ARTICLES_TAGS.length === i + 1}
             />
           ))}
@@ -122,7 +122,7 @@ interface QueryResult {
       data: ArticleEntity[]
     }
     allStrapiArticleTag: {
-      data: ArticleTagEntity[]
+      data: TagEntity[]
     }
   }
 }
@@ -136,7 +136,7 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
     (c) => c.attributes as NonNullable<CopyEntity['attributes']>
   )
   const articleTagNodes = result.data.data.allStrapiArticleTag.data.map(
-    (c) => c.attributes as NonNullable<ArticleTagEntity['attributes']>
+    (c) => c.attributes as NonNullable<TagEntity['attributes']>
   )
   const articleNodes = result.data.data.allStrapiArticle.data.map(
     (c) => c.attributes as NonNullable<ArticleEntity['attributes']>
