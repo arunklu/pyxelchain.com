@@ -7,24 +7,31 @@ import Tag from '@modules/articles/tag'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { isBrowser } from '@utils/env-utils'
 import SocialShare from '@modules/article/social-share'
+import { PodcastEntity } from 'types/index'
+import { LocalDate } from '@utils/local-date'
+import { GetPodcastLink } from '@utils/get-podcast-link'
+import Link from '@components/link'
 
-interface PyxelChatProps {}
+interface PyxelChatProps {
+  data: NonNullable<PodcastEntity['attributes']>
+}
 
-const PyxelChat: React.FC<PyxelChatProps> = () => {
+const PyxelChat: React.FC<PyxelChatProps> = ({ data }) => {
   const location = isBrowser ? window.location.href : ''
+  const links = data!.links!
   return (
     <Box maxW="828px" mx="auto">
       <Flex gap="10px" flexWrap="wrap" justifyContent={{ base: 'left', sm: 'space-between', md: 'left' }}>
         <ReadTime audio readTime="4 mins Listen" />
-        {['Crypto', 'Blockchain'].map((tag, i: number) => (
-          <Tag isArticleDetails key={i + 1} tagName={tag || ''} />
+        {data?.podcast_tags?.data.map((tag, i: number) => (
+          <Tag isArticleDetails key={i + 1} tagName={tag?.attributes?.tagName || ''} />
         ))}
       </Flex>
       <Box my="18px">
         <Box mb={4}>
-          <HeadingRenderer title="What are Wallets" />
+          <HeadingRenderer title={data?.title} />
         </Box>
-        <MarkdownRenderer markdown="Yo yo yo Honey Singh" />
+        <MarkdownRenderer markdown={data?.TLDR} />
       </Box>
       <Flex
         direction={{ base: 'column', lg: 'row' }}
@@ -37,7 +44,7 @@ const PyxelChat: React.FC<PyxelChatProps> = () => {
           <HStack mt={{ base: 7, lg: 0 }}>
             <AiTwotoneCalendar style={{ width: '24px', height: '24px' }} />
             <Text color="#fff" as="h2">
-              OCT 10, 2022
+              {LocalDate(data?.publishedDate)}
             </Text>
           </HStack>
         </Flex>
@@ -51,15 +58,42 @@ const PyxelChat: React.FC<PyxelChatProps> = () => {
       </Flex>
       <Box mt="50px">
         <Text color="white">Listen to full podcast on:</Text>
-        <SimpleGrid columns={4} gap={8}>
-          <Image src="/podcast/spotify.svg" alt="player" />
-          <Image src="/podcast/spotify.svg" alt="player" />
-          <Image src="/podcast/spotify.svg" alt="player" />
-          <Image src="/podcast/spotify.svg" alt="player" />
-          <Image src="/podcast/spotify.svg" alt="player" />
-          <Image src="/podcast/spotify.svg" alt="player" />
-          <Image src="/podcast/spotify.svg" alt="player" />
-          <Image src="/podcast/spotify.svg" alt="player" />
+        <SimpleGrid mt="26.5px" columns={4} gap={8}>
+          {links.spotify !== null && (
+            <Link href={links?.spotify as string}>
+              <Image src={GetPodcastLink('spotify')} alt="player" />
+            </Link>
+          )}
+          {links.apple !== null && (
+            <Link href={links?.apple as string}>
+              <Image src={GetPodcastLink('apple')} alt="player" />
+            </Link>
+          )}
+          {links.google !== null && (
+            <Link href={links?.google as string}>
+              <Image src={GetPodcastLink('google')} alt="player" />
+            </Link>
+          )}
+          {links.amazon !== null && (
+            <Link href={links?.amazon as string}>
+              <Image src={GetPodcastLink('amazon')} alt="player" />
+            </Link>
+          )}
+          {links.youtube !== null && (
+            <Link href={links?.youtube as string}>
+              <Image src={GetPodcastLink('youtube')} alt="player" />
+            </Link>
+          )}
+          {links.listennotes !== null && (
+            <Link href={links?.listennotes as string}>
+              <Image src={GetPodcastLink('listennotes')} alt="player" />
+            </Link>
+          )}
+          {links.stitcher !== null && (
+            <Link href={links?.stitcher as string}>
+              <Image src={GetPodcastLink('stitcher')} alt="player" />
+            </Link>
+          )}
         </SimpleGrid>
       </Box>
     </Box>
