@@ -1,8 +1,15 @@
 import { gql } from '@apollo/client'
 
-export const ARTICLES_QUERY = gql`
-  query ArticlesQuery {
-    allStrapiCopy: copies(filters: { sectionId: { in: ["articles-hero"] } }) {
+export const PODCASTS_QUERY = gql`
+  query PodcastQuery {
+    tags {
+      data {
+        attributes {
+          tagName
+        }
+      }
+    }
+    copies(filters: { sectionId: { in: ["podcast-hero"] } }) {
       data {
         attributes {
           sectionId
@@ -23,58 +30,42 @@ export const ARTICLES_QUERY = gql`
         }
       }
     }
-    allStrapiArticleTag: tags {
-      data {
-        attributes {
-          tagName
-        }
-      }
-    }
-    allStrapiArticle: articles(sort: ["publishedDate:DESC"]) {
+    podcasts {
       data {
         attributes {
           title
           slug
-          TLDR
-          article_tags {
+          publishedDate
+          podcast_tags {
             data {
               attributes {
                 tagName
               }
             }
           }
-          blogBody
-          blogImage {
+          audioFile {
             data {
               attributes {
                 url
               }
             }
           }
-          author {
+          podcastImage {
             data {
               attributes {
-                userName
-                profileImage {
-                  data {
-                    attributes {
-                      url
-                    }
-                  }
-                }
+                url
               }
             }
           }
-          publishedDate
         }
       }
     }
   }
 `
 
-export const ARTICLE_SLUGS_QUERY = gql`
-  query ArticleSlugsQuery {
-    allStrapiArticlesTitle: articles(sort: ["publishedDate:DESC"], pagination: { limit: 100 }) {
+export const PODCAST_SLUGS_QUERY = gql`
+  query PodcastSlugsQuery {
+    podcasts(sort: ["publishedDate:DESC"], pagination: { limit: 100 }) {
       data {
         attributes {
           slug
@@ -83,48 +74,71 @@ export const ARTICLE_SLUGS_QUERY = gql`
     }
   }
 `
-
-export const GET_ARTICLE_BY_SLUG_QUERY = gql`
-  query GetArticleBySlugsQuery($slug: String) {
-    articles(filters: { slug: { eq: $slug } }) {
+export const GET_PODCAST_BY_SLUG_QUERY = gql`
+  query GetPodcasteBySlugsQuery($slug: String) {
+    podcasts(filters: { slug: { eq: $slug } }) {
       data {
         attributes {
           title
           slug
-          TLDR
-          article_tags {
+          publishedDate
+          links {
+            youtube
+            stitcher
+            spotify
+            apple
+            amazon
+            listennotes
+            google
+          }
+          podcast_tags {
             data {
               attributes {
                 tagName
               }
             }
           }
-          blogBody
-          blogImage {
+          audioFile {
             data {
               attributes {
                 url
               }
             }
           }
-          author {
+          podcastImage {
             data {
               attributes {
-                userName
-                profileImage {
-                  data {
-                    attributes {
-                      url
-                    }
-                  }
-                }
+                url
               }
             }
           }
-          publishedDate
           seo {
             metatitle
             metadescription
+          }
+          related_podcasts {
+            data {
+              attributes {
+                title
+                podcastImage {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+                TLDR
+                slug
+                publishedDate
+                audioFile {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
