@@ -76,11 +76,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioLink }) => {
       <Button onClick={backward}>backward</Button>
       <Button onClick={mute}>mute</Button>
       {Math.floor(curTime)}/{Math.floor(duration)}
-      <Slider onChange={handleDrag} aria-label="slider-ex-1" value={curPercentage}>
+      <Slider colorScheme="audio" onChange={handleDrag} aria-label="slider-ex-1" value={curPercentage}>
         <SliderTrack>
           <SliderFilledTrack />
         </SliderTrack>
-        <SliderThumb />
+        <SliderThumb bg="#5CD1B4" />
       </Slider>
     </Box>
   )
