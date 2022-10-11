@@ -8,6 +8,8 @@ import React from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { GET_PODCAST_BY_SLUG_QUERY, PODCAST_SLUGS_QUERY } from '@graphql/queries/podcasts'
 import { print } from 'graphql'
+import { SEO } from '@components/seo'
+import { getImageUrl } from '@utils/url-utils'
 
 interface ChatProps {
   data: NonNullable<PodcastEntity['attributes']>
@@ -16,6 +18,11 @@ interface ChatProps {
 const Chat: React.FC<ChatProps> = ({ data }) => {
   return (
     <>
+      <SEO
+        seoimage={getImageUrl(data?.podcastImage?.data?.attributes?.url)}
+        title={data?.seo?.metatitle}
+        description={data?.seo?.metadescription}
+      />
       <PyxelChat data={data} />
       <Box mt="160px">
         {Boolean(data?.related_podcasts?.data.length) && (
@@ -62,6 +69,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     },
   })
   const [podcast] = result.data.data.podcasts.data
+
   return {
     props: { data: podcast.attributes as PodcastTypes },
     revalidate: 10,
