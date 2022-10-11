@@ -30,7 +30,7 @@ const ChatsCard: React.FC<ChatsCardProps> = ({ hoverable, chat, ...rest }) => {
           const Time = dur.duration
           const min = Math.floor(Time / 60)
           const sec = Math.floor(Time % 60)
-          setDuration(`${min} mins ${sec} seconds Listen`)
+          setDuration(`${min}.${sec} mins Listen`)
         })
       }
     }
@@ -72,7 +72,7 @@ const ChatsCard: React.FC<ChatsCardProps> = ({ hoverable, chat, ...rest }) => {
               {chat?.attributes?.title}
             </Text>
             <Flex flexDir="column" my="5px">
-              <MarkdownRenderer markdown={'Hello World Hello World' + ' ...'} />
+              <MarkdownRenderer markdown={chat?.attributes?.TLDR.slice(0, 73) + ' ...'} />
             </Flex>
             <Flex mt="32px" fontWeight="medium" fontSize="sm">
               <Text fontSize="sm" as="span" opacity={0.7} fontWeight="light">
