@@ -37,6 +37,7 @@ const theme = {
     Input,
   },
   colors: {
+    audio: { 500: '#5CD1B4' },
     primary: {
       900: '#2E42C7',
       800: '#3164E6',
