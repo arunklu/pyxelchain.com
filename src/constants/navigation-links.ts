@@ -11,6 +11,10 @@ export default [
     name: 'Articles',
     link: '/articles',
   },
+  {
+    name: 'PyxelChats',
+    link: '/pyxel-chats',
+  },
   // {
   //  name: 'Ecosystem',
   // },
