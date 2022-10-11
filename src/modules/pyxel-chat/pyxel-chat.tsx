@@ -11,6 +11,8 @@ import { PodcastEntity } from 'types/index'
 import { LocalDate } from '@utils/local-date'
 import { GetPodcastLink } from '@utils/get-podcast-link'
 import Link from '@components/link'
+import AudioPlayer from './audio-player'
+import { getDownloadLink } from '@utils/url-utils'
 
 interface PyxelChatProps {
   data: NonNullable<PodcastEntity['attributes']>
@@ -50,12 +52,18 @@ const PyxelChat: React.FC<PyxelChatProps> = ({ data }) => {
           </HStack>
         </Flex>
         <Box mt={{ base: 9, lg: 0 }}>
-          <SocialShare hashtags={['sanji']} url={location} title="What is a wallet" description="YOYOYOYOYOYOYOYO" />
+          <SocialShare hashtags={['PyxelChain']} url={location} title={data?.title} description={data?.TLDR} />
         </Box>
       </Flex>
-      <Flex p="11px" bg="linear-gradient(181.1deg, rgba(211, 216, 221, 0.1) -149.6%, rgba(4, 38, 102, 0.1) 128.91%)">
-        <Image w="300px" h="180px" rounded="10px" src="/svg/seoimage.svg" alt="image title" />
-        <Box ml="37px">Audio Player</Box>
+      <Flex
+        flexDir={{ base: 'column', md: 'row' }}
+        p="11px"
+        bg="linear-gradient(181.1deg, rgba(211, 216, 221, 0.1) -149.6%, rgba(4, 38, 102, 0.1) 128.91%)"
+      >
+        <Image maxW="414px" h="180px" rounded="10px" src="/svg/seoimage.svg" alt="image title" />
+        <Box maxW="414px" ml="37px">
+          <AudioPlayer audioLink={getDownloadLink(data?.audioFile?.data?.attributes?.url)} />
+        </Box>
       </Flex>
       <Box mt="50px">
         <Text color="white">Listen to full podcast on:</Text>
