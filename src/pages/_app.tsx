@@ -10,11 +10,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ApolloProvider } from '@apollo/client'
 import { Box, ChakraProvider, Container, Divider, Fade } from '@chakra-ui/react'
 import { AppProps } from 'next/app'
-
+import theme from '../theme/index'
 import Navbar from '@components/navbar'
 import Footer from '@components/footer'
 import client from '@graphql/apollo-client'
-import theme from 'theme'
 import AnimatedLogo from '@components/animated-logo'
 import { useRouter } from 'next/router'
 
@@ -40,7 +39,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             <Box overflow="hidden">
               {asPath === '/pyxel-chats' ? (
                 <>
-                  <Box maxWidth="container.2xl" px={{ base: '30px', lg: '50px', xl: '96px' }}>
+                  <Box mx="auto" maxWidth="container.2xl" px={{ base: '30px', lg: '50px', xl: '96px' }}>
                     <Navbar />
                   </Box>
                   <Component {...pageProps} />
