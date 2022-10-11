@@ -27,6 +27,7 @@ const PyxelChats: React.FC<PyxelChatsProps> = ({ copy }) => {
       gap={10}
       columns={{ base: 1, md: 2 }}
       mt="117px"
+      mx="auto"
     >
       <Box maxW="531px">
         <HeadingRenderer title={copy?.title} titleWithGradient={copy?.titleWithGradient} />
@@ -38,7 +39,7 @@ const PyxelChats: React.FC<PyxelChatsProps> = ({ copy }) => {
           </Text>
         </Button>
       </Box>
-      <HStack justifyContent="space-between">
+      <HStack minH={{ base: '250px', sm: '' }} justifyContent="space-between">
         {Array(18)
           .fill('audio wave')
           .map((arr, i) => (
