@@ -30,12 +30,13 @@ export const PODCASTS_QUERY = gql`
         }
       }
     }
-    podcasts {
+    podcasts(sort: ["publishedDate:DESC"], pagination: { limit: 100 }) {
       data {
         attributes {
           title
           slug
           publishedDate
+          TLDR
           podcast_tags {
             data {
               attributes {
@@ -82,6 +83,7 @@ export const GET_PODCAST_BY_SLUG_QUERY = gql`
           title
           slug
           publishedDate
+          TLDR
           links {
             youtube
             stitcher
