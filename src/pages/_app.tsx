@@ -14,7 +14,6 @@ import theme from '../theme/index'
 import Navbar from '@components/navbar'
 import Footer from '@components/footer'
 import client from '@graphql/apollo-client'
-import AnimatedLogo from '@components/animated-logo'
 import { useRouter } from 'next/router'
 
 const queryClient = new QueryClient()
@@ -22,7 +21,7 @@ const queryClient = new QueryClient()
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [isReady, setIsReady] = useState(false)
   useEffect(() => {
-    document.fonts.load('12px iosevka').then(() => setTimeout(() => setIsReady(true), 1000))
+    document.fonts.load('12px iosevka').then(() => setIsReady(true))
   }, [])
   const { asPath } = useRouter()
 
@@ -34,7 +33,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <ChakraProvider theme={theme}>
-          {!isReady && <AnimatedLogo />}
+          {/* {!isReady && <AnimatedLogo />} */}
           <Fade in={isReady} transition={{ enter: { duration: 1 } }}>
             <Box overflow="hidden">
               {asPath === '/pyxel-chats' ? (
