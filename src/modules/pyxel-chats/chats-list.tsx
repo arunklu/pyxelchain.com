@@ -8,7 +8,7 @@ interface ChatsListProps {
   tags: NonNullable<TagEntity>[]
 }
 
-const ChatsList: React.FC<ChatsListProps> = ({ podcasts, tags }) => {
+const ChatsList: React.FC<ChatsListProps> = ({ podcasts }) => {
   // const { elRef } = useHorizontalScroll()
   // const [selectedTag, setSelectedTag] = React.useState<string>('All')
 
@@ -22,8 +22,6 @@ const ChatsList: React.FC<ChatsListProps> = ({ podcasts, tags }) => {
   //  .filter((element) => element?.attributes?.podcast_tags?.data.some((tag) => tag.attributes?.tagName === selectedTag))
   //  .map((element) => element)
   // const podcastData = selectedTag === 'All' ? podcasts : filteredPodcasts
-  // eslint-disable-next-line no-console
-  console.log(tags)
   return (
     <Container maxWidth="container.2xl" px={{ base: '30px', lg: '50px', xl: '96px' }}>
       {/* <Flex
