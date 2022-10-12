@@ -58,11 +58,14 @@ const PyxelChat: React.FC<PyxelChatProps> = ({ data }) => {
       <Flex
         flexDir={{ base: 'column', md: 'row' }}
         p="11px"
+        h={{ base: '', md: '203px' }}
         bg="linear-gradient(181.1deg, rgba(211, 216, 221, 0.1) -149.6%, rgba(4, 38, 102, 0.1) 128.91%)"
       >
-        <Image maxW="414px" h="180px" rounded="10px" src="/svg/seoimage.svg" alt="image title" />
-        <Box maxW="414px" ml="37px">
-          <AudioPlayer audioLink={getDownloadLink(data?.audioFile?.data?.attributes?.url)} />
+        <HStack p="10px" justifyContent="center">
+          <Image maxW={{ base: 'auto', md: '300px' }} rounded="10px" src="/svg/seoimage.svg" alt="image title" />
+        </HStack>
+        <Box w="full" px={{ base: '10px', md: '37px' }}>
+          <AudioPlayer title={data?.title} audioLink={getDownloadLink(data?.audioFile?.data?.attributes?.url)} />
         </Box>
       </Flex>
       <Box mt="50px">
