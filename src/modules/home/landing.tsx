@@ -7,6 +7,7 @@ import useMobileState from '@hooks/use-mobile-state'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { useStrapiContextValue } from '@context/strapi-context'
 import NewsletterForm from '@components/newsletter-form'
+import { ChakraBox } from 'theme/chakra-box'
 
 const Landing = () => {
   const { getCopyBySectionId } = useStrapiContextValue()
@@ -15,7 +16,14 @@ const Landing = () => {
   const isMobile = useMobileState()
 
   return (
-    <Flex
+    <ChakraBox
+      animate={{ y: [40, 0], opacity: [0, 1] }}
+      // @ts-ignore no problem in operation, although type error appears.
+      transition={{
+        duration: 1,
+        ease: 'easeInOut',
+      }}
+      display="flex"
       flexDir={{ base: 'column', xl: 'row' }}
       mt={{ base: '62px', md: '116px' }}
       pb={{ base: 14, lg: 28 }}
@@ -56,7 +64,7 @@ const Landing = () => {
           </Box>
         </Box>
       </Flex>
-    </Flex>
+    </ChakraBox>
   )
 }
 
