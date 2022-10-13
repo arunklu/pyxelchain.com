@@ -3,6 +3,8 @@ import { Image, Box, Flex } from '@chakra-ui/react'
 
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { useStrapiContextValue } from '@context/strapi-context'
+import { useInView } from 'framer-motion'
+import { ChakraBox } from 'theme/chakra-box'
 
 const CENTER = {
   left: 0,
@@ -13,17 +15,38 @@ const CENTER = {
 const Problem: React.FC = () => {
   const { getCopyBySectionId } = useStrapiContextValue()
   const problemCopy = getCopyBySectionId('home-problem')
+  const ref = React.useRef(null)
+  const isInView = useInView(ref, { once: true })
+  const ref2 = React.useRef(null)
+  const isInView2 = useInView(ref2, { once: true })
   return (
     <Flex flexDir={{ base: 'column', lg: 'row' }} w="full" alignItems="center" justifyContent="space-between">
-      <Box pos="relative" zIndex={1000} mb={{ base: 36, lg: 0 }} w="full">
+      <ChakraBox
+        ref={ref}
+        animate={{ y: [40, isInView ? 0 : 40] }}
+        pos="relative"
+        zIndex={1000}
+        mb={{ base: 36, lg: 0 }}
+        w="full"
+      >
         <Box mb={4}>
           <HeadingRenderer title={problemCopy?.title} />
         </Box>
         <Flex flexDir="column" gap={2} maxW="624px">
           <MarkdownRenderer markdown={problemCopy?.description} />
         </Flex>
-      </Box>
-      <Box position="relative" flexShrink={0}>
+      </ChakraBox>
+      <ChakraBox
+        // @ts-ignore no problem in operation, although type error appears.
+        transition={{
+          delay: 0.5,
+          ease: 'easeInOut',
+        }}
+        ref={ref2}
+        animate={{ y: [40, isInView2 ? 0 : 40] }}
+        position="relative"
+        flexShrink={0}
+      >
         <Box
           zIndex={3}
           position="absolute"
@@ -58,7 +81,7 @@ const Problem: React.FC = () => {
             <Image src="/svg/spherical-shape-sm.svg" />
           </Box>
         </Flex>
-      </Box>
+      </ChakraBox>
     </Flex>
   )
 }
