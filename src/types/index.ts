@@ -719,6 +719,7 @@ export type GenericMorph =
   | Partnership
   | Podcast
   | PrivacyTermsCookie
+  | Service
   | Tag
   | Team
   | UploadFile
@@ -845,6 +846,7 @@ export type Mutation = {
   createPartnership?: Maybe<PartnershipEntityResponse>
   createPodcast?: Maybe<PodcastEntityResponse>
   createPrivacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
+  createService?: Maybe<ServiceEntityResponse>
   createTag?: Maybe<TagEntityResponse>
   createTeam?: Maybe<TeamEntityResponse>
   createUploadFile?: Maybe<UploadFileEntityResponse>
@@ -864,6 +866,7 @@ export type Mutation = {
   deletePartnership?: Maybe<PartnershipEntityResponse>
   deletePodcast?: Maybe<PodcastEntityResponse>
   deletePrivacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
+  deleteService?: Maybe<ServiceEntityResponse>
   deleteTag?: Maybe<TagEntityResponse>
   deleteTeam?: Maybe<TeamEntityResponse>
   deleteUploadFile?: Maybe<UploadFileEntityResponse>
@@ -895,6 +898,7 @@ export type Mutation = {
   updatePartnership?: Maybe<PartnershipEntityResponse>
   updatePodcast?: Maybe<PodcastEntityResponse>
   updatePrivacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
+  updateService?: Maybe<ServiceEntityResponse>
   updateTag?: Maybe<TagEntityResponse>
   updateTeam?: Maybe<TeamEntityResponse>
   updateUploadFile?: Maybe<UploadFileEntityResponse>
@@ -951,6 +955,10 @@ export type MutationCreatePodcastArgs = {
 
 export type MutationCreatePrivacyTermsCookieArgs = {
   data: PrivacyTermsCookieInput
+}
+
+export type MutationCreateServiceArgs = {
+  data: ServiceInput
 }
 
 export type MutationCreateTagArgs = {
@@ -1018,6 +1026,10 @@ export type MutationDeletePodcastArgs = {
 }
 
 export type MutationDeletePrivacyTermsCookieArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationDeleteServiceArgs = {
   id: Scalars['ID']
 }
 
@@ -1136,6 +1148,11 @@ export type MutationUpdatePodcastArgs = {
 
 export type MutationUpdatePrivacyTermsCookieArgs = {
   data: PrivacyTermsCookieInput
+  id: Scalars['ID']
+}
+
+export type MutationUpdateServiceArgs = {
+  data: ServiceInput
   id: Scalars['ID']
 }
 
@@ -1408,6 +1425,8 @@ export type Query = {
   podcasts?: Maybe<PodcastEntityResponseCollection>
   privacyTermsCookie?: Maybe<PrivacyTermsCookieEntityResponse>
   privacyTermsCookies?: Maybe<PrivacyTermsCookieEntityResponseCollection>
+  service?: Maybe<ServiceEntityResponse>
+  services?: Maybe<ServiceEntityResponseCollection>
   tag?: Maybe<TagEntityResponse>
   tags?: Maybe<TagEntityResponseCollection>
   team?: Maybe<TeamEntityResponse>
@@ -1558,6 +1577,17 @@ export type QueryPrivacyTermsCookiesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
+export type QueryServiceArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryServicesArgs = {
+  filters?: InputMaybe<ServiceFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
 export type QueryTagArgs = {
   id?: InputMaybe<Scalars['ID']>
 }
@@ -1613,6 +1643,53 @@ export type QueryUsersPermissionsUsersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta'
   pagination: Pagination
+}
+
+export type Service = {
+  __typename?: 'Service'
+  createdAt?: Maybe<Scalars['DateTime']>
+  description?: Maybe<Scalars['String']>
+  email?: Maybe<Scalars['String']>
+  full_name?: Maybe<Scalars['String']>
+  publishedAt?: Maybe<Scalars['DateTime']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type ServiceEntity = {
+  __typename?: 'ServiceEntity'
+  attributes?: Maybe<Service>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type ServiceEntityResponse = {
+  __typename?: 'ServiceEntityResponse'
+  data?: Maybe<ServiceEntity>
+}
+
+export type ServiceEntityResponseCollection = {
+  __typename?: 'ServiceEntityResponseCollection'
+  data: Array<ServiceEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type ServiceFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ServiceFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  email?: InputMaybe<StringFilterInput>
+  full_name?: InputMaybe<StringFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  not?: InputMaybe<ServiceFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<ServiceFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type ServiceInput = {
+  description?: InputMaybe<Scalars['String']>
+  email?: InputMaybe<Scalars['String']>
+  full_name?: InputMaybe<Scalars['String']>
+  publishedAt?: InputMaybe<Scalars['DateTime']>
 }
 
 export type StringFilterInput = {
