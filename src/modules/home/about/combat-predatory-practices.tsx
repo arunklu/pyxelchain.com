@@ -31,8 +31,8 @@ const CombatPredatoryPractices = () => {
           return (
             <ChakraBox
               ref={ref}
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -40 }}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 40 }}
               // @ts-ignore no problem in operation, although type error appears.
               transition={{
                 delay: (idx + 1) * 0.15,

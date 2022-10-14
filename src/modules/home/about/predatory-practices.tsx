@@ -31,7 +31,7 @@ const PredatoryPractices = () => {
               ref={ref}
               w="full"
               h="full"
-              animate={{ x: [-40, isInView ? 0 : -40], opacity: [0, 1] }}
+              animate={{ y: [40, isInView ? 0 : 40], opacity: [0, 1] }}
               // @ts-ignore no problem in operation, although type error appears.
               transition={{
                 delay: (idx + 1) * 0.15,
