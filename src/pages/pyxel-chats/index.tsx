@@ -9,7 +9,6 @@ import { print } from 'graphql'
 import { GetStaticProps } from 'next'
 import React from 'react'
 import { SEO } from '@components/seo'
-
 interface IndexProps {
   data: {
     podcasts: NonNullable<PodcastEntity>[]
@@ -23,7 +22,11 @@ const Index: React.FC<IndexProps> = ({ data }) => {
 
   return (
     <>
-      <SEO title={copy?.attributes?.seo?.metatitle} description={copy?.attributes?.seo?.metadescription} />
+      <SEO
+        seoimage="/more/Pyxelchat.jpg"
+        title={copy?.attributes?.seo?.metatitle}
+        description={copy?.attributes?.seo?.metadescription}
+      />
       <PyxelChats copy={copy?.attributes} />
       <PCMarquee />
       <Divider w="full" color="#C9D2D8" mt="59px" opacity={0.1} />
