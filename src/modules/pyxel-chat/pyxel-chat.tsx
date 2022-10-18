@@ -72,37 +72,37 @@ const PyxelChat: React.FC<PyxelChatProps> = ({ data }) => {
         <Text color="white">Listen to full podcast on:</Text>
         <SimpleGrid mt="26.5px" columns={4} gap={8}>
           {links?.spotify !== null && (
-            <Link href={links?.spotify ?? ''}>
+            <Link target="_blank" href={links?.spotify ?? ''}>
               <Image src={GetPodcastLink('spotify')} alt="player" />
             </Link>
           )}
           {links?.apple !== null && (
-            <Link href={links?.apple ?? ''}>
+            <Link target="_blank" href={links?.apple ?? ''}>
               <Image src={GetPodcastLink('apple')} alt="player" />
             </Link>
           )}
           {links?.google !== null && (
-            <Link href={links?.google ?? ''}>
+            <Link target="_blank" href={links?.google ?? ''}>
               <Image src={GetPodcastLink('google')} alt="player" />
             </Link>
           )}
           {links?.amazon !== null && (
-            <Link href={links?.amazon ?? ''}>
+            <Link target="_blank" href={links?.amazon ?? ''}>
               <Image src={GetPodcastLink('amazon')} alt="player" />
             </Link>
           )}
           {links?.youtube !== null && (
-            <Link href={links?.youtube ?? ''}>
+            <Link target="_blank" href={links?.youtube ?? ''}>
               <Image src={GetPodcastLink('youtube')} alt="player" />
             </Link>
           )}
           {links?.listennotes !== null && (
-            <Link href={links?.listennotes ?? ''}>
+            <Link target="_blank" href={links?.listennotes ?? ''}>
               <Image src={GetPodcastLink('listennotes')} alt="player" />
             </Link>
           )}
           {links?.stitcher !== null && (
-            <Link href={links?.stitcher ?? ''}>
+            <Link target="_blank" href={links?.stitcher ?? ''}>
               <Image src={GetPodcastLink('stitcher')} alt="player" />
             </Link>
           )}
