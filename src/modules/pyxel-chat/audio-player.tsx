@@ -71,9 +71,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioLink, title }) => {
     audioRef!.current!.currentTime = (duration / 100) * e
   }
   const toTime = (seconds: number) => {
-    const date = new Date(0)
-    date.setSeconds(seconds)
-    return date.toISOString().substr(11, 8)
+    if (seconds) {
+      const date = new Date(0)
+      date.setSeconds(seconds)
+      return date.toISOString().substr(11, 8)
+    }
   }
   return (
     <Flex gap={3} flexDir="column" justifyContent="space-between" alignItems="" w="full">
