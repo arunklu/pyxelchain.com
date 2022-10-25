@@ -7,8 +7,7 @@ import React from 'react'
 import { SEO } from '@components/seo'
 import { useMutation } from '@apollo/client'
 import useAppToast from '@hooks/use-app-toast'
-import { Flex, FormControl, Input, SimpleGrid, Textarea, VStack } from '@chakra-ui/react'
-import { ChakraBox } from 'theme/chakra-box'
+import { Box, Flex, FormControl, Input, SimpleGrid, Textarea, VStack } from '@chakra-ui/react'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { CREATE_SERVICES } from '@graphql/mutations/create-services'
 import Button from '@components/button'
@@ -56,33 +55,15 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
 
   return (
     <SimpleGrid my={{ base: '64px', md: '80px', lg: '110px' }} gap="10" columns={{ base: 1, md: 2 }}>
-      <VStack maxW={{ base: 'full', md: '540px' }} spacing={2} justifyContent="center" mb={{ base: 12, md: 'inherit' }}>
+      <Box maxW={{ base: 'full', md: '600px' }} mb={{ base: 12, md: 'inherit' }}>
         <SEO title={servicesCopy?.seo?.metatitle} description={servicesCopy?.seo?.metadescription} />
-        <ChakraBox
-          viewport={{ once: true }}
-          initial={{ y: 40 }}
-          whileInView={{
-            y: 0,
-            transition: {
-              ease: 'easeInOut',
-            },
-          }}
-        >
-          <HeadingRenderer title={servicesCopy?.title} titleWithGradient={servicesCopy?.titleWithGradient} />
-          <Flex flexDir="column" gap={4} mt="10px">
-            <MarkdownRenderer markdown={servicesCopy?.description} />
-          </Flex>
-        </ChakraBox>
-      </VStack>
-      <ChakraBox
-        viewport={{ once: true }}
-        initial={{ y: 40 }}
-        whileInView={{
-          y: 0,
-          transition: {
-            ease: 'easeInOut',
-          },
-        }}
+        <HeadingRenderer title={servicesCopy?.title} titleWithGradient={servicesCopy?.titleWithGradient} />
+        <Flex flexDir="column" gap={4} mt="10px">
+          <MarkdownRenderer markdown={servicesCopy?.description} />
+        </Flex>
+      </Box>
+      <Box
+        h="480px"
         p={{ base: 5, lg: 12 }}
         maxW={{ base: 'full', md: '598px' }}
         w="full"
@@ -119,7 +100,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
             {loading ? 'Submitting' : 'Contact Us'}
           </Button>
         </form>
-      </ChakraBox>
+      </Box>
     </SimpleGrid>
   )
 }
