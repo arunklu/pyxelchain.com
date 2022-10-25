@@ -6,28 +6,23 @@ import HexagonExpanded from '@components/node-graph/hexagon-expanded'
 import useMobileState from '@hooks/use-mobile-state'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { useStrapiContextValue } from '@context/strapi-context'
-import { useInView } from 'framer-motion'
-import { ChakraBox } from 'theme/chakra-box'
 
 const Solution = () => {
   const { getCopyBySectionId } = useStrapiContextValue()
   const solutionCopy = getCopyBySectionId('home-solution')
   const isMobile = useMobileState()
-  const ref = React.useRef(null)
-  const isInView = useInView(ref, { once: true })
-  const ref2 = React.useRef(null)
-  const isInView2 = useInView(ref2, { once: true })
+
   return (
     <Box zIndex={1000} w="full" pb={14}>
-      <ChakraBox ref={ref} animate={{ y: [40, isInView ? 0 : 40] }} mb={10} maxW="624px">
+      <Box mb={10} maxW="624px">
         <Box mb={5}>
           <HeadingRenderer title={solutionCopy?.title} titleWithGradient={solutionCopy?.titleWithGradient} />
         </Box>
         <Flex flexDir="column" gap={3}>
           <MarkdownRenderer markdown={solutionCopy?.description} />
         </Flex>
-      </ChakraBox>
-      <ChakraBox ref={ref2} animate={{ y: [40, isInView2 ? 0 : 40] }} display="flex" justifyContent="center">
+      </Box>
+      <Flex justifyContent="center">
         <Box
           backgroundColor={{ base: 'rgba(0, 0, 0, 0.4)' }}
           filter="drop-shadow(0px 14px 84px rgba(0, 0, 0, 0.35))"
@@ -66,7 +61,7 @@ const Solution = () => {
             }}
           />
         </Box>
-      </ChakraBox>
+      </Flex>
     </Box>
   )
 }
