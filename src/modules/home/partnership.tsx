@@ -1,6 +1,5 @@
 import React from 'react'
-import { FormControl, Input, Textarea, VStack, SimpleGrid } from '@chakra-ui/react'
-
+import { FormControl, Input, Textarea, VStack, SimpleGrid, Box } from '@chakra-ui/react'
 import Button from '@components/button'
 import useAppToast from '@hooks/use-app-toast'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
@@ -8,7 +7,6 @@ import { useMutation } from '@apollo/client'
 import { CREATE_PARTNERSHIP } from '@graphql/mutations/partnership'
 import useDuplicatePartnership from '@hooks/use-duplicate-partnership'
 import { useStrapiContextValue } from '@context/strapi-context'
-import { ChakraBox } from 'theme/chakra-box'
 
 const Partnership: React.FC = () => {
   const { getCopyBySectionId } = useStrapiContextValue()
@@ -55,31 +53,12 @@ const Partnership: React.FC = () => {
   return (
     <SimpleGrid gap="10" columns={{ base: 1, md: 2 }}>
       <VStack maxW={{ base: 'full', md: '540px' }} spacing={2} justifyContent="center" mb={{ base: 12, md: 'inherit' }}>
-        <ChakraBox
-          viewport={{ once: true }}
-          initial={{ y: 40 }}
-          whileInView={{
-            y: 0,
-            transition: {
-              delay: 0.3,
-              ease: 'easeInOut',
-            },
-          }}
-        >
+        <Box>
           <HeadingRenderer title={partnerCopy?.title} titleWithGradient={partnerCopy?.titleWithGradient} />
           <MarkdownRenderer markdown={partnerCopy?.description} />
-        </ChakraBox>
+        </Box>
       </VStack>
-      <ChakraBox
-        viewport={{ once: true }}
-        initial={{ y: 40 }}
-        whileInView={{
-          y: 0,
-          transition: {
-            delay: 0.6,
-            ease: 'easeInOut',
-          },
-        }}
+      <Box
         p={{ base: 5, lg: 12 }}
         maxW={{ base: 'full', md: '598px' }}
         w="full"
@@ -123,7 +102,7 @@ const Partnership: React.FC = () => {
             {loading ? 'Submitting' : 'Express Interest'}
           </Button>
         </form>
-      </ChakraBox>
+      </Box>
     </SimpleGrid>
   )
 }
