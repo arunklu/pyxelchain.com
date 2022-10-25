@@ -5,15 +5,12 @@ import BorderBox from '@components/border-box'
 import { Text } from '@components/typography'
 import { getImageUrl } from '@utils/url-utils'
 import { useStrapiContextValue } from '@context/strapi-context'
-import { useInView } from 'framer-motion'
-import { ChakraBox } from 'theme/chakra-box'
 
 const PredatoryPractices = () => {
   const { getFeatureBySectionId } = useStrapiContextValue()
 
   const predatoryPracticesFeatures = getFeatureBySectionId('home-about-1')
-  const ref = React.useRef(null)
-  const isInView = useInView(ref, { once: true })
+
   return (
     <BorderBox>
       <SimpleGrid
@@ -27,21 +24,7 @@ const PredatoryPractices = () => {
           const title = feature?.title || ''
           const image = feature?.image?.data?.attributes?.url
           return (
-            <ChakraBox
-              ref={ref}
-              w="full"
-              h="full"
-              animate={{ y: [40, isInView ? 0 : 40], opacity: [0, 1] }}
-              // @ts-ignore no problem in operation, although type error appears.
-              transition={{
-                delay: (idx + 1) * 0.15,
-                ease: 'easeInOut',
-              }}
-              key={title}
-              px={{ base: 6, md: 10 }}
-              py={{ base: 6, md: 7 }}
-              position="relative"
-            >
+            <Box w="full" h="full" key={title} px={{ base: 6, md: 10 }} py={{ base: 6, md: 7 }} position="relative">
               <Box mb={{ base: 6, md: 10 }}>
                 <Image alt={title} src={getImageUrl(image)} />
               </Box>
@@ -59,7 +42,7 @@ const PredatoryPractices = () => {
                   opacity={0.1}
                 />
               )}
-            </ChakraBox>
+            </Box>
           )
         })}
       </SimpleGrid>
