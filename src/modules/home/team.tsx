@@ -7,21 +7,15 @@ import { splitNewLines } from '@utils/text-utils'
 import { getImageUrl } from '@utils/url-utils'
 import { HeadingRenderer } from '@components/markdown-renderer'
 import { useStrapiContextValue } from '@context/strapi-context'
-import { useInView } from 'framer-motion'
-import { ChakraBox } from 'theme/chakra-box'
 
 const Team = () => {
   const { getCopyBySectionId, teams } = useStrapiContextValue()
   const teamCopy = getCopyBySectionId('home-team')
-  const ref = React.useRef(null)
-  const isInView = useInView(ref, { once: true })
 
   return (
     <Box mb={{ base: 20, md: 44 }}>
-      <ChakraBox ref={ref} animate={{ y: [40, isInView ? 0 : 40] }} mb={{ base: 7, md: 20 }}>
-        <HeadingRenderer title={teamCopy?.title} titleWithGradient={teamCopy?.titleWithGradient} />
-      </ChakraBox>
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing="30px">
+      <HeadingRenderer title={teamCopy?.title} titleWithGradient={teamCopy?.titleWithGradient} />
+      <SimpleGrid mt={10} columns={{ base: 1, md: 2, lg: 3 }} spacing="30px">
         {teams.map((team, idx) => {
           const currentNumber = idx + 1
           const isCenter = currentNumber % 3 === 2
@@ -35,20 +29,7 @@ const Team = () => {
           return (
             <BorderBox hoverable key={idx + 1}>
               <Box h="full" bg="#020615">
-                <ChakraBox
-                  viewport={{ once: true }}
-                  initial={{ y: 40 }}
-                  whileInView={{
-                    y: 0,
-                    transition: {
-                      delay: idx % 3 === 0 ? 0.15 : (idx + 1) % 3 === 0 ? 0.45 : 0.3,
-                      ease: 'easeInOut',
-                    },
-                  }}
-                  h="full"
-                  p="18px"
-                  bg="#020615"
-                >
+                <Box h="full" p="18px" bg="#020615">
                   <Flex
                     mb={8}
                     h="280px"
@@ -70,7 +51,7 @@ const Team = () => {
                       </ListItem>
                     ))}
                   </List>
-                </ChakraBox>
+                </Box>
               </Box>
             </BorderBox>
           )
