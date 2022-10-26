@@ -43,13 +43,13 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
   }
   const [createService, { loading }] = useMutation(CREATE_SERVICES, {
     onCompleted: () => {
-      showToast('Successfully submitted Partnership form.', 'success')
+      showToast('Successfully submitted Services form.', 'success')
       setFullName('')
       setEmail('')
       setDescription('')
     },
     onError: () => {
-      showToast('Failed to submit Partnership form.', 'error')
+      showToast('Failed to submit Services form.', 'error')
     },
   })
 
