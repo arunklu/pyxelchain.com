@@ -57,7 +57,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
     <SimpleGrid my={{ base: '64px', md: '80px', lg: '110px' }} gap="10" columns={{ base: 1, md: 2 }}>
       <Box maxW={{ base: 'full', md: '600px' }} mb={{ base: 12, md: 'inherit' }}>
         <SEO title={servicesCopy?.seo?.metatitle} description={servicesCopy?.seo?.metadescription} />
-        <HeadingRenderer title={servicesCopy?.title} titleWithGradient={servicesCopy?.titleWithGradient} />
+        <HeadingRenderer mobilecenter title={servicesCopy?.title} titleWithGradient={servicesCopy?.titleWithGradient} />
         <Flex flexDir="column" gap={4} mt="10px">
           <MarkdownRenderer markdown={servicesCopy?.description} />
         </Flex>
@@ -91,7 +91,7 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
                 _placeholder={{ color: '#C3C4C3', fontSize: 'sm', opacity: 0.5 }}
                 rows={4}
                 value={description}
-                placeholder="Describe which part of our network you’re interested in collaborating on"
+                placeholder="Describe your business need."
                 onChange={(e) => setDescription(e.target.value)}
               />
             </FormControl>
