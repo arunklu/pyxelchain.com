@@ -1,6 +1,5 @@
 import React from 'react'
 import { Image, Box, Flex } from '@chakra-ui/react'
-
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
 import { useStrapiContextValue } from '@context/strapi-context'
 
@@ -13,6 +12,7 @@ const CENTER = {
 const Problem: React.FC = () => {
   const { getCopyBySectionId } = useStrapiContextValue()
   const problemCopy = getCopyBySectionId('home-problem')
+
   return (
     <Flex flexDir={{ base: 'column', lg: 'row' }} w="full" alignItems="center" justifyContent="space-between">
       <Box pos="relative" zIndex={1000} mb={{ base: 36, lg: 0 }} w="full">

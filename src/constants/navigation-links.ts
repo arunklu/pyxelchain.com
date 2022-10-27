@@ -4,6 +4,10 @@ export default [
     link: '/#about',
   },
   {
+    name: 'Services',
+    link: '/services',
+  },
+  {
     name: 'Careers',
     link: '/careers',
   },
@@ -11,6 +15,10 @@ export default [
     name: 'Articles',
     link: '/articles',
   },
+  // {
+  //  name: 'PyxelChats',
+  //  link: '/pyxel-chats',
+  // },
   // {
   //  name: 'Ecosystem',
   // },

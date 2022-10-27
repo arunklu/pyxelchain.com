@@ -11,6 +11,7 @@ const Solution = () => {
   const { getCopyBySectionId } = useStrapiContextValue()
   const solutionCopy = getCopyBySectionId('home-solution')
   const isMobile = useMobileState()
+
   return (
     <Box zIndex={1000} w="full" pb={14}>
       <Box mb={10} maxW="624px">

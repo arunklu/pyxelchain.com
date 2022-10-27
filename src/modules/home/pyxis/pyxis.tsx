@@ -17,7 +17,12 @@ const Pyxis: React.FC = () => {
     <VStack mb="183px" mx="auto">
       <Box maxW="894px">
         <Box textAlign="center">
-          <HeadingRenderer title={appDownloadCopy?.title} titleWithGradient={appDownloadCopy?.titleWithGradient} />
+          <HeadingRenderer
+            center
+            mobilecenter
+            title={appDownloadCopy?.title}
+            titleWithGradient={appDownloadCopy?.titleWithGradient}
+          />
         </Box>
         <Box textAlign="center" maxW="720px" mt="20px" mx="auto">
           <MarkdownRenderer markdown={appDownloadCopy?.description} />
@@ -29,14 +34,22 @@ const Pyxis: React.FC = () => {
           </PyxButton>
         </Flex>
       </Box>
-      <Image display={{ base: 'block', sm: 'none' }} src="/svg/pyx-wallet/pyx-2.svg" alt="pyxis wallet image" />
-      <Image
-        display={{ base: 'none', sm: 'block' }}
-        src="/svg/pyx-wallet/pyxis-wallet-image.svg"
-        alt="pyxis wallet image"
-      />
+      <Box>
+        <Image display={{ base: 'block', sm: 'none' }} src="/svg/pyx-wallet/pyx-2.svg" alt="pyxis wallet image" />
+        <Image
+          display={{ base: 'none', sm: 'block' }}
+          src="/svg/pyx-wallet/pyxis-wallet-image.svg"
+          alt="pyxis wallet image"
+        />
+      </Box>
       <TwoByTwoGrid>
-        {pyxisFeatures.map((feature, i) => (feature ? <PyxCard key={i} data={feature} /> : null))}
+        {pyxisFeatures.map((feature, i) =>
+          feature ? (
+            <Box key={i + 1}>
+              <PyxCard data={feature} />
+            </Box>
+          ) : null
+        )}
       </TwoByTwoGrid>
     </VStack>
   )

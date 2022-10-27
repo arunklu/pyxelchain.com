@@ -1,6 +1,7 @@
 import { Flex, FormControl, Input, Text } from '@chakra-ui/react'
 import useDuplicateEmail from '@hooks/use-duplicate-email'
 import { showToast } from '@utils/toast-utils'
+import { useRouter } from 'next/router'
 import React from 'react'
 import Button from './button'
 
@@ -9,6 +10,8 @@ type NewsletterFormTypes = {
 }
 const NewsletterForm: React.FC<NewsletterFormTypes> = ({ autoAlign }) => {
   const [email, setEmail] = React.useState<string>('')
+
+  const router = useRouter()
 
   const isDuplicate = useDuplicateEmail(email)
 
@@ -61,7 +64,7 @@ const NewsletterForm: React.FC<NewsletterFormTypes> = ({ autoAlign }) => {
         </FormControl>
         <Button type="submit">Get Early Access</Button>
       </Flex>
-      <Text color="white" mt="53px" textAlign="center">
+      <Text color="white" mt="53px" textAlign={router.pathname === '/newsletter' ? 'center' : 'start'}>
         We don't spam, sell, or shill!
       </Text>
     </form>

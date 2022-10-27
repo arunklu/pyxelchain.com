@@ -1,6 +1,5 @@
 import React from 'react'
-import { Box, FormControl, Input, Textarea, VStack, SimpleGrid } from '@chakra-ui/react'
-
+import { FormControl, Input, Textarea, VStack, SimpleGrid, Box } from '@chakra-ui/react'
 import Button from '@components/button'
 import useAppToast from '@hooks/use-app-toast'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
@@ -54,8 +53,10 @@ const Partnership: React.FC = () => {
   return (
     <SimpleGrid gap="10" columns={{ base: 1, md: 2 }}>
       <VStack maxW={{ base: 'full', md: '540px' }} spacing={2} justifyContent="center" mb={{ base: 12, md: 'inherit' }}>
-        <HeadingRenderer title={partnerCopy?.title} titleWithGradient={partnerCopy?.titleWithGradient} />
-        <MarkdownRenderer markdown={partnerCopy?.description} />
+        <Box>
+          <HeadingRenderer title={partnerCopy?.title} titleWithGradient={partnerCopy?.titleWithGradient} />
+          <MarkdownRenderer markdown={partnerCopy?.description} />
+        </Box>
       </VStack>
       <Box
         p={{ base: 5, lg: 12 }}

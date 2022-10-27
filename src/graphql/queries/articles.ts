@@ -23,7 +23,7 @@ export const ARTICLES_QUERY = gql`
         }
       }
     }
-    allStrapiArticleTag: articleTags {
+    allStrapiArticleTag: tags {
       data {
         attributes {
           tagName

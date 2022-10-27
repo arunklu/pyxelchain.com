@@ -1,6 +1,7 @@
 {
   "GenericMorph": [
     "ComponentArticlesSeo",
+    "ComponentPodcastPodcastLinks",
     "UploadFile",
     "CmsAnalyzerAnalyse",
     "CmsAnalyzerMatch",
@@ -11,13 +12,15 @@
     "UsersPermissionsRole",
     "UsersPermissionsUser",
     "Article",
-    "ArticleTag",
     "Author",
     "Copy",
     "CopyTag",
     "Feature",
     "Partnership",
+    "Podcast",
     "PrivacyTermsCookie",
+    "Service",
+    "Tag",
     "Team"
   ]
 }

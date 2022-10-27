@@ -12,6 +12,7 @@ const About = () => {
   const aboutCopy = getCopyBySectionId('home-about')
   const about1Copy = getCopyBySectionId('home-about-1')
   const about2Copy = getCopyBySectionId('home-about-2')
+
   return (
     <Box id="about" mb={{ base: 28, md: 60 }} pt={{ base: 0, md: 20 }}>
       <Box>
@@ -25,55 +26,57 @@ const About = () => {
             </Flex>
           </Box>
         </Box>
-        <Flex position="relative" py={{ base: 8, md: 28 }} alignItems="center">
-          <Image
-            display={{ base: 'none', md: 'block' }}
-            src="/svg/about-pyxelchain/left-top.svg"
-            pos="absolute"
-            top={0}
-            left={40}
-          />
-          <Image
-            display={{ base: 'none', md: 'block' }}
-            src="/svg/about-pyxelchain/left.svg"
-            pos="absolute"
-            float="left"
-            left={40}
-          />
-          <Image
-            display={{ base: 'none', md: 'block' }}
-            src="/svg/about-pyxelchain/left-bottom.svg"
-            pos="absolute"
-            bottom={0}
-            left={40}
-          />
-          <Box mx="auto">
-            <Image src="/svg/about-pyxelchain/pyxelchain-logo.svg" />
-          </Box>
-          <Image
-            display={{ base: 'none', md: 'block' }}
-            src="/svg/about-pyxelchain/right-top.svg"
-            pos="absolute"
-            top={0}
-            right={40}
-          />
-          <Image
-            display={{ base: 'none', md: 'block' }}
-            src="/svg/about-pyxelchain/right.svg"
-            pos="absolute"
-            float="right"
-            right={40}
-          />
-          <Image
-            display={{ base: 'none', md: 'block' }}
-            src="/svg/about-pyxelchain/right-bottom.svg"
-            pos="absolute"
-            bottom={0}
-            right={40}
-          />
-        </Flex>
+        <Box>
+          <Flex position="relative" py={{ base: 8, md: 28 }} alignItems="center">
+            <Image
+              display={{ base: 'none', md: 'block' }}
+              src="/svg/about-pyxelchain/left-top.svg"
+              pos="absolute"
+              top={0}
+              left={40}
+            />
+            <Image
+              display={{ base: 'none', md: 'block' }}
+              src="/svg/about-pyxelchain/left.svg"
+              pos="absolute"
+              float="left"
+              left={40}
+            />
+            <Image
+              display={{ base: 'none', md: 'block' }}
+              src="/svg/about-pyxelchain/left-bottom.svg"
+              pos="absolute"
+              bottom={0}
+              left={40}
+            />
+            <Box mx="auto">
+              <Image src="/svg/about-pyxelchain/pyxelchain-logo.svg" />
+            </Box>
+            <Image
+              display={{ base: 'none', md: 'block' }}
+              src="/svg/about-pyxelchain/right-top.svg"
+              pos="absolute"
+              top={0}
+              right={40}
+            />
+            <Image
+              display={{ base: 'none', md: 'block' }}
+              src="/svg/about-pyxelchain/right.svg"
+              pos="absolute"
+              float="right"
+              right={40}
+            />
+            <Image
+              display={{ base: 'none', md: 'block' }}
+              src="/svg/about-pyxelchain/right-bottom.svg"
+              pos="absolute"
+              bottom={0}
+              right={40}
+            />
+          </Flex>
+        </Box>
       </Box>
-      <Box mb={16}>
+      <Box>
         <Text
           fontWeight="bold"
           fontSize={{ base: 'lg', md: '4xl' }}
@@ -86,7 +89,7 @@ const About = () => {
         </Text>
         <PredatoryPractices />
       </Box>
-      <Box>
+      <Box mt="71px">
         <Text fontWeight="bold" fontSize={{ base: 'lg', md: '4xl' }} fontFamily="Iosevka" mb={6} color="white">
           {about2Copy?.title}{' '}
           <Text fontSize={{ base: 'lg', md: '4xl' }} withGradient>

@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
 
-type ArticleTagProps = {
+type TagProps = {
   tagName: string
   onClick?: (e: string) => void
   selectedTag?: string
@@ -10,7 +10,7 @@ type ArticleTagProps = {
   isLast?: boolean
 }
 
-const ArticleTag: React.FC<ArticleTagProps> = ({ tagName, onClick, selectedTag, isArticleDetails, isLast }) => {
+const Tag: React.FC<TagProps> = ({ tagName, onClick, selectedTag, isArticleDetails, isLast }) => {
   return (
     <Box
       w="max-content"
@@ -33,4 +33,4 @@ const ArticleTag: React.FC<ArticleTagProps> = ({ tagName, onClick, selectedTag, 
   )
 }
 
-export default ArticleTag
+export default Tag

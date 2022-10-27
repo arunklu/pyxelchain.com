@@ -15,7 +15,7 @@ const DesktopNav: React.FC = () => {
       <Link href="/" display="flex" flexShrink={0}>
         <Image alt="PyxelChain Logo" width={195} height={41} src="/svg/navigation-logo.svg" />
       </Link>
-      <HStack spacing={16}>
+      <HStack spacing={{ base: 6, lg: 16 }}>
         {NAVIGATION_LINKS.map((nav) => (
           <Link
             onMouseOver={() => {

@@ -10,6 +10,7 @@ const CombatPredatoryPractices = () => {
   const { getFeatureBySectionId } = useStrapiContextValue()
 
   const combatPredatoryPractices = getFeatureBySectionId('home-about-2')
+
   return (
     <BorderBox>
       <SimpleGrid

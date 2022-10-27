@@ -1,6 +1,5 @@
 import React from 'react'
 import { Box, BoxProps, Flex, Image } from '@chakra-ui/react'
-
 import BorderBox from '@components/border-box'
 import ReadTime from '@components/read-time'
 import Link from '@components/link'

@@ -10,20 +10,21 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ApolloProvider } from '@apollo/client'
 import { Box, ChakraProvider, Container, Divider, Fade } from '@chakra-ui/react'
 import { AppProps } from 'next/app'
-
+import theme from '../theme/index'
 import Navbar from '@components/navbar'
 import Footer from '@components/footer'
 import client from '@graphql/apollo-client'
-import theme from 'theme'
-import AnimatedLogo from '@components/animated-logo'
+import { useRouter } from 'next/router'
 
 const queryClient = new QueryClient()
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [isReady, setIsReady] = useState(false)
   useEffect(() => {
-    document.fonts.load('12px iosevka').then(() => setTimeout(() => setIsReady(true), 1000))
+    document.fonts.load('12px iosevka').then(() => setIsReady(true))
   }, [])
+  const { asPath } = useRouter()
+
   return (
     <QueryClientProvider client={queryClient}>
       <ApolloProvider client={client}>
@@ -32,13 +33,22 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
         <ChakraProvider theme={theme}>
-          {!isReady && <AnimatedLogo />}
+          {/* {!isReady && <AnimatedLogo />} */}
           <Fade in={isReady} transition={{ enter: { duration: 1 } }}>
             <Box overflow="hidden">
-              <Container maxWidth="container.2xl" px={{ base: '30px', lg: '50px', xl: '96px' }}>
-                <Navbar />
-                <Component {...pageProps} />
-              </Container>
+              {asPath === '/pyxel-chats' ? (
+                <>
+                  <Box mx="auto" maxWidth="container.2xl" px={{ base: '30px', lg: '50px', xl: '96px' }}>
+                    <Navbar />
+                  </Box>
+                  <Component {...pageProps} />
+                </>
+              ) : (
+                <Container maxWidth="container.2xl" px={{ base: '30px', lg: '50px', xl: '96px' }}>
+                  <Navbar />
+                  <Component {...pageProps} />
+                </Container>
+              )}
               <Divider
                 mt="60px"
                 opacity={0.2}
