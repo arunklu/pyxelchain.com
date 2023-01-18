@@ -70,7 +70,7 @@ export const HOME_QUERY = gql`
         }
       }
     }
-    allStrapiTeam: teams(pagination: { limit: 100 }) {
+    allStrapiTeam: teams(pagination: { limit: 100 }, sort:"order:asc") {
       data {
         attributes {
           name
