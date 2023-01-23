@@ -33,7 +33,7 @@ const NewsletterForm: React.FC<NewsletterFormTypes> = ({ autoAlign }) => {
         body: JSON.stringify({ email }),
       }).then(async (res) => {
         if (res) {
-          showToast("You've subscribed to PyxelNews. Please check your email for confirmation.", 'error')
+          showToast("You've subscribed to PyxelNews. Please check your email for confirmation.", 'success')
           setEmail('')
         }
       })
