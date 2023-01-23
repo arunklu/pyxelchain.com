@@ -5,7 +5,7 @@ const useDuplicateEmail = (email: string) => {
     fetch('https://api.buttondown.email/v1/subscribers', {
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Token bb2629d3edee4aa29d6a4ab03b1cdd46',
+        Authorization: `Token ${process.env.NEXT_PUBLIC_BUTTONDOWN_TOKEN}`,
       },
     }).then((res) => res.json())
   )
