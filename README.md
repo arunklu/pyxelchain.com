@@ -56,4 +56,8 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
 | main | https://pyxelchain.com/ | N | EC2 Instance | pyxelchain.com-v2 | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
 
 - Strapi Instance : https://pyxiscms.gameficap.com/admin
+- Publishing contents from Strapi to Pyxelchain.com
+
+
+![Strapi Content Publishing](/../main/DevOps/docs_images/strapi_publish_content.png?raw=true)
 
