@@ -45,3 +45,12 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
 - [graphql-codegen](https://www.graphql-code-generator.com/)
 
 ### [Structure reference](https://www.taniarascia.com/react-architecture-directory-structure)
+
+## DEVOPS Documentation
+
+| Branch | Domain |  Need VPN | Deployment Type | AWS server Name | IP Type | Deployment Code Path | Dockerfile app type | 
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| staging | https://pyxelchain.com-stg.gameficap.com/ | Y | EC2 Instance | website-services-staging | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
+| main | https://pyxelchain.com/ | N | EC2 Instance | pyxelchain.com-v2 | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
+
+
