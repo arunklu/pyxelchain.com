@@ -55,6 +55,15 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
 | staging | https://pyxelchain.com-stg.gameficap.com/ | Y | EC2 Instance | website-services-staging | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
 | main | https://pyxelchain.com/ | N | EC2 Instance | pyxelchain.com-v2 | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
 
+- Environment Variables
+  
+  | Name | DEV |  STAGING | PROD |
+  | --- | --- | --- | --- |
+  | NEXT_PUBLIC_BASE_URL | TBD | TBD | AWS PARAM STORE |
+  | NEXT_PUBLIC_API_URL | TBD | TBD | AWS PARAM STORE |
+  | NEXT_PUBLIC_ACCESS_TOKEN | TBD | TBD | AWS PARAM STORE |
+  | NEXT_PUBLIC_BUTTONDOWN_TOKEN | TBD | TBD | AWS PARAM STORE |  
+
 - Strapi Instance : https://pyxiscms.gameficap.com/admin
 - Publishing contents from Strapi to Pyxelchain.com
 
