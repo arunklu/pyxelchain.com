@@ -48,9 +48,12 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
 
 ## DEVOPS Documentation
 
+- CI/CD information
+
 | Branch | Domain |  Need VPN | Deployment Type | AWS server Name | IP Type | Deployment Code Path | Dockerfile app type | 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | staging | https://pyxelchain.com-stg.gameficap.com/ | Y | EC2 Instance | website-services-staging | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
 | main | https://pyxelchain.com/ | N | EC2 Instance | pyxelchain.com-v2 | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
 
+- Strapi Instance : https://pyxiscms.gameficap.com/admin
 
