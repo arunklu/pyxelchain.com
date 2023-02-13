@@ -61,3 +61,7 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
 
 ![Strapi Content Publishing](/../main/DevOps/docs_images/strapi_publish_content.png?raw=true)
 
+- Pyxelchain architectural blueprint 
+
+![Strapi Content Publishing](/../main/DevOps/docs_images/pyxelchain_archi_blueprint.png?raw=true)
+
