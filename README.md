@@ -63,6 +63,14 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
   | NEXT_PUBLIC_API_URL | TBD | TBD | AWS PARAM STORE |
   | NEXT_PUBLIC_ACCESS_TOKEN | TBD | TBD | AWS PARAM STORE |
   | NEXT_PUBLIC_BUTTONDOWN_TOKEN | TBD | TBD | AWS PARAM STORE |  
+  
+- Running the app
+  
+| Docker Compose File | Run Command |  Setup Description |
+| --- | --- | --- |
+| docker-compose.yml | docker-compose up -d | - this will run the app using the nginx network. This will need the jwilder/nginx and jrcs/letsencrypt-nginx-proxy-companion docker images |
+| docker-compose-prod.yml | docker-compose -f docker-compose-prod.yml up -d | - this will run the app using the nginx network. This will need the jwilder/nginx and jrcs/letsencrypt-nginx-proxy-companion docker images |
+
 
 - Strapi Instance : https://pyxiscms.gameficap.com/admin
 - Publishing contents from Strapi to Pyxelchain.com
