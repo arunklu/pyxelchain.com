@@ -64,7 +64,11 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
   | NEXT_PUBLIC_ACCESS_TOKEN | TBD | TBD | AWS PARAM STORE |
   | NEXT_PUBLIC_BUTTONDOWN_TOKEN | TBD | TBD | AWS PARAM STORE |  
   
-- Running the app
+- Running the app standalone
+ 
+  sudo cp /DevOps/env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run build && npm run dev
+  
+- Running the app using docker-compose
   
 | Docker Compose File | Run Command |  Setup Description |
 | --- | --- | --- |
