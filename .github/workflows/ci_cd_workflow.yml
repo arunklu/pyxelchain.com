@@ -39,7 +39,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && cp DevOps/* . && ls -lrt && docker-compose -f docker-compose-prod.yml up -d --build 
+            pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && cp -r DevOps/* . && ls -lrt && docker-compose -f docker-compose-prod.yml up -d --build 
           host: ${{ secrets.PROD_HOST }}
           user: $USERNAME
           key: ${{ secrets.PRIVATE_KEY }}
