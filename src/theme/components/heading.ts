@@ -3,11 +3,11 @@ const Heading = {
     heading: {
       fontSize: {
         xs: '36px',
-        md: '64px',
+        md: '56px',
       },
       lineHeight: {
         xs: '47px',
-        md: '76px',
+        md: '71px',
       },
       letterSpacing: {
         xs: '-0.02em',
