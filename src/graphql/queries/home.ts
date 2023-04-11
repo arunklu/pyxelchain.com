@@ -91,11 +91,13 @@ export const HOME_QUERY = gql`
       data {
         attributes {
           title
+          titleWithGradient
           description
           products {
             description
             id
             name
+            website
             icon {
               data {
                 attributes {

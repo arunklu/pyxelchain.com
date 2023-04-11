@@ -40,7 +40,7 @@ const Index: React.FC<PageProps> = ({ data }) => {
     copies: data.allStrapiCopy.nodes,
     features: data.allStrapiFeature.nodes,
     teams: data.allStrapiTeam.nodes,
-    upcomingProducts: data.upcomingProduct.data.attributes,
+    upcomingProducts: data.upcomingProduct.data,
   }
 
   return (

@@ -1946,6 +1946,7 @@ export type UpcomingProduct = {
   products?: Maybe<Array<Maybe<ComponentUpcomingProductsUpcomingProducts>>>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   title?: Maybe<Scalars['String']>;
+  titleWithGradient?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -1972,6 +1973,7 @@ export type UpcomingProductInput = {
   products?: InputMaybe<Array<InputMaybe<ComponentUpcomingProductsUpcomingProductsInput>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   title?: InputMaybe<Scalars['String']>;
+  titleWithGradient?: InputMaybe<Scalars['String']>;
 };
 
 export type UploadFile = {
