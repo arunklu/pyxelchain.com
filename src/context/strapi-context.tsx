@@ -1,6 +1,6 @@
 import React, { createContext, useContext, PropsWithChildren } from 'react'
 
-import { Copy, Feature, Team } from 'types/index'
+import { Copy, Feature, Team, UpcomingProductEntity } from 'types/index'
 
 interface StrapiContextProps {
   copies: Copy[]
@@ -10,6 +10,7 @@ interface StrapiContextProps {
   getFeatureBySectionId: (param: string) => Feature[]
 
   teams: Team[]
+  upcomingProducts: UpcomingProductEntity
 }
 
 interface StrapiContextProviderProps {
@@ -17,6 +18,7 @@ interface StrapiContextProviderProps {
     copies: Copy[]
     features: Feature[]
     teams?: Team[]
+    upcomingProducts: UpcomingProductEntity
   }
 }
 
@@ -26,6 +28,7 @@ const StrapiContext = createContext<StrapiContextProps>({
   teams: [],
   getCopyBySectionId: () => undefined,
   getFeatureBySectionId: () => [],
+  upcomingProducts: {},
 })
 
 const StrapiContextProvider: React.FC<PropsWithChildren<StrapiContextProviderProps>> = ({ values, children }) => {

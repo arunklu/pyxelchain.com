@@ -70,7 +70,7 @@ export const HOME_QUERY = gql`
         }
       }
     }
-    allStrapiTeam: teams(pagination: { limit: 100 }, sort:"order:asc") {
+    allStrapiTeam: teams(pagination: { limit: 100 }, sort: "order:asc") {
       data {
         attributes {
           name
@@ -81,6 +81,35 @@ export const HOME_QUERY = gql`
             data {
               attributes {
                 url
+              }
+            }
+          }
+        }
+      }
+    }
+    upcomingProduct {
+      data {
+        attributes {
+          title
+          titleWithGradient
+          description
+          products {
+            description
+            id
+            name
+            website
+            icon {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+            cover {
+              data {
+                attributes {
+                  url
+                }
               }
             }
           }

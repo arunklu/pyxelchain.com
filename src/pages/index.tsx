@@ -14,8 +14,9 @@ import Partnership from '@modules/home/partnership'
 import Pyxis from '@modules/home/pyxis/pyxis'
 import { StrapiContextProvider } from '@context/strapi-context'
 
-import { CopyEntity, FeatureEntity, TeamEntity } from 'types/index'
+import { CopyEntity, FeatureEntity, TeamEntity, UpcomingProductEntity } from 'types/index'
 import { HOME_QUERY } from '@graphql/queries/home'
+import UpcomingProducts from '@modules/home/upcoming-products'
 
 interface PageProps {
   data: {
@@ -28,6 +29,9 @@ interface PageProps {
     allStrapiTeam: {
       nodes: NonNullable<TeamEntity['attributes']>[]
     }
+    upcomingProduct: {
+      data: UpcomingProductEntity
+    }
   }
 }
 
@@ -36,6 +40,7 @@ const Index: React.FC<PageProps> = ({ data }) => {
     copies: data.allStrapiCopy.nodes,
     features: data.allStrapiFeature.nodes,
     teams: data.allStrapiTeam.nodes,
+    upcomingProducts: data.upcomingProduct.data,
   }
 
   return (
@@ -46,6 +51,7 @@ const Index: React.FC<PageProps> = ({ data }) => {
           description={data?.allStrapiCopy?.nodes[0]?.seo?.metadescription}
         />
         <Landing />
+        <UpcomingProducts />
         <About />
         <Vision />
         <Pyxis />
@@ -70,6 +76,9 @@ interface QueryResult {
     allStrapiTeam: {
       data: TeamEntity[]
     }
+    upcomingProduct: {
+      data: UpcomingProductEntity
+    }
   }
 }
 
@@ -88,6 +97,8 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
     (c) => c.attributes as NonNullable<TeamEntity['attributes']>
   )
 
+  const upcomingProduct = result.data.data.upcomingProduct
+
   return {
     props: {
       data: {
@@ -100,6 +111,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
         allStrapiTeam: {
           nodes: teamNodes,
         },
+        upcomingProduct,
       },
     },
   }
