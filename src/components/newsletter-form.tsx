@@ -1,10 +1,7 @@
-import { Box, FormControl, Input, Text } from '@chakra-ui/react'
-import Link from './link'
-import useDuplicateEmail from '@hooks/use-duplicate-email'
-import { showToast } from '@utils/toast-utils'
-import { useRouter } from 'next/router'
+import { Box, Text } from '@chakra-ui/react'
 import React from 'react'
 import Button from './button'
+import Link from './link'
 
 type NewsletterFormTypes = {
   autoAlign?: boolean
