@@ -1,11 +1,10 @@
-import React from 'react'
-import { Box, Text, Flex, Image } from '@chakra-ui/react'
+import { Box, Flex, Image, Text } from '@chakra-ui/react'
 
 import BorderBox from '@components/border-box'
 import Button from '@components/button'
-import { getImageUrl } from '@utils/url-utils'
 import { HeadingRenderer } from '@components/markdown-renderer'
 import { useStrapiContextValue } from '@context/strapi-context'
+import { getImageUrl } from '@utils/url-utils'
 import Link from 'next/link'
 
 const UpcomingProducts = () => {
@@ -14,7 +13,13 @@ const UpcomingProducts = () => {
   const data = upcomingProducts.attributes
 
   return (
-    <Box mb={{ base: 20, md: 44 }}>
+    <Box
+      mb={{ base: 20, md: 44 }}
+      px={{
+        base: 0,
+        md: 137,
+      }}
+    >
       <HeadingRenderer title={data?.title} titleWithGradient={data?.titleWithGradient} />
       <Text fontSize="16px" lineHeight="25px" mt="10px" fontWeight="400" maxW="650px">
         {data?.description}
