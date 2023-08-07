@@ -86,3 +86,37 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
 
 ![Strapi Content Publishing](/../main/DevOps/docs_images/pyxelchain_archi_blueprint.png?raw=true)
 
+# terraform the project
+Pre-requisites
+1.  Request from DEVOPS team AWS access and secret key
+2.  Very important! You can't use "us-east-1" region coz that's our main region.
+3.  You need to provide the terraform plan snapshot or ansi file. You can run the following
+     commands to generate these files:
+         - terraform plan -out bpp-tf-plan.plan
+         - terraform show bpp-tf-plan.plan > tfplan.ansi
+Terraform variables
+1. On the project folder root folder, you can go to the "terraform-contract-registry" folder and define the following:
+   - variable "aws_region" { default = "us-east-2" } 
+      - example using ohio region
+   - variable "aws_subregion_a" { default = "us-east-2a" }
+      - example using ohio region
+   - variable "instance_ami"  { default = "ami-06c7d6c0987eaa46c" }
+      - can used this in case you want ubuntu OS
+   - variable "aws_access_key" { default = "" }
+      - need to request from DEVOPS team
+   - variable "aws_secret_key" { default = "" }
+      - need to request from DEVOPS team 
+   - variable "github_personal_access_token" { default = "" }
+      - need to request from DEVOPS team
+   - variable "github_project" { default = "" }
+      - so the syntax to clone is like this git clone https://<personal_access_token>@github.com/Pyxelchain/<github_project>.git
+   - variable "pyxelchain-domain" { default = "" }
+      - we will only be using gameficap.com route 53, example pyxelchain-tf.pyxistf.com
+2. Once all variable.tf entries are defined you can run the following command:
+   - terraform init
+   - terraform plan -out contract-registry-plan.plan
+   - terraform show contract-registry-plan.plan > tfplan.ansi
+3. Need to submit the tfplan.ansi to DevOps team for review and approval.
+4. Before performing the last step below, need item 3 approval from DevOps Team.
+   - terraform apply
+5. Before inputting "yes", please review the logs and compare from step 2 that all are the same.
