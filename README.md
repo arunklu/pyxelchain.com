@@ -114,8 +114,8 @@ Terraform variables
       - we will only be using gameficap.com route 53, example pyxelchain-tf.pyxistf.com
 2. Once all variable.tf entries are defined you can run the following command:
    - terraform init
-   - terraform plan -out contract-registry-plan.plan
-   - terraform show contract-registry-plan.plan > tfplan.ansi
+   - terraform plan -out pyxelchain-com.plan
+   - terraform show pyxelchain-com.plan > tfplan.ansi
 3. Need to submit the tfplan.ansi to DevOps team for review and approval.
 4. Before performing the last step below, need item 3 approval from DevOps Team.
    - terraform apply
