@@ -17,7 +17,7 @@ terraform {
 
 
 provider "aws" {
-  #profile = "default"
+  # profile = "default"
   region = "us-east-2"
 }
 
