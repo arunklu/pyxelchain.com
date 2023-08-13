@@ -1,4 +1,4 @@
-## Build Instructions
+## Build Instructions 
  
 - `npm i`
 - `cp .env.example .env` and ask a dev team member for the strings
