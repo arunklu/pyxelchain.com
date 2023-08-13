@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [ "main", "DEV-10" ]
+    branches: [ "main", "feature/DEV-10" ]
     types: [ closed, opened, synchronize, reopened ]
   issue_comment:
     types: [created]
