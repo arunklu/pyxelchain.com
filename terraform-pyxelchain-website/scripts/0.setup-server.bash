@@ -11,3 +11,5 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 pwd
 sudo usermod -aG docker ubuntu
+curl -s https://deb.nodesource.com/setup_16.x | sudo bash
+sudo apt install nodejs -y

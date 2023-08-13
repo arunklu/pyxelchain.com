@@ -5,7 +5,7 @@ variable "aws_subregion_a" { default = "us-east-2a" }
 variable "instance_ami"  { default = "ami-06c7d6c0987eaa46c" }
 variable "aws_access_key" { default = "ASIASNUU6P2WT5BF674Q" }
 variable "aws_secret_key" { default = "mbKIkqLxGISvmOq+YWAiGjwPgdVsSkuJQ8/GXAmH" }
-variable "pyxelchain-domain" { default = "pyxis-web-tf.gameficap.com" }
+variable "pyxelchain-domain" { default = "pyxelchain-tf.gameficap.com" }
 
 variable "region" {
   description = "AWS region to manage resources in"

@@ -8,7 +8,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.58.0"
+      version = "~> 5.0"
     }
   }
 
@@ -47,13 +47,13 @@ resource "aws_security_group" "allow_outbound" {
   }
 }
 
-resource "aws_instance" "pyxelchain-website" {
+resource "aws_instance" "pyxelchain-website2" {
   ami           = "${var.instance_ami}"
   instance_type = "t3.medium"
 
   tags = {
-    Name = "pyxis-website-tf"
-    env  = "pyxis-website-tf-${var.env}"
+    Name = "pyxelchain-website2-tf"
+    env  = "pyxelchain-website2-tf-${var.env}"
   }
 
   key_name = "operator-key"
@@ -62,10 +62,7 @@ resource "aws_instance" "pyxelchain-website" {
 
   vpc_security_group_ids = [
     "${aws_security_group.ssh.id}",
-    "${aws_security_group.http.id}",
-    "${aws_security_group.geth_discovery.id}",
-    "${aws_security_group.geth_http_rpc.id}",
-    "${aws_security_group.geth_ws_rpc.id}"
+    "${aws_security_group.http.id}"
   ]
 
   associate_public_ip_address = true
@@ -82,7 +79,7 @@ resource "aws_instance" "pyxelchain-website" {
     type        = "ssh"
     user        = "ubuntu"
     private_key = "${file("./id_ed25519")}"
-    host        = aws_instance.pyxelchain-website.public_ip
+    host        = aws_instance.pyxelchain-website2.public_ip
     timeout     = "3m"
   }
 
@@ -111,13 +108,13 @@ resource "aws_instance" "pyxelchain-website" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/script.sh",
-      "/tmp/script.sh ${var.pyxis-website-domain}",
+      "/tmp/script.sh ${var.pyxelchain-domain}",
     ]
   }
 }
 
 resource "aws_eip" "instance_ip" {
-  instance = "${aws_instance.pyxelchain-website.id}"
+  instance = "${aws_instance.pyxelchain-website2.id}"
 
   tags = {
     env  = "pyxis-website-${var.env}"
