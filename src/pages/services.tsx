@@ -1,27 +1,26 @@
-import { SERVICES_QUERY } from '@graphql/queries/services'
-import { CopyEntity } from 'types/index'
-import axios, { AxiosResponse } from 'axios'
-import { print } from 'graphql'
-import { GetServerSideProps } from 'next'
-import React from 'react'
-import { SEO } from '@components/seo'
-import { useMutation } from '@apollo/client'
-import useAppToast from '@hooks/use-app-toast'
+import { useMutation, useQuery } from '@apollo/client'
 import { Box, Flex, FormControl, Input, SimpleGrid, Textarea, VStack } from '@chakra-ui/react'
-import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { CREATE_SERVICES } from '@graphql/mutations/create-services'
 import Button from '@components/button'
+import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
+import { SEO } from '@components/seo'
+import Spinner from '@components/spinner'
+import { CREATE_SERVICES } from '@graphql/mutations/create-services'
+import { SERVICES_QUERY } from '@graphql/queries/services'
+import useAppToast from '@hooks/use-app-toast'
+import React from 'react'
+import { CopyEntity } from 'types/index'
 
-interface ServicesProps {
-  data: {
-    allStrapiCopy: {
-      nodes: NonNullable<CopyEntity['attributes']>[]
-    }
+interface ServicesQuery {
+  allStrapiCopy: {
+    data: CopyEntity[]
   }
 }
 
-const Services: React.FC<ServicesProps> = ({ data }) => {
-  const servicesCopy = data.allStrapiCopy.nodes.find((n) => n.sectionId === 'service-hero')
+const Services: React.FC = () => {
+  const { data, loading: isLoading } = useQuery<ServicesQuery>(SERVICES_QUERY)
+  const servicesCopy = data?.allStrapiCopy.data
+    .map((c) => c.attributes as NonNullable<CopyEntity['attributes']>)
+    ?.find((q) => q.sectionId === 'service-hero')
 
   const { showToast } = useAppToast()
   const [fullName, setFullName] = React.useState<string>('')
@@ -52,6 +51,10 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
       showToast('Failed to submit Services form.', 'error')
     },
   })
+
+  if (isLoading) {
+    return <Spinner />
+  }
 
   return (
     <SimpleGrid my={{ base: '64px', md: '80px', lg: '111px' }} gap="10" columns={{ base: 1, md: 2 }}>
@@ -106,22 +109,3 @@ const Services: React.FC<ServicesProps> = ({ data }) => {
 }
 
 export default Services
-
-export const getServerSideProps: GetServerSideProps<ServicesProps> = async () => {
-  const result: AxiosResponse = await axios.post(process.env.NEXT_PUBLIC_API_URL as string, {
-    query: print(SERVICES_QUERY),
-  })
-  const copyNodes = result.data.data.allStrapiCopy.data.map(
-    (c: NonNullable<CopyEntity>) => c.attributes as NonNullable<CopyEntity['attributes']>
-  )
-
-  return {
-    props: {
-      data: {
-        allStrapiCopy: {
-          nodes: copyNodes,
-        },
-      },
-    },
-  }
-}

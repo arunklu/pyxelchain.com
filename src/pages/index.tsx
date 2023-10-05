@@ -42,9 +42,7 @@ interface HomeQuery {
 const Index: React.FC = () => {
   const { data, loading } = useQuery<HomeQuery>(HOME_QUERY)
 
-  if (loading) {
-    return <Spinner />
-  }
+  if (loading) return <Spinner />
 
   const values = {
     features: data?.allStrapiFeature.data.map((c) => c.attributes) as Feature[],
