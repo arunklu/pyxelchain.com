@@ -5,6 +5,7 @@ import { CAREER_QUERY } from '@graphql/queries/career'
 import { useQuery } from '@apollo/client'
 import { Box } from '@chakra-ui/react'
 import { SEO } from '@components/seo'
+import Spinner from '@components/spinner'
 import { StrapiContextProvider } from '@context/strapi-context'
 import Careers from '@modules/careers/careers'
 import Culture from '@modules/careers/culture'
@@ -26,7 +27,7 @@ const Index: React.FC = () => {
   const { data, loading } = useQuery<CareerQuery>(CAREER_QUERY)
 
   if (loading) {
-    return null
+    return <Spinner />
   }
 
   const values = {
@@ -46,7 +47,9 @@ const Index: React.FC = () => {
         <Culture />
       </Box>
     </StrapiContextProvider>
-  ) : null
+  ) : (
+    <Spinner />
+  )
 }
 
 export default Index
