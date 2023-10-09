@@ -24,7 +24,7 @@ jobs:
           node-version:  16.16.x
           cache: npm
           cache-dependency-path: package-lock.json
-      - run: pwd && ls -la && cat .env && sudo cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run build && ls -lrt
+      - run: pwd && ls -la && cat .env && sudo cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run export && ls -lrt
 
       - name: Upload file to bucket
         uses: a-sync/s3-uploader@master
