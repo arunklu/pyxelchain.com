@@ -24,22 +24,33 @@ jobs:
           node-version:  16.16.x
           cache: npm
           cache-dependency-path: package-lock.json
-      - run: pwd && ls -la && cat .env && sudo cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run build && ls -lrt
-      - name: Copy Files to Remote Host
-        uses: Pendect/action-rsyncer@v1.1.0
+      - run: pwd && ls -la && cat .env && sudo cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run export && ls -lrt
+      - name: Upload file to bucket
+        uses: a-sync/s3-uploader@master
+        with:
+          args: --recursive
         env:
-          DEPLOY_KEY: ${{ secrets.PRIVATE_KEY }}
-        with:
-          flags: '-avzr'
-          options: ''
-          ssh_options: ''
-          src: ''
-          dest: '$USERNAME@${{ secrets.PROD_HOST }}:$REMOTE_FOLDER'
-      - name: Deploy on Remote Host
-        uses: fifsky/ssh-action@master
-        with:
-          command: |
-            pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && cp -r DevOps/* . && ls -lrt && docker-compose -f docker-compose-prod.yml up -d --build 
-          host: ${{ secrets.PROD_HOST }}
-          user: $USERNAME
-          key: ${{ secrets.PRIVATE_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'
+          S3_BUCKET: 'pyxelchain-website-prod'
+          FILE: ./out
+      
+      # - name: Copy Files to Remote Host
+      #   uses: Pendect/action-rsyncer@v1.1.0
+      #   env:
+      #     DEPLOY_KEY: ${{ secrets.PRIVATE_KEY }}
+      #   with:
+      #     flags: '-avzr'
+      #     options: ''
+      #     ssh_options: ''
+      #     src: ''
+      #     dest: '$USERNAME@${{ secrets.PROD_HOST }}:$REMOTE_FOLDER'
+      # - name: Deploy on Remote Host
+      #   uses: fifsky/ssh-action@master
+      #   with:
+      #     command: |
+      #       pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && cp -r DevOps/* . && ls -lrt && docker-compose -f docker-compose-prod.yml up -d --build 
+      #     host: ${{ secrets.PROD_HOST }}
+      #     user: $USERNAME
+      #     key: ${{ secrets.PRIVATE_KEY }}
