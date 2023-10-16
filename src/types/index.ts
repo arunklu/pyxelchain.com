@@ -599,6 +599,49 @@ export type CopyTagInput = {
   tagName?: InputMaybe<Scalars['String']>
 }
 
+export type Country = {
+  __typename?: 'Country'
+  country_code: Scalars['String']
+  createdAt?: Maybe<Scalars['DateTime']>
+  logo: UploadFileEntityResponse
+  name: Scalars['String']
+  updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type CountryEntity = {
+  __typename?: 'CountryEntity'
+  attributes?: Maybe<Country>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type CountryEntityResponse = {
+  __typename?: 'CountryEntityResponse'
+  data?: Maybe<CountryEntity>
+}
+
+export type CountryEntityResponseCollection = {
+  __typename?: 'CountryEntityResponseCollection'
+  data: Array<CountryEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type CountryFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CountryFiltersInput>>>
+  country_code?: InputMaybe<StringFilterInput>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  name?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<CountryFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<CountryFiltersInput>>>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+}
+
+export type CountryInput = {
+  country_code?: InputMaybe<Scalars['String']>
+  logo?: InputMaybe<Scalars['ID']>
+  name?: InputMaybe<Scalars['String']>
+}
+
 export type DateFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
   between?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
@@ -643,6 +686,87 @@ export type DateTimeFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>
   startsWith?: InputMaybe<Scalars['DateTime']>
+}
+
+export type Event = {
+  __typename?: 'Event'
+  createdAt?: Maybe<Scalars['DateTime']>
+  description: Scalars['String']
+  disabled?: Maybe<Scalars['Boolean']>
+  end_date: Scalars['Date']
+  external_url?: Maybe<Scalars['String']>
+  featured?: Maybe<Scalars['Boolean']>
+  icon?: Maybe<UploadFileEntityResponse>
+  location?: Maybe<CountryEntityResponse>
+  media?: Maybe<UploadFileRelationResponseCollection>
+  name: Scalars['String']
+  publishedAt?: Maybe<Scalars['DateTime']>
+  seo?: Maybe<ComponentArticlesSeo>
+  start_date: Scalars['Date']
+  tags?: Maybe<Scalars['String']>
+  updatedAt?: Maybe<Scalars['DateTime']>
+  user_created?: Maybe<Scalars['Boolean']>
+}
+
+export type EventMediaArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type EventEntity = {
+  __typename?: 'EventEntity'
+  attributes?: Maybe<Event>
+  id?: Maybe<Scalars['ID']>
+}
+
+export type EventEntityResponse = {
+  __typename?: 'EventEntityResponse'
+  data?: Maybe<EventEntity>
+}
+
+export type EventEntityResponseCollection = {
+  __typename?: 'EventEntityResponseCollection'
+  data: Array<EventEntity>
+  meta: ResponseCollectionMeta
+}
+
+export type EventFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<EventFiltersInput>>>
+  createdAt?: InputMaybe<DateTimeFilterInput>
+  description?: InputMaybe<StringFilterInput>
+  disabled?: InputMaybe<BooleanFilterInput>
+  end_date?: InputMaybe<DateFilterInput>
+  external_url?: InputMaybe<StringFilterInput>
+  featured?: InputMaybe<BooleanFilterInput>
+  id?: InputMaybe<IdFilterInput>
+  location?: InputMaybe<CountryFiltersInput>
+  name?: InputMaybe<StringFilterInput>
+  not?: InputMaybe<EventFiltersInput>
+  or?: InputMaybe<Array<InputMaybe<EventFiltersInput>>>
+  publishedAt?: InputMaybe<DateTimeFilterInput>
+  seo?: InputMaybe<ComponentArticlesSeoFiltersInput>
+  start_date?: InputMaybe<DateFilterInput>
+  tags?: InputMaybe<StringFilterInput>
+  updatedAt?: InputMaybe<DateTimeFilterInput>
+  user_created?: InputMaybe<BooleanFilterInput>
+}
+
+export type EventInput = {
+  description?: InputMaybe<Scalars['String']>
+  disabled?: InputMaybe<Scalars['Boolean']>
+  end_date?: InputMaybe<Scalars['Date']>
+  external_url?: InputMaybe<Scalars['String']>
+  featured?: InputMaybe<Scalars['Boolean']>
+  icon?: InputMaybe<Scalars['ID']>
+  location?: InputMaybe<Scalars['ID']>
+  media?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
+  name?: InputMaybe<Scalars['String']>
+  publishedAt?: InputMaybe<Scalars['DateTime']>
+  seo?: InputMaybe<ComponentArticlesSeoInput>
+  start_date?: InputMaybe<Scalars['Date']>
+  tags?: InputMaybe<Scalars['String']>
+  user_created?: InputMaybe<Scalars['Boolean']>
 }
 
 export type Feature = {
@@ -743,6 +867,8 @@ export type GenericMorph =
   | ComponentUpcomingProductsUpcomingProducts
   | Copy
   | CopyTag
+  | Country
+  | Event
   | Feature
   | I18NLocale
   | Partnership
@@ -872,6 +998,8 @@ export type Mutation = {
   createCmsAnalyzerSummary?: Maybe<CmsAnalyzerSummaryEntityResponse>
   createCopy?: Maybe<CopyEntityResponse>
   createCopyTag?: Maybe<CopyTagEntityResponse>
+  createCountry?: Maybe<CountryEntityResponse>
+  createEvent?: Maybe<EventEntityResponse>
   createFeature?: Maybe<FeatureEntityResponse>
   createPartnership?: Maybe<PartnershipEntityResponse>
   createPodcast?: Maybe<PodcastEntityResponse>
@@ -892,6 +1020,8 @@ export type Mutation = {
   deleteCmsAnalyzerSummary?: Maybe<CmsAnalyzerSummaryEntityResponse>
   deleteCopy?: Maybe<CopyEntityResponse>
   deleteCopyTag?: Maybe<CopyTagEntityResponse>
+  deleteCountry?: Maybe<CountryEntityResponse>
+  deleteEvent?: Maybe<EventEntityResponse>
   deleteFeature?: Maybe<FeatureEntityResponse>
   deletePartnership?: Maybe<PartnershipEntityResponse>
   deletePodcast?: Maybe<PodcastEntityResponse>
@@ -924,6 +1054,8 @@ export type Mutation = {
   updateCmsAnalyzerSummary?: Maybe<CmsAnalyzerSummaryEntityResponse>
   updateCopy?: Maybe<CopyEntityResponse>
   updateCopyTag?: Maybe<CopyTagEntityResponse>
+  updateCountry?: Maybe<CountryEntityResponse>
+  updateEvent?: Maybe<EventEntityResponse>
   updateFeature?: Maybe<FeatureEntityResponse>
   updateFileInfo: UploadFileEntityResponse
   updatePartnership?: Maybe<PartnershipEntityResponse>
@@ -971,6 +1103,14 @@ export type MutationCreateCopyArgs = {
 
 export type MutationCreateCopyTagArgs = {
   data: CopyTagInput
+}
+
+export type MutationCreateCountryArgs = {
+  data: CountryInput
+}
+
+export type MutationCreateEventArgs = {
+  data: EventInput
 }
 
 export type MutationCreateFeatureArgs = {
@@ -1042,6 +1182,14 @@ export type MutationDeleteCopyArgs = {
 }
 
 export type MutationDeleteCopyTagArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationDeleteCountryArgs = {
+  id: Scalars['ID']
+}
+
+export type MutationDeleteEventArgs = {
   id: Scalars['ID']
 }
 
@@ -1155,6 +1303,16 @@ export type MutationUpdateCopyArgs = {
 
 export type MutationUpdateCopyTagArgs = {
   data: CopyTagInput
+  id: Scalars['ID']
+}
+
+export type MutationUpdateCountryArgs = {
+  data: CountryInput
+  id: Scalars['ID']
+}
+
+export type MutationUpdateEventArgs = {
+  data: EventInput
   id: Scalars['ID']
 }
 
@@ -1450,6 +1608,10 @@ export type Query = {
   copy?: Maybe<CopyEntityResponse>
   copyTag?: Maybe<CopyTagEntityResponse>
   copyTags?: Maybe<CopyTagEntityResponseCollection>
+  countries?: Maybe<CountryEntityResponseCollection>
+  country?: Maybe<CountryEntityResponse>
+  event?: Maybe<EventEntityResponse>
+  events?: Maybe<EventEntityResponseCollection>
   feature?: Maybe<FeatureEntityResponse>
   features?: Maybe<FeatureEntityResponseCollection>
   i18NLocale?: Maybe<I18NLocaleEntityResponse>
@@ -1555,6 +1717,27 @@ export type QueryCopyTagArgs = {
 
 export type QueryCopyTagsArgs = {
   filters?: InputMaybe<CopyTagFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QueryCountriesArgs = {
+  filters?: InputMaybe<CountryFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
+}
+
+export type QueryCountryArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryEventArgs = {
+  id?: InputMaybe<Scalars['ID']>
+}
+
+export type QueryEventsArgs = {
+  filters?: InputMaybe<EventFiltersInput>
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
@@ -1966,6 +2149,11 @@ export type UploadFileInput = {
   size?: InputMaybe<Scalars['Float']>
   url?: InputMaybe<Scalars['String']>
   width?: InputMaybe<Scalars['Int']>
+}
+
+export type UploadFileRelationResponseCollection = {
+  __typename?: 'UploadFileRelationResponseCollection'
+  data: Array<UploadFileEntity>
 }
 
 export type UsersPermissionsCreateRolePayload = {

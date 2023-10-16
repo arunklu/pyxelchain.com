@@ -13,7 +13,7 @@
     "lint": "npm run tsc-node && npm run lint:js",
     "check-updates": "ncu -u",
     "check-updates-minor": "ncu -u -t minor",
-    "generate:types": "graphql-codegen -r dotenv/config",
+    "gql": "graphql-codegen -r dotenv/config",
     "generate:changelog": "node ./scripts/changelog.js",
     "preinstall": "rm -rf .husky",
     "postinstall": "husky install .husky && husky add .husky/pre-commit \"npm run tsc-node && node_modules/.bin/lint-staged\"",
