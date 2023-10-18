@@ -13,13 +13,15 @@ interface StrapiContextProps {
   upcomingProducts: UpcomingProductEntity
 }
 
+export interface StrapiContextProviderValues {
+  copies: Copy[]
+  features: Feature[]
+  teams?: Team[]
+  upcomingProducts?: UpcomingProductEntity
+}
+
 interface StrapiContextProviderProps {
-  values: {
-    copies: Copy[]
-    features: Feature[]
-    teams?: Team[]
-    upcomingProducts?: UpcomingProductEntity
-  }
+  values: StrapiContextProviderValues
 }
 
 const StrapiContext = createContext<StrapiContextProps>({
@@ -59,6 +61,6 @@ const StrapiConsumer = StrapiContext.Consumer
 
 const useStrapiContextValue = () => useContext(StrapiContext)
 
-export { StrapiContextProvider, useStrapiContextValue, StrapiConsumer }
+export { StrapiConsumer, StrapiContextProvider, useStrapiContextValue }
 
 export default StrapiContext
