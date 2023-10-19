@@ -1,13 +1,13 @@
-import React from 'react'
 import { Box, Flex, Image, SimpleGrid, VStack } from '@chakra-ui/react'
-import { useQuery } from '@tanstack/react-query'
-
 import Button from '@components/button'
 import { PageGradientFilter } from '@components/gradient-fillter'
 import Link from '@components/link'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
+import Spinner from '@components/spinner'
 import { Heading, Text } from '@components/typography'
 import { useStrapiContextValue } from '@context/strapi-context'
+import { useQuery } from '@tanstack/react-query'
+import React from 'react'
 import Job from './job'
 
 interface JobProps {
@@ -45,6 +45,7 @@ const Careers: React.FC = () => {
           <Job key={job.id} job={job} />
         ))}
       </SimpleGrid>
+      {isLoading && <Spinner />}
       {!isLoading && data?.jobs.length === 0 && (
         <Box
           maxW="585px"
