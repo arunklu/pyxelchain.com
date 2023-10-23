@@ -703,7 +703,7 @@ export type Event = {
   createdAt?: Maybe<Scalars['DateTime']>
   description: Scalars['String']
   disabled?: Maybe<Scalars['Boolean']>
-  end_date: Scalars['Date']
+  end_date?: Maybe<Scalars['Date']>
   external_url?: Maybe<Scalars['String']>
   featured?: Maybe<Scalars['Boolean']>
   icon?: Maybe<UploadFileEntityResponse>
@@ -714,6 +714,8 @@ export type Event = {
   publishedAt?: Maybe<Scalars['DateTime']>
   seo?: Maybe<ComponentArticlesSeo>
   start_date: Scalars['Date']
+  suggestor_email_address?: Maybe<Scalars['String']>
+  suggestor_name?: Maybe<Scalars['String']>
   tags?: Maybe<Scalars['String']>
   updatedAt?: Maybe<Scalars['DateTime']>
   user_created?: Maybe<Scalars['Boolean']>
@@ -759,6 +761,8 @@ export type EventFiltersInput = {
   publishedAt?: InputMaybe<DateTimeFilterInput>
   seo?: InputMaybe<ComponentArticlesSeoFiltersInput>
   start_date?: InputMaybe<DateFilterInput>
+  suggestor_email_address?: InputMaybe<StringFilterInput>
+  suggestor_name?: InputMaybe<StringFilterInput>
   tags?: InputMaybe<StringFilterInput>
   updatedAt?: InputMaybe<DateTimeFilterInput>
   user_created?: InputMaybe<BooleanFilterInput>
@@ -778,6 +782,8 @@ export type EventInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>
   seo?: InputMaybe<ComponentArticlesSeoInput>
   start_date?: InputMaybe<Scalars['Date']>
+  suggestor_email_address?: InputMaybe<Scalars['String']>
+  suggestor_name?: InputMaybe<Scalars['String']>
   tags?: InputMaybe<Scalars['String']>
   user_created?: InputMaybe<Scalars['Boolean']>
 }
