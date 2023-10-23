@@ -603,9 +603,17 @@ export type Country = {
   __typename?: 'Country'
   country_code: Scalars['String']
   createdAt?: Maybe<Scalars['DateTime']>
+  events?: Maybe<EventRelationResponseCollection>
   logo: UploadFileEntityResponse
   name: Scalars['String']
   updatedAt?: Maybe<Scalars['DateTime']>
+}
+
+export type CountryEventsArgs = {
+  filters?: InputMaybe<EventFiltersInput>
+  pagination?: InputMaybe<PaginationArg>
+  publicationState?: InputMaybe<PublicationState>
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
 }
 
 export type CountryEntity = {
@@ -629,6 +637,7 @@ export type CountryFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<CountryFiltersInput>>>
   country_code?: InputMaybe<StringFilterInput>
   createdAt?: InputMaybe<DateTimeFilterInput>
+  events?: InputMaybe<EventFiltersInput>
   id?: InputMaybe<IdFilterInput>
   name?: InputMaybe<StringFilterInput>
   not?: InputMaybe<CountryFiltersInput>
@@ -638,6 +647,7 @@ export type CountryFiltersInput = {
 
 export type CountryInput = {
   country_code?: InputMaybe<Scalars['String']>
+  events?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
   logo?: InputMaybe<Scalars['ID']>
   name?: InputMaybe<Scalars['String']>
 }
@@ -697,7 +707,8 @@ export type Event = {
   external_url?: Maybe<Scalars['String']>
   featured?: Maybe<Scalars['Boolean']>
   icon?: Maybe<UploadFileEntityResponse>
-  location?: Maybe<CountryEntityResponse>
+  location_country?: Maybe<CountryEntityResponse>
+  location_name: Scalars['String']
   media?: Maybe<UploadFileRelationResponseCollection>
   name: Scalars['String']
   publishedAt?: Maybe<Scalars['DateTime']>
@@ -740,7 +751,8 @@ export type EventFiltersInput = {
   external_url?: InputMaybe<StringFilterInput>
   featured?: InputMaybe<BooleanFilterInput>
   id?: InputMaybe<IdFilterInput>
-  location?: InputMaybe<CountryFiltersInput>
+  location_country?: InputMaybe<CountryFiltersInput>
+  location_name?: InputMaybe<StringFilterInput>
   name?: InputMaybe<StringFilterInput>
   not?: InputMaybe<EventFiltersInput>
   or?: InputMaybe<Array<InputMaybe<EventFiltersInput>>>
@@ -759,7 +771,8 @@ export type EventInput = {
   external_url?: InputMaybe<Scalars['String']>
   featured?: InputMaybe<Scalars['Boolean']>
   icon?: InputMaybe<Scalars['ID']>
-  location?: InputMaybe<Scalars['ID']>
+  location_country?: InputMaybe<Scalars['ID']>
+  location_name?: InputMaybe<Scalars['String']>
   media?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
   name?: InputMaybe<Scalars['String']>
   publishedAt?: InputMaybe<Scalars['DateTime']>
@@ -767,6 +780,11 @@ export type EventInput = {
   start_date?: InputMaybe<Scalars['Date']>
   tags?: InputMaybe<Scalars['String']>
   user_created?: InputMaybe<Scalars['Boolean']>
+}
+
+export type EventRelationResponseCollection = {
+  __typename?: 'EventRelationResponseCollection'
+  data: Array<EventEntity>
 }
 
 export type Feature = {

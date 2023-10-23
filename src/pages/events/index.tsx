@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import { SEO } from '@components/seo'
 import Spinner from '@components/spinner'
 import { EVENTS_QUERY } from '@graphql/queries/events'
+import FeaturedEvent from '@modules/events/featured-event'
 import Landing from '@modules/events/landing'
 import { FC } from 'react'
 import { Copy, EventEntity } from 'types'
@@ -26,6 +27,7 @@ const Events: FC = () => {
         titleWithGradient={`${eventsData?.titleWithGradient}`}
         description={`${eventsData.description}`}
       />
+      <FeaturedEvent />
     </>
   )
 }
