@@ -1,1 +1,30 @@
-{"GenericMorph":["ComponentArticlesSeo","ComponentPodcastPodcastLinks","ComponentUpcomingProductsUpcomingProducts","UploadFile","CmsAnalyzerAnalyse","CmsAnalyzerMatch","CmsAnalyzerMedia","CmsAnalyzerSummary","I18NLocale","UsersPermissionsPermission","UsersPermissionsRole","UsersPermissionsUser","Article","Author","Copy","CopyTag","Feature","Partnership","Podcast","PrivacyTermsCookie","Service","Tag","Team","UpcomingProduct"]}
+{
+  "GenericMorph": [
+    "ComponentArticlesSeo",
+    "ComponentPodcastPodcastLinks",
+    "ComponentUpcomingProductsUpcomingProducts",
+    "UploadFile",
+    "CmsAnalyzerAnalyse",
+    "CmsAnalyzerMatch",
+    "CmsAnalyzerMedia",
+    "CmsAnalyzerSummary",
+    "I18NLocale",
+    "UsersPermissionsPermission",
+    "UsersPermissionsRole",
+    "UsersPermissionsUser",
+    "Article",
+    "Author",
+    "Copy",
+    "CopyTag",
+    "Country",
+    "Event",
+    "Feature",
+    "Partnership",
+    "Podcast",
+    "PrivacyTermsCookie",
+    "Service",
+    "Tag",
+    "Team",
+    "UpcomingProduct"
+  ]
+}
