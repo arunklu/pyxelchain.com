@@ -56,4 +56,19 @@ export const sizes = {
       lg: '47px',
     },
   },
+  64: {
+    fontSize: {
+      base: '36px',
+      lg: '64px',
+    },
+    lineHeight: {
+      base: '47px',
+      lg: '76px',
+    },
+    letterSpacing: {
+      base: ' -0.72px;',
+      lg: '-1.28px;',
+    },
+    fontWeight: '600',
+  },
 }
