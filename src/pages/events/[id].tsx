@@ -37,8 +37,6 @@ const Events: FC = () => {
 
   const event = data?.events.data?.[0].attributes
 
-  console.log(event?.media?.data?.[0]?.attributes?.url)
-
   return (
     <>
       <SEO title={event?.seo?.metatitle} description={event?.seo?.metadescription} />
@@ -46,7 +44,6 @@ const Events: FC = () => {
         mt="48px"
         mx={{
           base: '28px',
-          lg: '251px',
         }}
       >
         <Link href="/events">
@@ -68,21 +65,29 @@ const Events: FC = () => {
         </Text>
 
         <Flex
+          mt="24px"
           gap={{
             base: '24px',
-            lg: '38px',
+            sm: '38px',
           }}
-          alignItems="flex-end"
+          alignItems={{
+            base: 'flex-start',
+            sm: 'center',
+          }}
+          flexDirection={{
+            base: 'column',
+            sm: 'row',
+          }}
         >
-          <Flex gap="10px" alignItems="center" mt="26px">
+          <Flex gap="10px" alignItems="center">
             <Image src={`${IMAGE_ROOT_URL}${event?.location_country?.data?.attributes?.logo.data?.attributes?.url}`} />
             <Text {...sizes[14]}>{event?.location_name}</Text>
           </Flex>
-          <Flex gap="10px" alignItems="center" mt="26px">
+          <Flex gap="10px" alignItems="center">
             <Image src={`/svg/calendar.svg`} />
             <Text {...sizes[14]}>{dayjs(event?.start_date).format('DD MMM, YYYY')}.</Text>
           </Flex>
-          <Flex gap="10px" alignItems="center" mt="14px">
+          <Flex gap="10px" alignItems="center">
             <Image src="/svg/external-link.svg" />
             <Link href={`${event?.external_url}`} passHref>
               <a target="_blank" rel="noopener noreferrer">
