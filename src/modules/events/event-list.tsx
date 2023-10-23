@@ -28,15 +28,28 @@ const EventList = () => {
     }
 
     if (selected === 'All') {
-      return data.events.data.map((e) => e.attributes)
+      return data.events.data.map((e) => ({
+        ...e.attributes,
+        id: e.id,
+      }))
     }
 
     if (selected === 'Upcoming') {
-      return data.events.data.map((e) => e.attributes).filter((e) => new Date(e?.start_date) > new Date())
+      return data.events.data
+        .map((e) => ({
+          ...e.attributes,
+          id: e.id,
+        }))
+        .filter((e) => new Date(e?.start_date) > new Date())
     }
 
     if (selected === 'Past') {
-      return data.events.data.map((e) => e.attributes).filter((e) => new Date(e?.start_date) < new Date())
+      return data.events.data
+        .map((e) => ({
+          ...e.attributes,
+          id: e.id,
+        }))
+        .filter((e) => new Date(e?.start_date) < new Date())
     }
   }, [data, selected])
 
@@ -145,11 +158,13 @@ const EventList = () => {
                     </Box>
                   </Flex>
 
-                  <Text mt="25px" {...sizes[20]} fontFamily="Iosevka" cursor="pointer">
-                    {q?.name}
-                  </Text>
+                  <Link href={`events/${q.id}`}>
+                    <Text mt="25px" {...sizes[20]} fontFamily="Iosevka" cursor="pointer">
+                      {q?.name}
+                    </Text>
+                  </Link>
 
-                  <Text mt="5px" {...sizes[16]} color="#C3C4C3">
+                  <Text mt="5px" {...sizes[16]} color="#C3C4C3" noOfLines={2}>
                     {q?.description}
                   </Text>
 

@@ -97,6 +97,52 @@ export const ALL_EVENTS_QUERY = gql`
           }
           featured
         }
+        id
+      }
+    }
+  }
+`
+
+export const GET_EVENT_BY_ID = gql`
+  query getEventById($id: ID!) {
+    events(filters: { id: { eq: $id } }, pagination: { limit: 1 }) {
+      data {
+        attributes {
+          location_name
+          external_url
+          description
+          name
+          start_date
+          end_date
+          icon {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          media {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          location_country {
+            data {
+              attributes {
+                logo {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+          featured
+        }
       }
     }
   }

@@ -130,6 +130,7 @@ const FeaturedEvent = () => {
               lg: '14px',
             }}
             color="#C3C4C3"
+            noOfLines={2}
           >
             {featuredEvent.description}
           </Text>
