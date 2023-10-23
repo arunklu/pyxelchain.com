@@ -37,7 +37,7 @@ const FeaturedEvent = () => {
     return <Spinner />
   }
 
-  const featuredEvent = data?.events.data[0].attributes
+  const featuredEvent = data?.events.data[0]?.attributes
 
   if (!featuredEvent?.name) {
     return null
