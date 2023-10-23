@@ -63,3 +63,41 @@ export const FEATURED_EVENTS_QUERY = gql`
     }
   }
 `
+
+export const ALL_EVENTS_QUERY = gql`
+  query featuredEvent {
+    events(filters: { featured: { eq: false } }, pagination: { limit: 999 }) {
+      data {
+        attributes {
+          location_name
+          external_url
+          description
+          name
+          start_date
+          end_date
+          icon {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+          location_country {
+            data {
+              attributes {
+                logo {
+                  data {
+                    attributes {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+          }
+          featured
+        }
+      }
+    }
+  }
+`

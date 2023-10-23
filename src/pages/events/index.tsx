@@ -1,7 +1,9 @@
 import { useQuery } from '@apollo/client'
+import { Box } from '@chakra-ui/react'
 import { SEO } from '@components/seo'
 import Spinner from '@components/spinner'
 import { EVENTS_QUERY } from '@graphql/queries/events'
+import EventList from '@modules/events/event-list'
 import FeaturedEvent from '@modules/events/featured-event'
 import Landing from '@modules/events/landing'
 import { FC } from 'react'
@@ -28,6 +30,18 @@ const Events: FC = () => {
         description={`${eventsData.description}`}
       />
       <FeaturedEvent />
+      <Box
+        background="#c9d2d8"
+        h="1px"
+        w="100vw"
+        opacity={0.1}
+        ml="calc(50% - 50vw)"
+        my={{
+          base: '50px',
+          lg: '60px',
+        }}
+      />
+      <EventList />
     </>
   )
 }

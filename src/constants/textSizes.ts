@@ -23,6 +23,17 @@ export const sizes = {
       lg: '25px',
     },
   },
+  20: {
+    fontSize: {
+      base: '20px',
+      lg: '20px',
+    },
+    fontWeight: '700',
+    lineHeight: {
+      base: '29px',
+      lg: '31px',
+    },
+  },
   32: {
     fontSize: {
       base: '20px',

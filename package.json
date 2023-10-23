@@ -45,6 +45,7 @@
     "axios": "^0.27.2",
     "cytoscape": "^3.22.1",
     "cytoscape-popper": "^2.0.0",
+    "dayjs": "^1.11.10",
     "framer-motion": "^6.5.1",
     "graphql": "^16.5.0",
     "graphql-tag": "^2.12.6",

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, BoxProps, Flex, Image, Text } from '@chakra-ui/react'
 import Spinner from '@components/spinner'
 import { sizes } from '@constants/textSizes'
 import { IMAGE_ROOT_URL } from '@constants/urls'
@@ -16,12 +16,16 @@ interface FeaturedEventsQuery {
   }
 }
 
-const BorderBox: FC<{ children: ReactElement }> = ({ children }) => (
+export const BorderBox: FC<BoxProps & { children: ReactElement }> = ({ children, ...rest }) => (
   <Box
     padding="1px"
-    background="linear-gradient(to right, rgba(101, 107, 254, 1), rgba(99, 144, 254, 0.04), rgba(96, 188, 255, 0.1), rgba(95, 226, 255, 1))"
+    bg="linear-gradient(115deg, #656BFE, #6390FE0A, #60BCFF1A, #5FE2FF)"
+    {...rest}
+    boxSizing="border-box"
   >
-    <Box background="#020615">{children}</Box>
+    <Box background="#020615" height="100%" boxSizing="border-box">
+      {children}
+    </Box>
   </Box>
 )
 
@@ -42,10 +46,59 @@ const FeaturedEvent = () => {
   const imageUrl = featuredEvent?.icon?.data?.attributes?.url
 
   return (
-    <BorderBox>
-      <Box display="flex" alignItems="center" mx="14px">
-        <Image src={`${IMAGE_ROOT_URL}${imageUrl}`} w="508.9881px" h="340px" />
-        <Box ml="60px" py="43.5px" maxW="580px">
+    <BorderBox
+      maxW={{
+        base: '100%',
+        lg: '100%',
+      }}
+      margin={{
+        base: 'auto',
+        lg: 'inherit',
+      }}
+    >
+      <Box
+        display="flex"
+        flexDir={{
+          base: 'column',
+          lg: 'row',
+        }}
+        alignItems="center"
+        mx="14px"
+        pt={{
+          base: '14px',
+          lg: '0',
+        }}
+      >
+        <Box
+          h={{
+            base: '280px',
+            lg: '340px',
+          }}
+          bg="lightgray"
+        >
+          <Image
+            src={`${IMAGE_ROOT_URL}${imageUrl}`}
+            w={{
+              base: '330px',
+              lg: '508.9881px',
+            }}
+            h={{
+              base: '280px',
+              lg: '340px',
+            }}
+          />
+        </Box>
+        <Box
+          ml={{
+            base: '0',
+            lg: '60px',
+          }}
+          py="43.5px"
+          maxW={{
+            base: '330px',
+            lg: '580px',
+          }}
+        >
           <Flex
             gap="10px"
             alignItems="center"
@@ -60,10 +113,23 @@ const FeaturedEvent = () => {
               {formatDate(featuredEvent?.start_date, true)} - {formatDate(featuredEvent?.end_date)}
             </Text>
           </Flex>
-          <Text {...sizes[32]} fontFamily="Iosevka" mt="29px">
+          <Text
+            {...sizes[32]}
+            fontFamily="Iosevka"
+            mt={{
+              base: '23px',
+              lg: '29px',
+            }}
+          >
             {featuredEvent.name}
           </Text>
-          <Text {...sizes[16]} mt="14px">
+          <Text
+            {...sizes[16]}
+            mt={{
+              base: '5px',
+              lg: '14px',
+            }}
+          >
             {featuredEvent.description}
           </Text>
           <Flex gap="10px" alignItems="center" mt="26px">
@@ -77,6 +143,7 @@ const FeaturedEvent = () => {
             <Link href={`${featuredEvent.external_url}`} passHref>
               <a target="_blank" rel="noopener noreferrer">
                 <Text
+                  noOfLines={1}
                   transition="0.5s ease-in"
                   className={linkHovered ? 'active' : ''}
                   onMouseEnter={() => setLinkHovered(true)}
