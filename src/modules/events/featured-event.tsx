@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Box, BoxProps, Flex, Image, Text } from '@chakra-ui/react'
 import Spinner from '@components/spinner'
-import { sizes } from '@constants/textSizes'
 import { IMAGE_ROOT_URL } from '@constants/urls'
 import { FEATURED_EVENTS_QUERY } from '@graphql/queries/events'
 import formatDate from '@utils/format-date'
@@ -109,12 +108,12 @@ const FeaturedEvent = () => {
             p="4px"
           >
             <Image src="/svg/calendar.svg" w="23px" h="24px" />
-            <Text {...sizes[16]}>
+            <Text variant="16">
               {formatDate(featuredEvent?.start_date, true)} - {formatDate(featuredEvent?.end_date)}
             </Text>
           </Flex>
           <Text
-            {...sizes[32]}
+            variant="32"
             fontFamily="Iosevka"
             mt={{
               base: '23px',
@@ -124,7 +123,7 @@ const FeaturedEvent = () => {
             {featuredEvent.name}
           </Text>
           <Text
-            {...sizes[16]}
+            variant="16"
             mt={{
               base: '5px',
               lg: '14px',
@@ -138,7 +137,7 @@ const FeaturedEvent = () => {
             <Image
               src={`${IMAGE_ROOT_URL}${featuredEvent.location_country?.data?.attributes?.logo.data?.attributes?.url}`}
             />
-            <Text {...sizes[14]}>{featuredEvent.location_name}</Text>
+            <Text variant="14">{featuredEvent.location_name}</Text>
           </Flex>
           <Flex gap="10px" alignItems="center" mt="14px">
             <Image src="/svg/external-link.svg" />
@@ -150,7 +149,7 @@ const FeaturedEvent = () => {
                   className={linkHovered ? 'active' : ''}
                   onMouseEnter={() => setLinkHovered(true)}
                   onMouseLeave={() => setLinkHovered(false)}
-                  {...sizes[14]}
+                  variant="14"
                 >
                   {featuredEvent.external_url}
                 </Text>

@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/client'
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { SEO } from '@components/seo'
 import Spinner from '@components/spinner'
-import { sizes } from '@constants/textSizes'
 import { IMAGE_ROOT_URL } from '@constants/urls'
 import { GET_EVENT_BY_ID } from '@graphql/queries/events'
 import dayjs from 'dayjs'
@@ -49,12 +48,12 @@ const Events: FC = () => {
         <Link href="/events">
           <Flex gap="12px" cursor="pointer">
             <Image src="/svg/arrow-left.svg" />
-            <Text {...sizes[16]}>Back to Events</Text>
+            <Text variant="16">Back to Events</Text>
           </Flex>
         </Link>
 
         <Text
-          {...sizes[64]}
+          variant="64"
           fontFamily="Iosevka"
           mt={{
             base: '44px',
@@ -81,11 +80,11 @@ const Events: FC = () => {
         >
           <Flex gap="10px" alignItems="center">
             <Image src={`${IMAGE_ROOT_URL}${event?.location_country?.data?.attributes?.logo.data?.attributes?.url}`} />
-            <Text {...sizes[14]}>{event?.location_name}</Text>
+            <Text variant="14">{event?.location_name}</Text>
           </Flex>
           <Flex gap="10px" alignItems="center">
             <Image src={`/svg/calendar.svg`} />
-            <Text {...sizes[14]}>{dayjs(event?.start_date).format('DD MMM, YYYY')}.</Text>
+            <Text variant="14">{dayjs(event?.start_date).format('DD MMM, YYYY')}.</Text>
           </Flex>
           <Flex gap="10px" alignItems="center">
             <Image src="/svg/external-link.svg" />
@@ -97,7 +96,7 @@ const Events: FC = () => {
                   className={linkHovered ? 'active' : ''}
                   onMouseEnter={() => setLinkHovered(true)}
                   onMouseLeave={() => setLinkHovered(false)}
-                  {...sizes[14]}
+                  variant="14"
                 >
                   {event?.external_url}
                 </Text>

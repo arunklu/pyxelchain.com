@@ -1,7 +1,6 @@
 import { useMutation } from '@apollo/client'
 import { Box, chakra, Flex, Input, InputProps, Text, useToast } from '@chakra-ui/react'
 import Button from '@components/button'
-import { sizes } from '@constants/textSizes'
 import { SUGGEST_EVENT } from '@graphql/mutations/create-event'
 import dayjs from 'dayjs'
 import { FC } from 'react'
@@ -65,13 +64,13 @@ const SuggestAnEvent = () => {
         }}
       >
         <Box>
-          <Text {...sizes[64]} noOfLines={2} fontFamily="Iosevka">
+          <Text variant="64" noOfLines={2} fontFamily="Iosevka">
             Want to{' '}
             <chakra.span className="active" display="inline">
               Suggest an Event to Us?
             </chakra.span>
           </Text>
-          <Text {...sizes[16]} mt="10px" color="#c3c4c3">
+          <Text variant="16" mt="10px" color="#c3c4c3">
             Do you have an event you think we should attend? Give us a few details and we'll check it out! This is a
             dummy text and another one to make this section long and longer.
           </Text>

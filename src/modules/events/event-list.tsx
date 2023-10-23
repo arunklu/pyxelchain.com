@@ -1,7 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Box, chakra, Flex, Image, Text } from '@chakra-ui/react'
 import Spinner from '@components/spinner'
-import { sizes } from '@constants/textSizes'
 import { IMAGE_ROOT_URL } from '@constants/urls'
 import { ALL_EVENTS_QUERY } from '@graphql/queries/events'
 import formatDate from '@utils/format-date'
@@ -82,7 +81,7 @@ const EventList = () => {
             transition="0.5s ease-in"
             onClick={() => setSelected(q)}
           >
-            <Text {...sizes[16]} color={selected === q ? '#5CD1B4' : '#fff'} transition="0.25s ease-in">
+            <Text variant="16" color={selected === q ? '#5CD1B4' : '#fff'} transition="0.25s ease-in">
               {q}
             </Text>
           </Box>
@@ -140,7 +139,7 @@ const EventList = () => {
                       p="4px"
                     >
                       <Image src="/svg/calendar.svg" w="23px" h="24px" />
-                      <Text noOfLines={1} {...sizes[16]}>
+                      <Text noOfLines={1} variant="16">
                         {q?.end_date
                           ? `${formatDate(q?.start_date, true)} - ${formatDate(q?.end_date)}`
                           : formatDate(q?.start_date)}
@@ -152,19 +151,19 @@ const EventList = () => {
                       display={new Date(q?.start_date) > new Date() ? 'block' : 'none'}
                       p="4px"
                     >
-                      <Text noOfLines={1} {...sizes[16]} color="#5CD1B4">
+                      <Text noOfLines={1} variant="16" color="#5CD1B4">
                         {getDaysLeft(`${q?.start_date}`)}
                       </Text>
                     </Box>
                   </Flex>
 
                   <Link href={`events/${q.id}`}>
-                    <Text mt="25px" {...sizes[20]} fontFamily="Iosevka" cursor="pointer">
+                    <Text mt="25px" variant="20" fontFamily="Iosevka" cursor="pointer">
                       {q?.name}
                     </Text>
                   </Link>
 
-                  <Text mt="5px" {...sizes[16]} color="#C3C4C3" noOfLines={2}>
+                  <Text mt="5px" variant="16" color="#C3C4C3" noOfLines={2}>
                     {q?.description}
                   </Text>
 
@@ -172,7 +171,7 @@ const EventList = () => {
                     <Image
                       src={`${IMAGE_ROOT_URL}${q?.location_country?.data?.attributes?.logo.data?.attributes?.url}`}
                     />
-                    <Text {...sizes[14]}>{q?.location_name}</Text>
+                    <Text variant="14">{q?.location_name}</Text>
                   </Flex>
                   <Flex gap="10px" alignItems="center" mt="14px">
                     <Image src="/svg/external-link.svg" />
@@ -184,7 +183,7 @@ const EventList = () => {
                           className={linkHovered === q?.name ? 'active' : ''}
                           onMouseEnter={() => setLinkHovered(`${q?.name}`)}
                           onMouseLeave={() => setLinkHovered('')}
-                          {...sizes[14]}
+                          variant="14"
                         >
                           {q?.external_url}
                         </Text>
@@ -217,11 +216,11 @@ const EventList = () => {
           >
             <Flex alignItems="center" gap="12px" justifyContent="center">
               <Image src="/svg/menu-board.svg" />
-              <Text {...sizes[36]} fontFamily="Iosevka">
+              <Text variant="36" fontFamily="Iosevka">
                 No {selected} Events
               </Text>
             </Flex>
-            <Text textAlign="center" mt="10px" {...sizes[16]} color="#C3C4C3">
+            <Text textAlign="center" mt="10px" variant="16" color="#C3C4C3">
               This section is awaiting upcoming events. Keep an eye out for updates, and while you wait, take a journey
               through our{' '}
               <chakra.span className="active" display="inline" cursor="pointer" onClick={() => setSelected('Past')}>
