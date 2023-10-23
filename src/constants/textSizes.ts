@@ -45,4 +45,15 @@ export const sizes = {
       lg: '48px',
     },
   },
+  36: {
+    fontSize: {
+      base: '24px',
+      lg: '36px',
+    },
+    fontWeight: '600',
+    lineHeight: {
+      base: '31px',
+      lg: '47px',
+    },
+  },
 }

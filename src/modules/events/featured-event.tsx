@@ -129,6 +129,7 @@ const FeaturedEvent = () => {
               base: '5px',
               lg: '14px',
             }}
+            color="#C3C4C3"
           >
             {featuredEvent.description}
           </Text>

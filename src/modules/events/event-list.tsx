@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, chakra, Flex, Image, Text } from '@chakra-ui/react'
 import Spinner from '@components/spinner'
 import { sizes } from '@constants/textSizes'
 import { IMAGE_ROOT_URL } from '@constants/urls'
@@ -76,29 +76,29 @@ const EventList = () => {
         ))}
       </Flex>
 
-      <Box
-        display="grid"
-        mt={{
-          base: '40px',
-          lg: '78px',
-        }}
-        gridTemplateColumns={{
-          base: 'repeat(1, minmax(0, 1fr))',
-          md: 'repeat(2, minmax(0, 1fr))',
-          lg: 'repeat(2, minmax(0, 1fr))',
-          xl: 'repeat(3, minmax(0, 1fr))',
-        }}
-        gridColumnGap={{
-          base: '28px',
-          lg: '41px',
-        }}
-        gridRowGap={{
-          base: '28px',
-          lg: '41px',
-        }}
-      >
-        {eventData?.length ? (
-          eventData?.map((q) => {
+      {eventData?.length ? (
+        <Box
+          display="grid"
+          mt={{
+            base: '40px',
+            lg: '78px',
+          }}
+          gridTemplateColumns={{
+            base: 'repeat(1, minmax(0, 1fr))',
+            md: 'repeat(2, minmax(0, 1fr))',
+            lg: 'repeat(2, minmax(0, 1fr))',
+            xl: 'repeat(3, minmax(0, 1fr))',
+          }}
+          gridColumnGap={{
+            base: '28px',
+            lg: '41px',
+          }}
+          gridRowGap={{
+            base: '28px',
+            lg: '41px',
+          }}
+        >
+          {eventData?.map((q) => {
             return (
               <BorderBox key={`${q?.name}${q?.start_date}`}>
                 <Box
@@ -145,11 +145,11 @@ const EventList = () => {
                     </Box>
                   </Flex>
 
-                  <Text mt="25px" {...sizes[20]} fontFamily="Iosevka">
+                  <Text mt="25px" {...sizes[20]} fontFamily="Iosevka" cursor="pointer">
                     {q?.name}
                   </Text>
 
-                  <Text mt="5px" {...sizes[16]}>
+                  <Text mt="5px" {...sizes[16]} color="#C3C4C3">
                     {q?.description}
                   </Text>
 
@@ -179,11 +179,43 @@ const EventList = () => {
                 </Box>
               </BorderBox>
             )
-          })
-        ) : (
-          <></>
-        )}
-      </Box>
+          })}
+        </Box>
+      ) : (
+        <Box
+          display="grid"
+          placeContent="center"
+          maxW="600px"
+          m="auto"
+          mt={{
+            base: '60px',
+            lg: '80px',
+          }}
+        >
+          <Box
+            bg="#060c1d"
+            borderRadius="14px"
+            p={{
+              base: '20px',
+              lg: '28px',
+            }}
+          >
+            <Flex alignItems="center" gap="12px" justifyContent="center">
+              <Image src="/svg/menu-board.svg" />
+              <Text {...sizes[36]} fontFamily="Iosevka">
+                No {selected} Events
+              </Text>
+            </Flex>
+            <Text textAlign="center" mt="10px" {...sizes[16]} color="#C3C4C3">
+              This section is awaiting upcoming events. Keep an eye out for updates, and while you wait, take a journey
+              through our{' '}
+              <chakra.span className="active" display="inline" cursor="pointer" onClick={() => setSelected('Past')}>
+                past events.
+              </chakra.span>
+            </Text>
+          </Box>
+        </Box>
+      )}
     </>
   )
 }

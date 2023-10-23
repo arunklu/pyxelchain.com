@@ -6,6 +6,7 @@ import { EVENTS_QUERY } from '@graphql/queries/events'
 import EventList from '@modules/events/event-list'
 import FeaturedEvent from '@modules/events/featured-event'
 import Landing from '@modules/events/landing'
+import SuggestAnEvent from '@modules/events/suggest-an-event'
 import { FC } from 'react'
 import { Copy, EventEntity } from 'types'
 
@@ -42,6 +43,7 @@ const Events: FC = () => {
         }}
       />
       <EventList />
+      <SuggestAnEvent />
     </>
   )
 }
