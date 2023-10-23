@@ -46,9 +46,17 @@ const FeaturedEvent = () => {
       <Box display="flex" alignItems="center" mx="14px">
         <Image src={`${IMAGE_ROOT_URL}${imageUrl}`} w="508.9881px" h="340px" />
         <Box ml="60px" py="43.5px" maxW="580px">
-          <Flex gap="10px" alignItems="center">
+          <Flex
+            gap="10px"
+            alignItems="center"
+            justifyContent="center"
+            background="rgba(196, 196, 196, 0.11)"
+            borderRadius="7px"
+            w="220px"
+            p="4px"
+          >
             <Image src="/svg/calendar.svg" w="23px" h="24px" />
-            <Text>
+            <Text {...sizes[16]}>
               {formatDate(featuredEvent?.start_date, true)} - {formatDate(featuredEvent?.end_date)}
             </Text>
           </Flex>
