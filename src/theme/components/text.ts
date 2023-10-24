@@ -76,6 +76,18 @@ const Text = {
       },
       fontWeight: '600',
     },
+    error: {
+      fontSize: {
+        base: '14px',
+        lg: '14px',
+      },
+      lineHeight: {
+        base: '25px',
+        lg: '25px',
+      },
+      mt: -10,
+      color: 'red',
+    },
   },
   sizes: {
     text: {
