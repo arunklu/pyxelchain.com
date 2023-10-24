@@ -2,6 +2,8 @@ import { useMutation } from '@apollo/client'
 import { Box, chakra, Flex, Input, InputProps, Text, useToast } from '@chakra-ui/react'
 import Button from '@components/button'
 import { SUGGEST_EVENT } from '@graphql/mutations/create-event'
+import { isValidEmail } from '@utils/validate-email'
+import { isValidURL } from '@utils/validate-url'
 import dayjs from 'dayjs'
 import { FC } from 'react'
 import DatePicker from 'react-datepicker'
@@ -13,7 +15,12 @@ const CustomInput: FC<InputProps> = ({ ...rest }) => (
 )
 
 const SuggestAnEvent = () => {
-  const { control, handleSubmit, reset } = useForm()
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm()
   const [suggestEvent, { loading }] = useMutation(SUGGEST_EVENT)
   const toast = useToast()
 
@@ -91,14 +98,21 @@ const SuggestAnEvent = () => {
             <Controller
               control={control}
               name="name"
+              rules={{
+                required: true,
+              }}
               render={({ field }) => (
                 <CustomInput placeholder="Event Name" onChange={(e) => field.onChange(e)} value={field.value} />
               )}
             />
+            {errors.name && <Text variant="error">Event Name is required</Text>}
 
             <Controller
               control={control}
               name="description"
+              rules={{
+                required: true,
+              }}
               render={({ field }) => (
                 <CustomInput
                   placeholder="Describe the event you think we should attend"
@@ -110,9 +124,14 @@ const SuggestAnEvent = () => {
                 />
               )}
             />
+            {errors.description && <Text variant="error">Description is required</Text>}
+
             <Controller
               name="start_date"
               control={control}
+              rules={{
+                required: true,
+              }}
               render={({ field }) => (
                 <DatePicker
                   placeholderText="Event Start Date"
@@ -123,7 +142,12 @@ const SuggestAnEvent = () => {
                 />
               )}
             />
+            {errors.start_date && <Text variant="error">Start Date is required</Text>}
+
             <Controller
+              rules={{
+                required: true,
+              }}
               name="end_date"
               control={control}
               render={({ field }) => (
@@ -136,27 +160,53 @@ const SuggestAnEvent = () => {
                 />
               )}
             />
+            {errors.end_date && <Text variant="error">End Date is required</Text>}
+
             <Controller
               control={control}
               name="external_url"
+              rules={{
+                required: true,
+                validate: (value: string) => isValidURL(value),
+              }}
               render={({ field }) => (
                 <CustomInput placeholder="Event URL" onChange={(e) => field.onChange(e)} value={field.value} />
               )}
             />
+            {(errors as any).external_url?.type === 'required' && <Text variant="error">Event URL is required</Text>}
+            {(errors as any).external_url?.type === 'validate' && (
+              <Text variant="error">URL is not a valid format</Text>
+            )}
+
             <Controller
               control={control}
               name="suggestor_name"
+              rules={{
+                required: true,
+              }}
               render={({ field }) => (
                 <CustomInput placeholder="Your Full Name" onChange={(e) => field.onChange(e)} value={field.value} />
               )}
             />
+            {errors.suggestor_name && <Text variant="error">Full Name is required</Text>}
+
             <Controller
               control={control}
+              rules={{
+                required: true,
+                validate: (value: string) => isValidEmail(value),
+              }}
               name="suggestor_email_address"
               render={({ field }) => (
                 <CustomInput placeholder="Your Email Address" onChange={(e) => field.onChange(e)} value={field.value} />
               )}
             />
+            {(errors as any).suggestor_email_address?.type === 'required' && (
+              <Text variant="error">Email Address is required</Text>
+            )}
+            {(errors as any).suggestor_email_address?.type === 'validate' && (
+              <Text variant="error">Email address is not valid</Text>
+            )}
 
             <Button
               type="submit"
