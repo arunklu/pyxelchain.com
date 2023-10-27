@@ -16,6 +16,10 @@ export default [
     link: '/articles',
   },
   {
+    name: 'Newsletter',
+    link: '/newsletter',
+  },
+  {
     name: 'Events',
     link: '/events',
   },
