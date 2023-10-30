@@ -1,27 +1,16 @@
 
-variable "aws_access_key" {
-
-  default = "AKIA36N4RHHKB2YX2VFJ"
-}
-variable "aws_secret_key" {
-  default = "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"
-}
 
 variable "aws_region" {
   default = "us-east-1"
 }
 
 variable "domain_name" {
-  default = "devopsit.in"
+  default = "pyxelchain.com"
 }
 
-variable "sub_domain" {
-  default = "www.devopsit.in"
-
-}
 
 variable "environment" {
-  default = "dev"
+  default = "staging"
 }
 
 variable "acm_certificate_arn" {
