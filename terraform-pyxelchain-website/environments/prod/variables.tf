@@ -1,10 +1,10 @@
 
 variable "aws_access_key" {
 
-  default = "AKIA36N4RHHKB2YX2VFJ"
+  default = ""
 }
 variable "aws_secret_key" {
-  default = "c+QtYQKbF820dJ/0MauBpROT4WXCrDSby99oBns4"
+  default = ""
 }
 
 variable "aws_region" {
@@ -15,18 +15,14 @@ variable "domain_name" {
   default = "pyxelchain.com"
 }
 
-variable "sub_domain" {
-  default = "www.devopsit.in"
-
-}
-
 variable "environment" {
-  default = "prod"
+  default = "production"
 }
 
 variable "acm_certificate_arn" {
-  type    = any
+  type    = string
   default = ""
+  #  default = "arn:aws:acm:us-east-1:821271017940:certificate/859839ce-6e16-4350-93e9-8882037b724b"
 
 }
 
@@ -36,13 +32,13 @@ variable "ssl_support_method" {
 
 variable "public-subnets" {
   type    = list(string)
-  default = ["192.168.1.0/24", "192.168.2.0/24"]
+  default = ["10.0.1.0/24", "10.0.2.0/24"]
 
 }
 
 variable "private-subnets" {
   type    = list(string)
-  default = ["192.168.3.0/24", "192.168.4.0/24"]
+  default = ["10.0.3.0/24", "10.0.4.0/24"]
 
 }
 
@@ -54,12 +50,12 @@ variable "avail_az" {
 
 variable "cidr_block" {
   description = "The top level CIDR block for the VPC."
-  default     = "192.168.0.0/16"
+  default     = "10.0.0.0/16"
 
 }
 
 variable "ami" {
-  default = "ami-0ff834984748eaef2"
+  default = ""
 
 }
 
@@ -74,6 +70,7 @@ variable "root_block_device" {
   default = "30"
 
 }
+
 
 
 variable "vpc_security_group_ids" {

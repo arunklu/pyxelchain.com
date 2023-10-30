@@ -10,15 +10,12 @@ resource "aws_cloudfront_distribution" "main" {
     }
   }
 
-
   enabled             = true
   is_ipv6_enabled     = true
   comment             = "My CloudFront distribution"
   default_root_object = "index.html"
   price_class         = "PriceClass_All"
-
-  # aliases  = ["${var.environment}.${var.domain_name}"]
-  aliases = var.environment == "staging" ? ["staging.${var.domain_name}"] : var.environment == "dev" ? ["dev.${var.domain_name}"] : var.environment == "production" ? ["www.${var.domain_name}", "${var.domain_name}"] : []
+  aliases             = var.environment == "qa" ? ["qa.${var.domain_name}"] : var.environment == "staging" ? ["staging.${var.domain_name}"] : var.environment == "dev" ? ["dev.${var.domain_name}"] : var.environment == "production" ? ["www.${var.domain_name}", "${var.domain_name}"] : []
 
 
 
@@ -56,13 +53,10 @@ resource "aws_cloudfront_distribution" "main" {
     }
   }
 
-
   viewer_certificate {
-    acm_certificate_arn      = data.aws_acm_certificate.ssl-certs.arn
+    acm_certificate_arn      = var.acm_certificate_arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.1_2016"
   }
 
 }
-
-

@@ -9,6 +9,9 @@ output "cloudfront_hosted_zone" {
 
 }
 
-output "ssl-cer-arn" {
-  value = data.aws_acm_certificate.ssl-certs.arn
-}
+# output "ssl-certificates" {
+#   description = "SSL certificates used by the CloudFront Distribution"
+#   value = data.aws_acm_certificate.ssl-certificates.arn
+#
+#
+# }

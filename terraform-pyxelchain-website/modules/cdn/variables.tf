@@ -1,11 +1,14 @@
 variable "environment" {
-  # default = ["prod","qa","staging"]
-  default = ""
+  default = ["prod", "qa", "staging", "dev"]
+  # default = "prod"
 }
 
 variable "domain_name" {
-  default = "devopsit.in"
+  default = "pyxelchain.com"
+  type    = string
 }
+
+
 
 variable "viewer_certificate" {
   description = "The SSL configuration for this distribution"
@@ -20,13 +23,28 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
+variable "ssl_support_method" {
+  default = "sni-only"
+}
+
 variable "acm_certificate_arn" {
   type    = string
   default = ""
 
 }
 
-variable "ssl_support_method" {
-  default = "sni-only"
-}
+# variable "s3_domain_name" {
 
+# }
+
+# variable "s3_origin_id" {
+
+# }
+
+# variable "origin_id" {
+
+# }
+
+# variable "website_endpoint" {
+
+# }

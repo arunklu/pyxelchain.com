@@ -66,7 +66,6 @@ resource "aws_s3_bucket_versioning" "s3-bucket-versioning" {
 }
 
 
-
 # resource "aws_s3_bucket_policy" "bucket-policy" {
 #   bucket = var.bucket_name
 #   policy = <<EOF

@@ -1,19 +1,3 @@
-variable "access_key" {
-  default = ""
-
-}
-
-variable "secret_key" {
-  default = ""
-
-}
-
-variable "region_name" {
-  default = "us-east-1"
-
-}
-
-
 variable "environment" {
   type        = string
   description = "Environment name to be used as a prefix on resources that need naming."
@@ -28,11 +12,18 @@ variable "domain_name" {
 
 }
 
+variable "aws_eip" {
+  default = ""
+
+}
+
+
+
 variable "ami" {
   description = "ID of AMI to use for the instance"
   type        = string
-  # default     = null
-  default = "ami-0ff834984748eaef2"
+  default     = null
+  # default = "ami-0ff834984748eaef2"
 }
 
 variable "associate_public_ip_address" {
@@ -70,7 +61,7 @@ variable "vpc_security_group_ids" {
 }
 
 variable "aws_region" {
-  default = "us-east-1"
+  default = ""
 }
 
 variable "root_block_device" {
@@ -78,5 +69,3 @@ variable "root_block_device" {
   default     = "30"
 
 }
-
-
