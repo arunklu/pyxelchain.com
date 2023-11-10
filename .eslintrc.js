@@ -32,6 +32,7 @@ module.exports = {
     'react/display-name': 'off',
     'react/no-unescaped-entities': 'off',
     'no-shadow': 'off',
+    'no-useless-escape': 'off',
     '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true }],
