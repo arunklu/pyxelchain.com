@@ -1,18 +1,19 @@
-import React from 'react'
+import { Box, Center, Divider, Flex, Grid, GridItem, VStack } from '@chakra-ui/react'
 import axios from 'axios'
 import { print } from 'graphql'
 import { GetStaticProps } from 'next'
-import { Box, Center, Divider, Flex, Grid, GridItem, VStack } from '@chakra-ui/react'
+import React from 'react'
 
-import { SEO } from '@components/seo'
 import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import ArticleTag from '@modules/articles/tag'
+import { SEO } from '@components/seo'
 import ArticlesCard from '@modules/articles/articles-card'
+import ArticleTag from '@modules/articles/tag'
 
-import { CopyEntity, ArticleEntity, TagEntity } from 'types/index'
-import { ARTICLES_QUERY } from '@graphql/queries/articles'
+import { STRAPI_GRAPHQL_URL } from '@constants/urls'
 import { StrapiContextProvider } from '@context/strapi-context'
+import { ARTICLES_QUERY } from '@graphql/queries/articles'
 import useHorizontalScroll from '@hooks/use-horizontal-scroll'
+import { ArticleEntity, CopyEntity, TagEntity } from 'types/index'
 
 interface PageProps {
   data: {
@@ -128,7 +129,7 @@ interface QueryResult {
 }
 
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
-  const result = await axios.post<QueryResult>(process.env.NEXT_PUBLIC_API_URL as string, {
+  const result = await axios.post<QueryResult>(STRAPI_GRAPHQL_URL as string, {
     query: print(ARTICLES_QUERY),
   })
 

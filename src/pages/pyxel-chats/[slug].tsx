@@ -1,15 +1,16 @@
 import { Box, Grid, GridItem } from '@chakra-ui/react'
+import { SEO } from '@components/seo'
 import { Heading } from '@components/typography'
+import { STRAPI_GRAPHQL_URL } from '@constants/urls'
+import { GET_PODCAST_BY_SLUG_QUERY, PODCAST_SLUGS_QUERY } from '@graphql/queries/podcasts'
 import PyxelChat from '@modules/pyxel-chat/pyxel-chat'
 import ChatsCard from '@modules/pyxel-chats/chats-card'
-import { PodcastEntity, Podcast as PodcastTypes } from 'types/index'
+import { getImageUrl } from '@utils/url-utils'
+import axios, { AxiosResponse } from 'axios'
+import { print } from 'graphql'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import React from 'react'
-import axios, { AxiosResponse } from 'axios'
-import { GET_PODCAST_BY_SLUG_QUERY, PODCAST_SLUGS_QUERY } from '@graphql/queries/podcasts'
-import { print } from 'graphql'
-import { SEO } from '@components/seo'
-import { getImageUrl } from '@utils/url-utils'
+import { Podcast as PodcastTypes, PodcastEntity } from 'types/index'
 
 interface ChatProps {
   data: NonNullable<PodcastEntity['attributes']>
@@ -45,7 +46,7 @@ const Chat: React.FC<ChatProps> = ({ data }) => {
 export default Chat
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const result: AxiosResponse = await axios.post(process.env.NEXT_PUBLIC_API_URL as string, {
+  const result: AxiosResponse = await axios.post(STRAPI_GRAPHQL_URL as string, {
     query: print(PODCAST_SLUGS_QUERY),
   })
   const paths =
@@ -62,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const result: AxiosResponse = await axios.post(process.env.NEXT_PUBLIC_API_URL as string, {
+  const result: AxiosResponse = await axios.post(STRAPI_GRAPHQL_URL as string, {
     query: print(GET_PODCAST_BY_SLUG_QUERY),
     variables: {
       slug: context.params?.slug,
