@@ -1,14 +1,15 @@
 import { Divider } from '@chakra-ui/react'
+import { SEO } from '@components/seo'
+import { STRAPI_GRAPHQL_URL } from '@constants/urls'
 import { PODCASTS_QUERY } from '@graphql/queries/podcasts'
 import ChatsList from '@modules/pyxel-chats/chats-list'
 import PCMarquee from '@modules/pyxel-chats/marquee'
 import PyxelChats from '@modules/pyxel-chats/pyxel-chats'
-import { PodcastEntity, TagEntity, CopyEntity } from 'types/index'
 import axios, { AxiosResponse } from 'axios'
 import { print } from 'graphql'
 import { GetStaticProps } from 'next'
 import React from 'react'
-import { SEO } from '@components/seo'
+import { CopyEntity, PodcastEntity, TagEntity } from 'types/index'
 interface IndexProps {
   data: {
     podcasts: NonNullable<PodcastEntity>[]
@@ -38,7 +39,7 @@ const Index: React.FC<IndexProps> = ({ data }) => {
 export default Index
 
 export const getStaticProps: GetStaticProps<IndexProps> = async () => {
-  const result: AxiosResponse = await axios.post(process.env.NEXT_PUBLIC_API_URL as string, {
+  const result: AxiosResponse = await axios.post(STRAPI_GRAPHQL_URL as string, {
     query: print(PODCASTS_QUERY),
   })
 

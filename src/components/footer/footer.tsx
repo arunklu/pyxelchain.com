@@ -1,12 +1,11 @@
-import React from 'react'
-import cx from 'classnames'
-import { Flex, Divider, Box, Grid, GridItem } from '@chakra-ui/react'
+import { Box, Divider, Flex, Grid, GridItem } from '@chakra-ui/react'
+import { Text } from '@components/typography'
 import NAVIGATION_LINKS from '@constants/navigation-links'
+import cx from 'classnames'
+import { useRouter } from 'next/router'
 import Link from '../link'
 import FootNote from './foot-note'
 import FooterAction from './footer-action'
-import { useRouter } from 'next/router'
-import { Text } from '@components/typography'
 
 const Footer = () => {
   const router = useRouter()
@@ -74,6 +73,7 @@ const Footer = () => {
               color="#C3C4C3"
               href="https://instagram.com/pyxelchain"
               target="_blank"
+              fontSize="sm"
               _hover={{ color: '#4EB2C5' }}
             >
               Instagram
@@ -85,6 +85,7 @@ const Footer = () => {
               href="https://twitter.com/PyxelChain"
               target="_blank"
               _hover={{ color: '#4EB2C5' }}
+              fontSize="sm"
             >
               Twitter
             </Link>

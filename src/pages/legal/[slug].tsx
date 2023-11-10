@@ -1,19 +1,20 @@
+import { Box, Flex, Grid, GridItem, Select, VStack } from '@chakra-ui/react'
+import Button from '@components/button'
+import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
+import { SEO } from '@components/seo'
+import { Text } from '@components/typography'
+import { STRAPI_GRAPHQL_URL } from '@constants/urls'
 import { GET_TERMS_PRIVACY_COOKIE_QUERY } from '@graphql/queries/terms'
-import { PrivacyTermsCookie } from 'types/index'
+import Affix from '@uiw/react-affix'
+import { LocalDate } from '@utils/local-date'
+import { getDownloadLink } from '@utils/url-utils'
 import axios, { AxiosResponse } from 'axios'
+import cx from 'classnames'
 import { print } from 'graphql'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import React, { useState } from 'react'
-import { Box, Flex, Grid, GridItem, Select, VStack } from '@chakra-ui/react'
-import MarkdownRenderer, { HeadingRenderer } from '@components/markdown-renderer'
-import { Text } from '@components/typography'
-import { LocalDate } from '@utils/local-date'
-import Button from '@components/button'
-import Affix from '@uiw/react-affix'
-import { getDownloadLink } from '@utils/url-utils'
-import { SEO } from '@components/seo'
 import dynamic from 'next/dynamic'
-import cx from 'classnames'
+import React, { useState } from 'react'
+import { PrivacyTermsCookie } from 'types/index'
 
 const ScrollSpy = dynamic(() => import('react-ui-scrollspy'), {
   ssr: false,
@@ -125,7 +126,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const result: AxiosResponse = await axios.post(process.env.NEXT_PUBLIC_API_URL as string, {
+  const result: AxiosResponse = await axios.post(STRAPI_GRAPHQL_URL as string, {
     query: print(GET_TERMS_PRIVACY_COOKIE_QUERY),
     variables: {
       slug: context.params?.slug,

@@ -15,12 +15,13 @@ export default [
     name: 'Articles',
     link: '/articles',
   },
+  {
+    name: 'Newsletter',
+    link: '/newsletter',
+  },
   // {
-  //  name: 'PyxelChats',
-  //  link: '/pyxel-chats',
-  // },
-  // {
-  //  name: 'Ecosystem',
+  //   name: 'Events',
+  //   link: '/events',
   // },
   {
     name: 'Brand',

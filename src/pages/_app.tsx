@@ -1,23 +1,25 @@
 import '@fontsource/inter'
 import '@fontsource/iosevka'
 
-import 'tippy.js/dist/tippy.css'
 import 'style.css'
+import 'tippy.js/dist/tippy.css'
 
-import { FC, useEffect, useState } from 'react'
-import Head from 'next/head'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ApolloProvider } from '@apollo/client'
 import { Box, ChakraProvider, Container, Divider, Fade } from '@chakra-ui/react'
-import { AppProps } from 'next/app'
-import theme from '../theme/index'
-import Navbar from '@components/navbar'
 import Footer from '@components/footer'
+import Navbar from '@components/navbar'
 import client from '@graphql/apollo-client'
-import { useRouter } from 'next/router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import PlausibleProvider from 'next-plausible'
+import { AppProps } from 'next/app'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { FC, useEffect, useState } from 'react'
+import theme from '../theme/index'
 
 const queryClient = new QueryClient()
+
+console.log('Version: 1.2') // eslint-disable-line
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [isReady, setIsReady] = useState(false)

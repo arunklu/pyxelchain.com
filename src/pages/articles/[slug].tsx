@@ -1,18 +1,19 @@
-import React from 'react'
+import { Box, Grid, GridItem } from '@chakra-ui/react'
 import axios from 'axios'
 import { print } from 'graphql'
-import { Box, Grid, GridItem } from '@chakra-ui/react'
+import React from 'react'
 
 import { SEO } from '@components/seo'
 import { Heading } from '@components/typography'
 import Article from '@modules/article/article'
 import ArticlesCard from '@modules/articles/articles-card'
 
-import { Article as ArticleType, ArticleEntity } from 'types/index'
+import { STRAPI_GRAPHQL_URL } from '@constants/urls'
 import { ARTICLE_SLUGS_QUERY, GET_ARTICLE_BY_SLUG_QUERY } from '@graphql/queries/articles'
-import { GetStaticPaths, GetStaticProps } from 'next'
 import { getImageUrl } from '@utils/url-utils'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import NotFound from 'pages/404'
+import { Article as ArticleType, ArticleEntity } from 'types/index'
 
 interface ArticleTemplateProps {
   data: NonNullable<ArticleEntity['attributes']>
@@ -63,7 +64,7 @@ interface ArticleTitlesQueryResult {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const result = await axios.post<ArticleTitlesQueryResult>(process.env.NEXT_PUBLIC_API_URL as string, {
+  const result = await axios.post<ArticleTitlesQueryResult>(STRAPI_GRAPHQL_URL as string, {
     query: print(ARTICLE_SLUGS_QUERY),
   })
 
@@ -92,7 +93,7 @@ export const getStaticProps: GetStaticProps<
   { data: NonNullable<ArticleEntity['attributes']> },
   { slug: string }
 > = async (context) => {
-  const result = await axios.post<QueryResult>(process.env.NEXT_PUBLIC_API_URL as string, {
+  const result = await axios.post<QueryResult>(STRAPI_GRAPHQL_URL as string, {
     query: print(GET_ARTICLE_BY_SLUG_QUERY),
     variables: {
       slug: context.params?.slug,
