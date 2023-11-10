@@ -19,10 +19,10 @@ export default [
     name: 'Newsletter',
     link: '/newsletter',
   },
-  {
-    name: 'Events',
-    link: '/events',
-  },
+  // {
+  //   name: 'Events',
+  //   link: '/events',
+  // },
   {
     name: 'Brand',
     link: '/brand',
