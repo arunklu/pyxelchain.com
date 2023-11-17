@@ -18,7 +18,7 @@ const Newsletter: React.FC = () => {
         <Heading as="span">to Our Newsletter</Heading>
       </Box>
       <Text maxW="638px" mx="auto" textAlign="center" color="white" mt="29px">
-        If you're inter ested in learning more about how PyxelChain plans to make the Internet a safer place, share an
+        If you're interested in learning more about how PyxelChain plans to make the Internet a safer place, share an
         email address to receive early access to releases and other educational materials. We hate it when sites spam or
         sell info, so we don't do that here. Don't worry, you can unsubscribe at any time.
       </Text>
