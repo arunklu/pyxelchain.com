@@ -57,7 +57,15 @@ const Services: React.FC = () => {
   }
 
   return (
-    <SimpleGrid my={{ base: '64px', md: '80px', lg: '111px' }} gap="10" columns={{ base: 1, md: 2 }}>
+    <SimpleGrid
+      my={{ base: '64px', md: '80px', lg: '111px' }}
+      gap="10"
+      columns={{ base: 1, md: 2 }}
+      alignItems={{
+        base: 'auto',
+        md: 'start',
+      }}
+    >
       <Box maxW={{ base: 'full', md: '600px' }} mb={{ base: 12, md: 'inherit' }}>
         <SEO title={servicesCopy?.seo?.metatitle} description={servicesCopy?.seo?.metadescription} />
         <HeadingRenderer mobilecenter title={servicesCopy?.title} titleWithGradient={servicesCopy?.titleWithGradient} />
@@ -66,7 +74,6 @@ const Services: React.FC = () => {
         </Flex>
       </Box>
       <Box
-        h="480px"
         p={{ base: 5, lg: 12 }}
         maxW={{ base: 'full', md: '598px' }}
         w="full"
