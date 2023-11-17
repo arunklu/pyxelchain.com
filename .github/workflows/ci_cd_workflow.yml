@@ -22,8 +22,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version:  16.16.x
-          cache: npm
-          cache-dependency-path: package-lock.json
+          # cache: npm
+          # cache-dependency-path: package-lock.json
       - run: pwd && ls -la && cat .env && sudo cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run export && ls -lrt
 
       - name: Upload file to bucket
