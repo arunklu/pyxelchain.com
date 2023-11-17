@@ -19,7 +19,7 @@ import theme from '../theme/index'
 
 const queryClient = new QueryClient()
 
-console.log('Version: 1.8') // eslint-disable-line
+console.log('Version: 1.9') // eslint-disable-line
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   const [isReady, setIsReady] = useState(false)
