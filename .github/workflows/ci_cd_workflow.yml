@@ -35,7 +35,25 @@ jobs:
           AWS_REGION: 'us-east-1'
           S3_BUCKET: 'pyxelchain-website-prod'
           FILE: ./out
-      
+
+  invalidate:
+    needs: build_deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2 
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1 
+      - name: Invalidate CloudFront Cache
+        run: | 
+          echo "Invalidating Cloudfront Distribution"
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_PROD }} --paths "/*"          
+
+
+
+
       # - name: Copy Files to Remote Host
       #   uses: Pendect/action-rsyncer@v1.1.0
       #   env:
