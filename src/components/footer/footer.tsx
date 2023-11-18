@@ -36,19 +36,6 @@ const Footer = () => {
                 {link.name}
               </Link>
             ))}
-            <Link
-              mt="11px"
-              fontSize="sm"
-              h="max-content"
-              color="#C3C4C3"
-              href="/newsletter"
-              _hover={{ color: '#4EB2C5' }}
-              className={cx({
-                active: router.pathname.startsWith('/newsletter'),
-              })}
-            >
-              Newsletter
-            </Link>
           </Flex>
         </GridItem>
         <GridItem colSpan={{ base: 5, md: 2 }}>
