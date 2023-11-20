@@ -1,7 +1,8 @@
 import { useMutation } from '@apollo/client'
-import { Box, chakra, Flex, Input, InputProps, Text, useToast } from '@chakra-ui/react'
+import { Box, chakra, Flex, Input, InputProps, Text } from '@chakra-ui/react'
 import Button from '@components/button'
 import { SUGGEST_EVENT } from '@graphql/mutations/create-event'
+import { showToast } from '@utils/toast-utils'
 import { isValidEmail } from '@utils/validate-email'
 import { isValidURL } from '@utils/validate-url'
 import dayjs from 'dayjs'
@@ -10,8 +11,16 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Controller, useForm } from 'react-hook-form'
 
-const CustomInput: FC<InputProps> = ({ ...rest }) => (
-  <Input borderRadius="6px" background="#00000012" color="#C3C4C3" mb="15px" {...rest} />
+const CustomInput: FC<InputProps> = ({ value, onChange, ...rest }) => (
+  <Input
+    borderRadius="6px"
+    background="#00000012"
+    color="#C3C4C3"
+    mb="15px"
+    value={value ?? ''}
+    onChange={onChange}
+    {...rest}
+  />
 )
 
 const SuggestAnEvent = () => {
@@ -22,7 +31,6 @@ const SuggestAnEvent = () => {
     formState: { errors },
   } = useForm()
   const [suggestEvent, { loading }] = useMutation(SUGGEST_EVENT)
-  const toast = useToast()
 
   const onSubmit = async (formData: any) => {
     const { data } = await suggestEvent({
@@ -37,18 +45,11 @@ const SuggestAnEvent = () => {
         },
       },
     })
-
     if (data.createEvent.data.id) {
-      toast({
-        title: `Successfully submitted Event suggestion form.`,
-        status: 'success',
-      })
+      showToast('Successfully submitted Event suggestion form.', 'success')
       reset()
     } else {
-      toast({
-        title: `Something went wrong`,
-        status: 'error',
-      })
+      showToast('Something went wrong', 'error')
     }
   }
 
@@ -71,7 +72,7 @@ const SuggestAnEvent = () => {
         }}
       >
         <Box>
-          <Text variant="64" noOfLines={2} fontFamily="Iosevka">
+          <Text variant="64" noOfLines={2} fontFamily="Iosevka" color="white">
             Want to{' '}
             <chakra.span className="active" display="inline">
               Suggest an Event to Us?
@@ -118,7 +119,7 @@ const SuggestAnEvent = () => {
                   placeholder="Describe the event you think we should attend"
                   onChange={(e) => field.onChange(e)}
                   value={field.value}
-                  h="128px"
+                  height="129px"
                   as="textarea"
                   pt="10px"
                 />

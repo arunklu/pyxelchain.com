@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Box, chakra, Flex, Image, Text } from '@chakra-ui/react'
+import EventExternalLink from '@components/event-external-link'
 import Spinner from '@components/spinner'
 import { IMAGE_ROOT_URL } from '@constants/urls'
 import { ALL_EVENTS_QUERY } from '@graphql/queries/events'
@@ -18,7 +19,6 @@ interface FeaturedEventsQuery {
 
 const EventList = () => {
   const [selected, setSelected] = useState('All')
-  const [linkHovered, setLinkHovered] = useState('')
   const { data, loading } = useQuery<FeaturedEventsQuery>(ALL_EVENTS_QUERY)
 
   const eventData = useMemo(() => {
@@ -74,8 +74,8 @@ const EventList = () => {
           <Box
             key={q}
             bg={selected === q ? 'rgba(92, 209, 180, 0.10)' : 'rgba(196, 196, 196, 0.06)'}
-            py="4px"
-            px="10px"
+            py="9px"
+            px="24px"
             borderRadius="6px"
             cursor="pointer"
             transition="0.5s ease-in"
@@ -120,7 +120,12 @@ const EventList = () => {
                   }}
                 >
                   <Box h="280px" background="lightgray">
-                    <Image src={`${IMAGE_ROOT_URL}${q?.icon?.data?.attributes?.url}`} w="100%" h="280px" />
+                    <Image
+                      src={`${IMAGE_ROOT_URL}${q?.icon?.data?.attributes?.url}`}
+                      w="100%"
+                      h="280px"
+                      objectFit="cover"
+                    />
                   </Box>
 
                   <Flex
@@ -139,7 +144,7 @@ const EventList = () => {
                       p="4px"
                     >
                       <Image src="/svg/calendar.svg" w="23px" h="24px" />
-                      <Text noOfLines={1} variant="16">
+                      <Text noOfLines={1} variant="16" color="white">
                         {q?.end_date
                           ? `${formatDate(q?.start_date, true)} - ${formatDate(q?.end_date)}`
                           : formatDate(q?.start_date)}
@@ -158,7 +163,16 @@ const EventList = () => {
                   </Flex>
 
                   <Link href={`events/${q.id}`}>
-                    <Text mt="25px" variant="20" fontFamily="Iosevka" cursor="pointer">
+                    <Text
+                      mt="25px"
+                      variant="20"
+                      fontFamily="Iosevka"
+                      cursor="pointer"
+                      color="white"
+                      _hover={{
+                        textDecoration: 'underline',
+                      }}
+                    >
                       {q?.name}
                     </Text>
                   </Link>
@@ -171,25 +185,11 @@ const EventList = () => {
                     <Image
                       src={`${IMAGE_ROOT_URL}${q?.location_country?.data?.attributes?.logo.data?.attributes?.url}`}
                     />
-                    <Text variant="14">{q?.location_name}</Text>
+                    <Text variant="14" color="white">
+                      {q?.location_name}
+                    </Text>
                   </Flex>
-                  <Flex gap="10px" alignItems="center" mt="14px">
-                    <Image src="/svg/external-link.svg" />
-                    <Link href={`${q?.external_url}`} passHref>
-                      <a target="_blank" rel="noopener noreferrer">
-                        <Text
-                          noOfLines={1}
-                          transition="0.5s ease-in"
-                          className={linkHovered === q?.name ? 'active' : ''}
-                          onMouseEnter={() => setLinkHovered(`${q?.name}`)}
-                          onMouseLeave={() => setLinkHovered('')}
-                          variant="14"
-                        >
-                          {q?.external_url}
-                        </Text>
-                      </a>
-                    </Link>
-                  </Flex>
+                  <EventExternalLink url={q.external_url ?? ''} />
                 </Box>
               </BorderBox>
             )
@@ -215,8 +215,26 @@ const EventList = () => {
             }}
           >
             <Flex alignItems="center" gap="12px" justifyContent="center">
-              <Image src="/svg/menu-board.svg" />
-              <Text variant="36" fontFamily="Iosevka">
+              <Image
+                src="/svg/menu-board.svg"
+                width={{
+                  base: '26px',
+                  lg: '56px',
+                }}
+                height={{
+                  base: '26px',
+                  lg: '56px',
+                }}
+              />
+              <Text
+                variant="36"
+                fontSize={{
+                  base: '24px',
+                  lg: '36px',
+                }}
+                color="white"
+                fontFamily="Iosevka"
+              >
                 No {selected} Events
               </Text>
             </Flex>

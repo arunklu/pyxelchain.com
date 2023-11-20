@@ -21,6 +21,7 @@ export const EVENTS_QUERY = gql`
             metadescription
           }
         }
+        id
       }
     }
   }
@@ -30,6 +31,7 @@ export const FEATURED_EVENTS_QUERY = gql`
   query featuredEvent {
     events(filters: { featured: { eq: true } }, pagination: { limit: 1 }) {
       data {
+        id
         attributes {
           location_name
           external_url

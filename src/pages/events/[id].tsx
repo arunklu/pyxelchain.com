@@ -38,17 +38,14 @@ const Events: FC = () => {
 
   return (
     <>
-      <SEO title={event?.seo?.metatitle} description={event?.seo?.metadescription} />
-      <Box
-        mt="48px"
-        mx={{
-          base: '28px',
-        }}
-      >
+      <SEO title={event?.name} description={event?.description} />
+      <Box mt="48px">
         <Link href="/events">
           <Flex gap="12px" cursor="pointer">
             <Image src="/svg/arrow-left.svg" />
-            <Text variant="16">Back to Events</Text>
+            <Text variant="16" color="white">
+              Back to Events
+            </Text>
           </Flex>
         </Link>
 
@@ -59,6 +56,7 @@ const Events: FC = () => {
             base: '44px',
             lg: '48px',
           }}
+          color="white"
         >
           {event?.name}
         </Text>
@@ -71,20 +69,24 @@ const Events: FC = () => {
           }}
           alignItems={{
             base: 'flex-start',
-            sm: 'center',
+            md: 'center',
           }}
           flexDirection={{
             base: 'column',
-            sm: 'row',
+            md: 'row',
           }}
         >
           <Flex gap="10px" alignItems="center">
             <Image src={`${IMAGE_ROOT_URL}${event?.location_country?.data?.attributes?.logo.data?.attributes?.url}`} />
-            <Text variant="14">{event?.location_name}</Text>
+            <Text variant="14" color="white">
+              {event?.location_name}
+            </Text>
           </Flex>
           <Flex gap="10px" alignItems="center">
             <Image src={`/svg/calendar.svg`} />
-            <Text variant="14">{dayjs(event?.start_date).format('DD MMM, YYYY')}.</Text>
+            <Text variant="14" color="white">
+              {dayjs(event?.start_date).format('DD MMM, YYYY')}.
+            </Text>
           </Flex>
           <Flex gap="10px" alignItems="center">
             <Image src="/svg/external-link.svg" />
@@ -97,6 +99,7 @@ const Events: FC = () => {
                   onMouseEnter={() => setLinkHovered(true)}
                   onMouseLeave={() => setLinkHovered(false)}
                   variant="14"
+                  color="white"
                 >
                   {event?.external_url}
                 </Text>

@@ -64,6 +64,7 @@ const Text = {
     64: {
       fontSize: {
         base: '36px',
+        sm: '36px',
         lg: '64px',
       },
       lineHeight: {
