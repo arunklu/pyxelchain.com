@@ -1,0 +1,55 @@
+name: Creating Pyxelchain Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      choice:
+        description: 'Choose Terraform action'
+        required: true
+        default: 'plan'
+        options:
+          - 'plan'
+          - 'apply'
+          - 'destroy'
+
+jobs:
+  build_infra:
+    runs-on: ubuntu-latest
+
+    env:
+      TERRAFORM_COMMAND: ${{ github.event.inputs.choice }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+
+      - name: Initialize and Validate Terraform Configuration
+        run: |
+          cd terraform
+          terraform init
+          terraform validate
+
+      - name: Executing Terraform Actions
+        run: |
+          if [ "${TERRAFORM_COMMAND}" == "plan" ]; then
+            terraform plan
+          elif [ "${TERRAFORM_COMMAND}" == "apply" ]; then
+            terraform apply -auto-approve
+          elif [ "${TERRAFORM_COMMAND}" == "destroy" ]; then
+            terraform destroy -auto-approve
+          else
+            echo "Invalid choice. Please choose from 'plan', 'apply', or 'destroy'."
+            exit 1
+          fi
