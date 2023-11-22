@@ -1,5 +1,5 @@
-## Build Instructions 
- 
+## Build Instructions
+
 - `npm i`
 - `cp .env.example .env` and ask a dev team member for the strings
 - `npm run build`
@@ -50,73 +50,71 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
 
 - CI/CD information
 
-| Branch | Domain |  Need VPN | Deployment Type | AWS server Name | IP Type | Deployment Code Path | Dockerfile app type | 
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| staging | https://pyxelchain.com-stg.gameficap.com/ | Y | EC2 Instance | website-services-staging | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
-| main | https://pyxelchain.com/ | N | EC2 Instance | pyxelchain.com-v2 | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
+| Branch  | Domain                                    | Need VPN | Deployment Type | AWS server Name          | IP Type | Deployment Code Path                      | Dockerfile app type |
+| ------- | ----------------------------------------- | -------- | --------------- | ------------------------ | ------- | ----------------------------------------- | ------------------- |
+| staging | https://pyxelchain.com-stg.gameficap.com/ | Y        | EC2 Instance    | website-services-staging | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16  |
+| main    | https://pyxelchain.com/                   | N        | EC2 Instance    | pyxelchain.com-v2        | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16  |
 
 - Environment Variables
-  
-  | Name | DEV |  STAGING | PROD |
-  | --- | --- | --- | --- |
-  | NEXT_PUBLIC_BASE_URL | TBD | TBD | AWS PARAM STORE |
-  | NEXT_PUBLIC_API_URL | TBD | TBD | AWS PARAM STORE |
-  | NEXT_PUBLIC_ACCESS_TOKEN | TBD | TBD | AWS PARAM STORE |
-  | NEXT_PUBLIC_BUTTONDOWN_TOKEN | TBD | TBD | AWS PARAM STORE |  
-  
+
+  | Name                         | DEV | STAGING | PROD            |
+  | ---------------------------- | --- | ------- | --------------- |
+  | NEXT_PUBLIC_BASE_URL         | TBD | TBD     | AWS PARAM STORE |
+  | NEXT_PUBLIC_API_URL          | TBD | TBD     | AWS PARAM STORE |
+  | NEXT_PUBLIC_ACCESS_TOKEN     | TBD | TBD     | AWS PARAM STORE |
+  | NEXT_PUBLIC_BUTTONDOWN_TOKEN | TBD | TBD     | AWS PARAM STORE |
+
 - Running the app standalone
- 
+
   sudo cp /DevOps/env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run build && npm run dev
-  
+
 - Running the app using docker-compose
-  
-| Docker Compose File | Run Command |  Setup Description |
-| --- | --- | --- |
-| docker-compose.yml | docker-compose up -d | - this will run the app using the nginx network. This will need the jwilder/nginx and jrcs/letsencrypt-nginx-proxy-companion docker images |
+
+| Docker Compose File     | Run Command                                     | Setup Description                                                                                                                          |
+| ----------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| docker-compose.yml      | docker-compose up -d                            | - this will run the app using the nginx network. This will need the jwilder/nginx and jrcs/letsencrypt-nginx-proxy-companion docker images |
 | docker-compose-prod.yml | docker-compose -f docker-compose-prod.yml up -d | - this will run the app using the nginx network. This will need the jwilder/nginx and jrcs/letsencrypt-nginx-proxy-companion docker images |
 
-
-- Strapi Instance : https://pyxiscms.gameficap.com/admin
+- Strapi Instance : https://strapi-pyxelchain.gameficap.com/admin
 - Publishing contents from Strapi to Pyxelchain.com
-
 
 ![Strapi Content Publishing](/../main/DevOps/docs_images/strapi_publish_content.png?raw=true)
 
-- Pyxelchain architectural blueprint 
+- Pyxelchain architectural blueprint
 
 ![Strapi Content Publishing](/../main/DevOps/docs_images/pyxelchain_archi_blueprint.png?raw=true)
 
 # terraform the project
+
 Pre-requisites
+
 1.  Request from DEVOPS team AWS access and secret key
 2.  Very important! You can't use "us-east-1" region coz that's our main region.
 3.  You need to provide the terraform plan snapshot or ansi file. You can run the following
-     commands to generate these files:
-         - terraform plan -out bpp-tf-plan.plan
-         - terraform show bpp-tf-plan.plan > tfplan.ansi
-Terraform variables
-1. On the project folder root folder, you can go to the "terraform-contract-registry" folder and define the following:
-   - variable "aws_region" { default = "us-east-2" } 
+    commands to generate these files: - terraform plan -out bpp-tf-plan.plan - terraform show bpp-tf-plan.plan > tfplan.ansi
+    Terraform variables
+4.  On the project folder root folder, you can go to the "terraform-contract-registry" folder and define the following:
+    - variable "aws_region" { default = "us-east-2" }
       - example using ohio region
-   - variable "aws_subregion_a" { default = "us-east-2a" }
+    - variable "aws_subregion_a" { default = "us-east-2a" }
       - example using ohio region
-   - variable "instance_ami"  { default = "ami-06c7d6c0987eaa46c" }
+    - variable "instance_ami" { default = "ami-06c7d6c0987eaa46c" }
       - can used this in case you want ubuntu OS
-   - variable "aws_access_key" { default = "" }
+    - variable "aws_access_key" { default = "" }
       - need to request from DEVOPS team
-   - variable "aws_secret_key" { default = "" }
-      - need to request from DEVOPS team 
-   - variable "github_personal_access_token" { default = "" }
+    - variable "aws_secret_key" { default = "" }
       - need to request from DEVOPS team
-   - variable "github_project" { default = "" }
+    - variable "github_personal_access_token" { default = "" }
+      - need to request from DEVOPS team
+    - variable "github_project" { default = "" }
       - so the syntax to clone is like this git clone https://<personal_access_token>@github.com/Pyxelchain/<github_project>.git
-   - variable "pyxelchain-domain" { default = "" }
+    - variable "pyxelchain-domain" { default = "" }
       - we will only be using gameficap.com route 53, example pyxelchain-tf.pyxistf.com
-2. Once all variable.tf entries are defined you can run the following command:
-   - terraform init
-   - terraform plan -out pyxelchain-com.plan
-   - terraform show pyxelchain-com.plan > tfplan.ansi
-3. Need to submit the tfplan.ansi to DevOps team for review and approval.
-4. Before performing the last step below, need item 3 approval from DevOps Team.
-   - terraform apply
-5. Before inputting "yes", please review the logs and compare from step 2 that all are the same.
+5.  Once all variable.tf entries are defined you can run the following command:
+    - terraform init
+    - terraform plan -out pyxelchain-com.plan
+    - terraform show pyxelchain-com.plan > tfplan.ansi
+6.  Need to submit the tfplan.ansi to DevOps team for review and approval.
+7.  Before performing the last step below, need item 3 approval from DevOps Team.
+    - terraform apply
+8.  Before inputting "yes", please review the logs and compare from step 2 that all are the same.
