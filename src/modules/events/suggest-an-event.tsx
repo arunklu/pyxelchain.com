@@ -1,27 +1,15 @@
 import { useMutation } from '@apollo/client'
-import { Box, chakra, Flex, Input, InputProps, Text } from '@chakra-ui/react'
+import { Box, chakra, Flex, Text } from '@chakra-ui/react'
 import Button from '@components/button'
+import CustomDatePicker from '@components/custom-datepicker'
+import CustomInput from '@components/custom-input'
 import { SUGGEST_EVENT } from '@graphql/mutations/create-event'
 import { showToast } from '@utils/toast-utils'
 import { isValidEmail } from '@utils/validate-email'
 import { isValidURL } from '@utils/validate-url'
 import dayjs from 'dayjs'
-import { FC } from 'react'
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Controller, useForm } from 'react-hook-form'
-
-const CustomInput: FC<InputProps> = ({ value, onChange, ...rest }) => (
-  <Input
-    borderRadius="6px"
-    background="#00000012"
-    color="#C3C4C3"
-    mb="15px"
-    value={value ?? ''}
-    onChange={onChange}
-    {...rest}
-  />
-)
 
 const SuggestAnEvent = () => {
   const {
@@ -134,12 +122,10 @@ const SuggestAnEvent = () => {
                 required: true,
               }}
               render={({ field }) => (
-                <DatePicker
-                  placeholderText="Event Start Date"
-                  // @ts-ignore
+                <CustomDatePicker
                   onChange={(date) => field.onChange(date)}
-                  selected={field.value}
-                  customInput={<CustomInput w="100%" />}
+                  value={field.value}
+                  placeHolderText="Event Start Date"
                 />
               )}
             />
@@ -152,12 +138,10 @@ const SuggestAnEvent = () => {
               name="end_date"
               control={control}
               render={({ field }) => (
-                <DatePicker
-                  placeholderText="Event End Date"
-                  // @ts-ignore
+                <CustomDatePicker
                   onChange={(date) => field.onChange(date)}
-                  selected={field.value}
-                  customInput={<CustomInput w="100%" />}
+                  value={field.value}
+                  placeHolderText="Event End Date"
                 />
               )}
             />
