@@ -9,7 +9,7 @@ interface SEOTypes {
   seoimage?: string
 }
 export const SEO: React.FC<SEOTypes> = ({
-  seoimage = 'https://pyxiscms.gameficap.com/uploads/seo_preview_acdbd96b4b.png',
+  seoimage = 'https://strapi-pyxelchain.gameficap.com/uploads/seo_preview_acdbd96b4b.png',
   title,
   description,
   pathname,

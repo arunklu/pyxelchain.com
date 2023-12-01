@@ -1,5 +1,6 @@
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, Observable, Operation } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
+import { STRAPI_GRAPHQL_URL } from '@constants/urls'
 import { isBrowser } from '@utils/env-utils'
 import { showToast } from '@utils/toast-utils'
 import possibleTypes from './possible-types.json'
@@ -54,7 +55,7 @@ const client = new ApolloClient({
     }),
     requestLink,
     new HttpLink({
-      uri: process.env.NEXT_PUBLIC_API_URL,
+      uri: STRAPI_GRAPHQL_URL,
       credentials: 'same-origin',
     }),
   ]),

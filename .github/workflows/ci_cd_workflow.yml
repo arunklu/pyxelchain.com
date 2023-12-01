@@ -3,11 +3,13 @@ name: ci_cd for pyxelchain.com
 on:
   push:
     branches: [main]
-    
+  pull_request:
+    branches: [main]
+
 env:
   USERNAME: ubuntu
   REMOTE_FOLDER: ~/websites/pyxelchain_website
-  
+
 jobs:
   build_deploy:
     runs-on: ubuntu-latest
@@ -21,7 +23,7 @@ jobs:
       - name: Build the code
         uses: actions/setup-node@v3
         with:
-          node-version:  16.16.x
+          node-version: 16.16.x
           cache: npm
           cache-dependency-path: package-lock.json
       - run: pwd && ls -la && cat .env && sudo cp env_latest.txt .env && node --version && npm --version && npm i --legacy-peer-deps && npm run export && ls -lrt
@@ -41,18 +43,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2 
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1 
+          aws-region: us-east-1
       - name: Invalidate CloudFront Cache
-        run: | 
+        run: |
           echo "Invalidating Cloudfront Distribution"
-          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_PROD }} --paths "/*"          
-
-
-
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_PROD }} --paths "/*"
 
       # - name: Copy Files to Remote Host
       #   uses: Pendect/action-rsyncer@v1.1.0
@@ -68,7 +67,7 @@ jobs:
       #   uses: fifsky/ssh-action@master
       #   with:
       #     command: |
-      #       pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && cp -r DevOps/* . && ls -lrt && docker-compose -f docker-compose-prod.yml up -d --build 
+      #       pwd && cd websites/pyxelchain_website && cp env_latest.txt .env && cp -r DevOps/* . && ls -lrt && docker-compose -f docker-compose-prod.yml up -d --build
       #     host: ${{ secrets.PROD_HOST }}
       #     user: $USERNAME
       #     key: ${{ secrets.PRIVATE_KEY }}

@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Box, BoxProps, Flex, Image, Text } from '@chakra-ui/react'
+import EventExternalLink from '@components/event-external-link'
 import Spinner from '@components/spinner'
 import { IMAGE_ROOT_URL } from '@constants/urls'
 import { FEATURED_EVENTS_QUERY } from '@graphql/queries/events'
@@ -15,28 +16,41 @@ interface FeaturedEventsQuery {
   }
 }
 
-export const BorderBox: FC<BoxProps & { children: ReactElement }> = ({ children, ...rest }) => (
-  <Box
-    padding="1px"
-    bg="linear-gradient(115deg, #656BFE, #6390FE0A, #60BCFF1A, #5FE2FF)"
-    {...rest}
-    boxSizing="border-box"
-  >
-    <Box background="#020615" height="100%" boxSizing="border-box">
-      {children}
+export const BorderBox: FC<BoxProps & { children: ReactElement }> = ({ children, ...rest }) => {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <Box
+      padding="1px"
+      boxSizing="border-box"
+      transition="0.5s ease-in"
+      onMouseEnter={() => {
+        setHovered(true)
+      }}
+      onMouseLeave={() => {
+        setHovered(false)
+      }}
+      {...(hovered && {
+        bg: 'linear-gradient(115deg, #656BFE, #6390FE0A, #60BCFF1A, #5FE2FF)',
+      })}
+      {...rest}
+    >
+      <Box background="#020615" height="100%" boxSizing="border-box" py="2">
+        {children}
+      </Box>
     </Box>
-  </Box>
-)
+  )
+}
 
 const FeaturedEvent = () => {
   const { data, loading } = useQuery<FeaturedEventsQuery>(FEATURED_EVENTS_QUERY)
-  const [linkHovered, setLinkHovered] = useState(false)
 
   if (loading) {
     return <Spinner />
   }
 
   const featuredEvent = data?.events.data[0]?.attributes
+  const id = data?.events.data[0].id
 
   if (!featuredEvent?.name) {
     return null
@@ -85,6 +99,7 @@ const FeaturedEvent = () => {
               base: '280px',
               lg: '340px',
             }}
+            objectFit="cover"
           />
         </Box>
         <Box
@@ -92,7 +107,10 @@ const FeaturedEvent = () => {
             base: '0',
             lg: '60px',
           }}
-          py="43.5px"
+          py={{
+            base: '25px',
+            lg: '43.5px',
+          }}
           maxW={{
             base: '330px',
             lg: '580px',
@@ -108,20 +126,27 @@ const FeaturedEvent = () => {
             p="4px"
           >
             <Image src="/svg/calendar.svg" w="23px" h="24px" />
-            <Text variant="16">
+            <Text variant="16" color="white">
               {formatDate(featuredEvent?.start_date, true)} - {formatDate(featuredEvent?.end_date)}
             </Text>
           </Flex>
-          <Text
-            variant="32"
-            fontFamily="Iosevka"
-            mt={{
-              base: '23px',
-              lg: '29px',
-            }}
-          >
-            {featuredEvent.name}
-          </Text>
+          <Link href={`events/${id}`}>
+            <Text
+              variant="32"
+              fontFamily="Iosevka"
+              mt={{
+                base: '23px',
+                lg: '29px',
+              }}
+              cursor="pointer"
+              color="white"
+              _hover={{
+                textDecoration: 'underline',
+              }}
+            >
+              {featuredEvent.name}
+            </Text>
+          </Link>
           <Text
             variant="16"
             mt={{
@@ -137,25 +162,11 @@ const FeaturedEvent = () => {
             <Image
               src={`${IMAGE_ROOT_URL}${featuredEvent.location_country?.data?.attributes?.logo.data?.attributes?.url}`}
             />
-            <Text variant="14">{featuredEvent.location_name}</Text>
+            <Text variant="14" color="white">
+              {featuredEvent.location_name}
+            </Text>
           </Flex>
-          <Flex gap="10px" alignItems="center" mt="14px">
-            <Image src="/svg/external-link.svg" />
-            <Link href={`${featuredEvent.external_url}`} passHref>
-              <a target="_blank" rel="noopener noreferrer">
-                <Text
-                  noOfLines={1}
-                  transition="0.5s ease-in"
-                  className={linkHovered ? 'active' : ''}
-                  onMouseEnter={() => setLinkHovered(true)}
-                  onMouseLeave={() => setLinkHovered(false)}
-                  variant="14"
-                >
-                  {featuredEvent.external_url}
-                </Text>
-              </a>
-            </Link>
-          </Flex>
+          <EventExternalLink url={featuredEvent.external_url ?? ''} />
         </Box>
       </Box>
     </BorderBox>
