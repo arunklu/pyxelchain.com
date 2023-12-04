@@ -85,7 +85,7 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
 | docker-compose-prod.yml | docker-compose -f docker-compose-prod.yml up -d | - this will run the app using the nginx network. This will need the jwilder/nginx and jrcs/letsencrypt-nginx-proxy-companion docker images |
 
 
-- Strapi Instance : https://pyxiscms.gameficap.com/admin
+- Strapi Instance : https://strapi-pyxelchain.gameficap.com/admin
 - Publishing contents from Strapi to Pyxelchain.com
 
 
@@ -129,3 +129,11 @@ Terraform variables
 4. Before performing the last step below, need item 3 approval from DevOps Team.
    - terraform apply
 5. Before inputting "yes", please review the logs and compare from step 2 that all are the same.
+
+
+- Cloning using cookiecutter
+   Installing cookiecutter -> https://cookiecutter.readthedocs.io/en/stable/installation.html
+   Running cookiecutter:
+   "cookiecutter <Github Repo URL>"
+   it will prompt for aws access key and secret and needed application secrets(e.g. api key or secrets)
+
