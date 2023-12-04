@@ -130,9 +130,10 @@ Terraform variables
    - terraform apply
 5. Before inputting "yes", please review the logs and compare from step 2 that all are the same.
 
-### Cloning using cookiecutter
-   Installing cookiecutter -> https://cookiecutter.readthedocs.io/en/stable/installation.html
-   Running cookiecutter:
-   "cookiecutter <Github Repo URL>"
-   it will prompt for aws access key and secret and needed application secrets(e.g. api key or secrets)
+## Cloning using cookiecutter
+1. Installing cookiecutter -> https://cookiecutter.readthedocs.io/en/stable/installation.html
+2. Running cookiecutter:
+   - "cookiecutter \<Github Repo URL\>"
+   - it will prompt for aws access key and secret and needed application secrets(e.g. api key or secrets)
+     
 
