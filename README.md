@@ -48,12 +48,21 @@ Running **graphql-codegen** requires you to add **.env** file with `NEXT_PUBLIC_
 
 ## DEVOPS Documentation
 
-- CI/CD information
+- CICD for Creating Infrastructure in AWS 
 
-| Branch | Domain |  Need VPN | Deployment Type | AWS server Name | IP Type | Deployment Code Path | Dockerfile app type | 
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| staging | https://pyxelchain.com-stg.gameficap.com/ | Y | EC2 Instance | website-services-staging | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
-| main | https://pyxelchain.com/ | N | EC2 Instance | pyxelchain.com-v2 | dynamic | (home folder)/websites/pyxelchain_website | node:lts-alpine:16 |
+   This will need to trigger manually
+
+  1.  To run  go to GitHub actions and select Pyxelchain Infrastructure in Actions
+  2.  click on the "run workflow" button at the top right corner of the page
+  3.  then choose the desired  Terraform action "plan" or "apply"
+  4.   First run the terraform "plan" and verify the  output from the "plan" If everything is ok  then run "apply" 
+
+- CI/CD for Deploying applications
+
+|    Bucket Name             | CloudFront ID  |       Domain Name                 |  Deployment Type   |
+|----------------------------|----------------|-----------------------------------|------------------  |
+| pyxelchain-website-prod    | EDKZFHVVI3TQS  | pyxelchain.com,www.pyxelchain.com | s3 with cloudfront |
+| pyxelchain-website-staging | E3AJ15SCFFFO8K | staging.pyxelchain.com            | s3 with cloudfront |
 
 - Environment Variables
   

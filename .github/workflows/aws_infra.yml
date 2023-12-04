@@ -1,4 +1,4 @@
-name: Creating Pyxelchain Infrastructure
+name: Pyxelchain Infrastructure
 
 on:
   workflow_dispatch:
@@ -37,7 +37,7 @@ jobs:
 
       - name: Initialize and Validate Terraform Configuration
         run: |
-          cd terraform
+          cd terraform-pyxelchain-website
           terraform init
           terraform validate
 
