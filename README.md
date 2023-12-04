@@ -130,8 +130,7 @@ Terraform variables
    - terraform apply
 5. Before inputting "yes", please review the logs and compare from step 2 that all are the same.
 
-
-- Cloning using cookiecutter
+### Cloning using cookiecutter
    Installing cookiecutter -> https://cookiecutter.readthedocs.io/en/stable/installation.html
    Running cookiecutter:
    "cookiecutter <Github Repo URL>"
