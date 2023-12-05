@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import EventExternalLink from '@components/event-external-link'
 import { SEO } from '@components/seo'
 import Spinner from '@components/spinner'
 import { IMAGE_ROOT_URL } from '@constants/urls'
@@ -7,7 +8,7 @@ import { GET_EVENT_BY_ID } from '@graphql/queries/events'
 import dayjs from 'dayjs'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import { EventEntity } from 'types'
 
 interface EventsQuery {
@@ -18,7 +19,6 @@ interface EventsQuery {
 
 const Events: FC = () => {
   const router = useRouter()
-  const [linkHovered, setLinkHovered] = useState(false)
 
   const { loading, data } = useQuery<EventsQuery>(GET_EVENT_BY_ID, {
     variables: {
@@ -88,24 +88,8 @@ const Events: FC = () => {
               {dayjs(event?.start_date).format('DD MMM, YYYY')}.
             </Text>
           </Flex>
-          <Flex gap="10px" alignItems="center">
-            <Image src="/svg/external-link.svg" />
-            <Link href={`${event?.external_url}`} passHref>
-              <a target="_blank" rel="noopener noreferrer">
-                <Text
-                  noOfLines={1}
-                  transition="0.5s ease-in"
-                  className={linkHovered ? 'active' : ''}
-                  onMouseEnter={() => setLinkHovered(true)}
-                  onMouseLeave={() => setLinkHovered(false)}
-                  variant="14"
-                  color="white"
-                >
-                  {event?.external_url}
-                </Text>
-              </a>
-            </Link>
-          </Flex>
+
+          <EventExternalLink url={event?.external_url ?? ''} mt="0" />
         </Flex>
 
         {event?.media?.data?.[0]?.attributes?.url && (
