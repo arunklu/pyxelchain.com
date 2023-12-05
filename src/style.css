@@ -86,7 +86,17 @@ html {
 }
 
 .react-datepicker__current-month {
+  font-weight: normal !important;
+}
+
+.react-datepicker__current-month {
   font-size: 16px !important;
+}
+
+.react-datepicker__day--today {
+  border-radius: 20px !important;
+  color: #344054 !important;
+  background: #f2f4f7;
 }
 
 .react-datepicker__day--selected,
@@ -99,8 +109,8 @@ html {
 .react-datepicker__day-name,
 .react-datepicker__day,
 .react-datepicker__time-name {
-  width: 40px !important;
-  height: 40px !important;
+  width: 35px !important;
+  height: 35px !important;
   display: inline-grid;
 }
 
@@ -153,7 +163,7 @@ html {
 
 .event-date-picker-cancel-button,
 .event-date-picker-select-date-button {
-  width: 150px !important;
+  width: 134px !important;
   height: 40px !important;
   border-radius: 8px !important;
   font-family: 'Inter';
