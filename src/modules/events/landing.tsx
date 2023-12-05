@@ -26,7 +26,16 @@ const Landing: React.FC<LandingProps> = ({ title, titleWithGradient, description
         }}
       >
         <PageGradientFilter />
-        <HeadingRenderer mobilecenter title={title} titleWithGradient={titleWithGradient} />
+        <HeadingRenderer
+          mobilecenter
+          title={title}
+          titleWithGradient={titleWithGradient}
+          fontSize={{
+            base: '36px',
+            sm: '36px',
+            lg: '64px',
+          }}
+        />
         <Flex dir="column" gap={3} textAlign="center" maxW="790px">
           <MarkdownRenderer markdown={description} />
         </Flex>

@@ -1,8 +1,8 @@
-import { Image, ListItem, OrderedList, UnorderedList } from '@chakra-ui/react'
+import { HeadingProps, Image, ListItem, OrderedList, UnorderedList } from '@chakra-ui/react'
 import { getImageUrl } from '@utils/url-utils'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import { Text, Heading } from './typography'
+import { Heading, Text } from './typography'
 
 interface MarkdownRendererProps {
   markdown?: string | null
@@ -64,15 +64,16 @@ interface HeadingRendererProps {
   mobilecenter?: boolean
 }
 
-export const HeadingRenderer: React.FC<HeadingRendererProps> = ({
+export const HeadingRenderer: React.FC<HeadingRendererProps & Omit<HeadingProps, 'title'>> = ({
   mobilecenter,
   center,
   title = '',
   titleWithGradient = '',
+  ...headingProps
 }) => {
   const segments = titleWithGradient?.split(' ') || []
   return (
-    <Heading textAlign={{ base: mobilecenter ? 'center' : 'start', lg: center ? 'center' : 'start' }}>
+    <Heading textAlign={{ base: mobilecenter ? 'center' : 'start', lg: center ? 'center' : 'start' }} {...headingProps}>
       {title}
       {segments.map((s, idx) => (
         <Heading as="span" withGradient key={`${s}-${idx}`}>
