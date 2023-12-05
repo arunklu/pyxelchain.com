@@ -1,10 +1,10 @@
+import { Box, Flex, FormControl, Image, Input, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
-import { Box, FormControl, Input, VStack, Image, Flex, Text } from '@chakra-ui/react'
 
-import Button from '../button'
-import Link from '../link'
 import useDuplicateEmail from '@hooks/use-duplicate-email'
 import { showToast } from '@utils/toast-utils'
+import Button from '../button'
+import Link from '../link'
 
 const FooterAction = () => {
   const [email, setEmail] = React.useState<string>('')

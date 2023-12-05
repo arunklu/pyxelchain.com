@@ -13,7 +13,7 @@ import cx from 'classnames'
 import { print } from 'graphql'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import dynamic from 'next/dynamic'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { PrivacyTermsCookie } from 'types/index'
 
 const ScrollSpy = dynamic(() => import('react-ui-scrollspy'), {
@@ -27,6 +27,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
   const regXHeader = /#{3}.+/g
   const headers = data.description.match(regXHeader)?.map((header) => header.replace('### ', ''))
   const [currentSection, setCurrentSection] = useState<string | undefined>(headers ? headers[0] : '')
+  const [scrolledToBottom, setScrolledToBottom] = useState(false)
 
   const onPress = (e: string) => {
     setCurrentSection(e)
@@ -42,6 +43,29 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
       })
     }
   }
+
+  const targetRef = useRef(null)
+
+  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+    const target = entries[0]
+    setScrolledToBottom(target.isIntersecting)
+  }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleIntersection, {
+      root: null,
+      rootMargin: `0px 0px 0px 0px`,
+      threshold: 0,
+    })
+
+    if (targetRef.current) {
+      observer.observe(targetRef.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
 
   return (
     <Box mt="103px">
@@ -82,22 +106,23 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
             <Box display={{ base: 'none', lg: 'inline' }} w="80%" flexDir="column" pos="relative">
               {headers?.map((header: string, i: number) => {
                 return (
-                  <Text
-                    display={
-                      currentSection === headers[headers.length - 1] || currentSection === headers[headers.length - 2]
-                        ? 'none'
-                        : ''
-                    }
-                    className={cx({
-                      active: header === currentSection,
-                    })}
-                    data-to-scrollspy-id={header}
-                    cursor="pointer"
-                    mt={2}
-                    key={header}
-                  >
-                    <a onClick={() => onPress(header)}>{header.replace(`${i + 1}.0 `, '')}</a>
-                  </Text>
+                  <Box key={header} display={scrolledToBottom ? 'none' : ''}>
+                    <Text
+                      display={
+                        currentSection === headers[headers.length - 1] || currentSection === headers[headers.length - 2]
+                          ? 'none'
+                          : ''
+                      }
+                      className={cx({
+                        active: header === currentSection,
+                      })}
+                      data-to-scrollspy-id={header}
+                      cursor="pointer"
+                      mt={2}
+                    >
+                      <a onClick={() => onPress(header)}>{header.replace(`${i + 1}.0 `, '')}</a>
+                    </Text>
+                  </Box>
                 )
               })}
             </Box>
@@ -111,6 +136,7 @@ const Legal: React.FC<LegalProps> = ({ data }) => {
           </Flex>
         </GridItem>
       </Grid>
+      <Box ref={targetRef} />
     </Box>
   )
 }
