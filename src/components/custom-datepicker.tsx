@@ -37,13 +37,14 @@ const CustomDatePicker: FC<
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
 
   const onCancel = () => {
-    if (!selectedDate) {
-      calRef.current?.setOpen(false)
-    } else {
-      setSelectedDate(null)
-      onChange(null)
-      calRef.current?.setOpen(false)
-    }
+    // if (!selectedDate) {
+    //   calRef.current?.setOpen(false)
+    // } else {
+    //   setSelectedDate(null)
+    //   onChange(null)
+    //   calRef.current?.setOpen(false)
+    // }
+    calRef.current?.setOpen(false)
   }
 
   const onSelectDate = () => {
