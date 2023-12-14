@@ -69,6 +69,9 @@ const CustomDatePicker: FC<
         customInput={<CustomInput w="100%" />}
         calendarStartDay={1}
         calendarContainer={generateStyledContainer(onCancel, onSelectDate)}
+        onClickOutside={() => {
+          calRef.current?.setOpen(true)
+        }}
       />
     </Box>
   )
