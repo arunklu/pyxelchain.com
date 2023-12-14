@@ -1,13 +1,16 @@
-import { Flex, Image, Text } from '@chakra-ui/react'
+import { Flex, FlexProps, Image, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 import { FC, useState } from 'react'
 
 type EventExternalLinkProps = {
   url: string
-}
+} & FlexProps
 
-const EventExternalLink: FC<EventExternalLinkProps> = ({ url }) => {
+const EventExternalLink: FC<EventExternalLinkProps> = ({ url, ...restProps }) => {
   const [linkHovered, setLinkHovered] = useState(false)
+
+  const handleMouseEnter = () => setLinkHovered(true)
+  const handleMouseLeave = () => setLinkHovered(false)
 
   return (
     <Link href={url} passHref>
@@ -17,8 +20,9 @@ const EventExternalLink: FC<EventExternalLinkProps> = ({ url }) => {
           alignItems="center"
           mt="14px"
           cursor="pointer"
-          onMouseEnter={() => setLinkHovered(true)}
-          onMouseLeave={() => setLinkHovered(false)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          {...restProps}
         >
           <Image src={`/svg/${linkHovered ? 'hovered-' : ''}external-link.svg`} />
           <Text

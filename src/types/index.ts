@@ -165,12 +165,14 @@ export type BooleanFilterInput = {
   containsi?: InputMaybe<Scalars['Boolean']>
   endsWith?: InputMaybe<Scalars['Boolean']>
   eq?: InputMaybe<Scalars['Boolean']>
+  eqi?: InputMaybe<Scalars['Boolean']>
   gt?: InputMaybe<Scalars['Boolean']>
   gte?: InputMaybe<Scalars['Boolean']>
   in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>
   lt?: InputMaybe<Scalars['Boolean']>
   lte?: InputMaybe<Scalars['Boolean']>
   ne?: InputMaybe<Scalars['Boolean']>
+  nei?: InputMaybe<Scalars['Boolean']>
   not?: InputMaybe<BooleanFilterInput>
   notContains?: InputMaybe<Scalars['Boolean']>
   notContainsi?: InputMaybe<Scalars['Boolean']>
@@ -179,242 +181,6 @@ export type BooleanFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>
   or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']>>>
   startsWith?: InputMaybe<Scalars['Boolean']>
-}
-
-export type CmsAnalyzerAnalyse = {
-  __typename?: 'CmsAnalyzerAnalyse'
-  apiName?: Maybe<Scalars['String']>
-  contentKind?: Maybe<Scalars['String']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  depth?: Maybe<Scalars['Int']>
-  documentFields?: Maybe<Scalars['JSON']>
-  documentId?: Maybe<Scalars['Int']>
-  frontUrl?: Maybe<Scalars['String']>
-  isChecked?: Maybe<Scalars['Boolean']>
-  key?: Maybe<Scalars['String']>
-  locale?: Maybe<Scalars['String']>
-  screenshot?: Maybe<Scalars['String']>
-  seoAnalyse?: Maybe<Scalars['JSON']>
-  tags?: Maybe<Scalars['JSON']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-}
-
-export type CmsAnalyzerAnalyseEntity = {
-  __typename?: 'CmsAnalyzerAnalyseEntity'
-  attributes?: Maybe<CmsAnalyzerAnalyse>
-  id?: Maybe<Scalars['ID']>
-}
-
-export type CmsAnalyzerAnalyseEntityResponse = {
-  __typename?: 'CmsAnalyzerAnalyseEntityResponse'
-  data?: Maybe<CmsAnalyzerAnalyseEntity>
-}
-
-export type CmsAnalyzerAnalyseEntityResponseCollection = {
-  __typename?: 'CmsAnalyzerAnalyseEntityResponseCollection'
-  data: Array<CmsAnalyzerAnalyseEntity>
-  meta: ResponseCollectionMeta
-}
-
-export type CmsAnalyzerAnalyseFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<CmsAnalyzerAnalyseFiltersInput>>>
-  apiName?: InputMaybe<StringFilterInput>
-  contentKind?: InputMaybe<StringFilterInput>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  depth?: InputMaybe<IntFilterInput>
-  documentFields?: InputMaybe<JsonFilterInput>
-  documentId?: InputMaybe<IntFilterInput>
-  frontUrl?: InputMaybe<StringFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  isChecked?: InputMaybe<BooleanFilterInput>
-  key?: InputMaybe<StringFilterInput>
-  locale?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<CmsAnalyzerAnalyseFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<CmsAnalyzerAnalyseFiltersInput>>>
-  screenshot?: InputMaybe<StringFilterInput>
-  seoAnalyse?: InputMaybe<JsonFilterInput>
-  tags?: InputMaybe<JsonFilterInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-}
-
-export type CmsAnalyzerAnalyseInput = {
-  apiName?: InputMaybe<Scalars['String']>
-  contentKind?: InputMaybe<Scalars['String']>
-  depth?: InputMaybe<Scalars['Int']>
-  documentFields?: InputMaybe<Scalars['JSON']>
-  documentId?: InputMaybe<Scalars['Int']>
-  frontUrl?: InputMaybe<Scalars['String']>
-  isChecked?: InputMaybe<Scalars['Boolean']>
-  key?: InputMaybe<Scalars['String']>
-  locale?: InputMaybe<Scalars['String']>
-  screenshot?: InputMaybe<Scalars['String']>
-  seoAnalyse?: InputMaybe<Scalars['JSON']>
-  tags?: InputMaybe<Scalars['JSON']>
-}
-
-export type CmsAnalyzerMatch = {
-  __typename?: 'CmsAnalyzerMatch'
-  apiName?: Maybe<Scalars['String']>
-  componentName?: Maybe<Scalars['String']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  dynamicZoneName?: Maybe<Scalars['String']>
-  fieldName?: Maybe<Scalars['String']>
-  isMultipleDoc?: Maybe<Scalars['Boolean']>
-  status?: Maybe<Scalars['String']>
-  tagName?: Maybe<Scalars['String']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-}
-
-export type CmsAnalyzerMatchEntity = {
-  __typename?: 'CmsAnalyzerMatchEntity'
-  attributes?: Maybe<CmsAnalyzerMatch>
-  id?: Maybe<Scalars['ID']>
-}
-
-export type CmsAnalyzerMatchEntityResponse = {
-  __typename?: 'CmsAnalyzerMatchEntityResponse'
-  data?: Maybe<CmsAnalyzerMatchEntity>
-}
-
-export type CmsAnalyzerMatchEntityResponseCollection = {
-  __typename?: 'CmsAnalyzerMatchEntityResponseCollection'
-  data: Array<CmsAnalyzerMatchEntity>
-  meta: ResponseCollectionMeta
-}
-
-export type CmsAnalyzerMatchFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<CmsAnalyzerMatchFiltersInput>>>
-  apiName?: InputMaybe<StringFilterInput>
-  componentName?: InputMaybe<StringFilterInput>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  dynamicZoneName?: InputMaybe<StringFilterInput>
-  fieldName?: InputMaybe<StringFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  isMultipleDoc?: InputMaybe<BooleanFilterInput>
-  not?: InputMaybe<CmsAnalyzerMatchFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<CmsAnalyzerMatchFiltersInput>>>
-  status?: InputMaybe<StringFilterInput>
-  tagName?: InputMaybe<StringFilterInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-}
-
-export type CmsAnalyzerMatchInput = {
-  apiName?: InputMaybe<Scalars['String']>
-  componentName?: InputMaybe<Scalars['String']>
-  dynamicZoneName?: InputMaybe<Scalars['String']>
-  fieldName?: InputMaybe<Scalars['String']>
-  isMultipleDoc?: InputMaybe<Scalars['Boolean']>
-  status?: InputMaybe<Scalars['String']>
-  tagName?: InputMaybe<Scalars['String']>
-}
-
-export type CmsAnalyzerMedia = {
-  __typename?: 'CmsAnalyzerMedia'
-  alt?: Maybe<Scalars['String']>
-  createdAt?: Maybe<Scalars['DateTime']>
-  data?: Maybe<Scalars['JSON']>
-  frontUrl?: Maybe<Scalars['String']>
-  height?: Maybe<Scalars['Int']>
-  mediaUrl?: Maybe<Scalars['String']>
-  status?: Maybe<Scalars['String']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  width?: Maybe<Scalars['Int']>
-}
-
-export type CmsAnalyzerMediaEntity = {
-  __typename?: 'CmsAnalyzerMediaEntity'
-  attributes?: Maybe<CmsAnalyzerMedia>
-  id?: Maybe<Scalars['ID']>
-}
-
-export type CmsAnalyzerMediaEntityResponse = {
-  __typename?: 'CmsAnalyzerMediaEntityResponse'
-  data?: Maybe<CmsAnalyzerMediaEntity>
-}
-
-export type CmsAnalyzerMediaEntityResponseCollection = {
-  __typename?: 'CmsAnalyzerMediaEntityResponseCollection'
-  data: Array<CmsAnalyzerMediaEntity>
-  meta: ResponseCollectionMeta
-}
-
-export type CmsAnalyzerMediaFiltersInput = {
-  alt?: InputMaybe<StringFilterInput>
-  and?: InputMaybe<Array<InputMaybe<CmsAnalyzerMediaFiltersInput>>>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  data?: InputMaybe<JsonFilterInput>
-  frontUrl?: InputMaybe<StringFilterInput>
-  height?: InputMaybe<IntFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  mediaUrl?: InputMaybe<StringFilterInput>
-  not?: InputMaybe<CmsAnalyzerMediaFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<CmsAnalyzerMediaFiltersInput>>>
-  status?: InputMaybe<StringFilterInput>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-  width?: InputMaybe<IntFilterInput>
-}
-
-export type CmsAnalyzerMediaInput = {
-  alt?: InputMaybe<Scalars['String']>
-  data?: InputMaybe<Scalars['JSON']>
-  frontUrl?: InputMaybe<Scalars['String']>
-  height?: InputMaybe<Scalars['Int']>
-  mediaUrl?: InputMaybe<Scalars['String']>
-  status?: InputMaybe<Scalars['String']>
-  width?: InputMaybe<Scalars['Int']>
-}
-
-export type CmsAnalyzerSummary = {
-  __typename?: 'CmsAnalyzerSummary'
-  createdAt?: Maybe<Scalars['DateTime']>
-  date?: Maybe<Scalars['DateTime']>
-  frontUrl?: Maybe<Scalars['String']>
-  nbErrorHigh?: Maybe<Scalars['Int']>
-  nbErrorLow?: Maybe<Scalars['Int']>
-  nbUrl?: Maybe<Scalars['Int']>
-  updatedAt?: Maybe<Scalars['DateTime']>
-  user?: Maybe<Scalars['String']>
-}
-
-export type CmsAnalyzerSummaryEntity = {
-  __typename?: 'CmsAnalyzerSummaryEntity'
-  attributes?: Maybe<CmsAnalyzerSummary>
-  id?: Maybe<Scalars['ID']>
-}
-
-export type CmsAnalyzerSummaryEntityResponse = {
-  __typename?: 'CmsAnalyzerSummaryEntityResponse'
-  data?: Maybe<CmsAnalyzerSummaryEntity>
-}
-
-export type CmsAnalyzerSummaryEntityResponseCollection = {
-  __typename?: 'CmsAnalyzerSummaryEntityResponseCollection'
-  data: Array<CmsAnalyzerSummaryEntity>
-  meta: ResponseCollectionMeta
-}
-
-export type CmsAnalyzerSummaryFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<CmsAnalyzerSummaryFiltersInput>>>
-  createdAt?: InputMaybe<DateTimeFilterInput>
-  date?: InputMaybe<DateTimeFilterInput>
-  frontUrl?: InputMaybe<StringFilterInput>
-  id?: InputMaybe<IdFilterInput>
-  nbErrorHigh?: InputMaybe<IntFilterInput>
-  nbErrorLow?: InputMaybe<IntFilterInput>
-  nbUrl?: InputMaybe<IntFilterInput>
-  not?: InputMaybe<CmsAnalyzerSummaryFiltersInput>
-  or?: InputMaybe<Array<InputMaybe<CmsAnalyzerSummaryFiltersInput>>>
-  updatedAt?: InputMaybe<DateTimeFilterInput>
-  user?: InputMaybe<StringFilterInput>
-}
-
-export type CmsAnalyzerSummaryInput = {
-  date?: InputMaybe<Scalars['DateTime']>
-  frontUrl?: InputMaybe<Scalars['String']>
-  nbErrorHigh?: InputMaybe<Scalars['Int']>
-  nbErrorLow?: InputMaybe<Scalars['Int']>
-  nbUrl?: InputMaybe<Scalars['Int']>
-  user?: InputMaybe<Scalars['String']>
 }
 
 export type ComponentArticlesSeo = {
@@ -659,12 +425,14 @@ export type DateFilterInput = {
   containsi?: InputMaybe<Scalars['Date']>
   endsWith?: InputMaybe<Scalars['Date']>
   eq?: InputMaybe<Scalars['Date']>
+  eqi?: InputMaybe<Scalars['Date']>
   gt?: InputMaybe<Scalars['Date']>
   gte?: InputMaybe<Scalars['Date']>
   in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>
   lt?: InputMaybe<Scalars['Date']>
   lte?: InputMaybe<Scalars['Date']>
   ne?: InputMaybe<Scalars['Date']>
+  nei?: InputMaybe<Scalars['Date']>
   not?: InputMaybe<DateFilterInput>
   notContains?: InputMaybe<Scalars['Date']>
   notContainsi?: InputMaybe<Scalars['Date']>
@@ -682,12 +450,14 @@ export type DateTimeFilterInput = {
   containsi?: InputMaybe<Scalars['DateTime']>
   endsWith?: InputMaybe<Scalars['DateTime']>
   eq?: InputMaybe<Scalars['DateTime']>
+  eqi?: InputMaybe<Scalars['DateTime']>
   gt?: InputMaybe<Scalars['DateTime']>
   gte?: InputMaybe<Scalars['DateTime']>
   in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>
   lt?: InputMaybe<Scalars['DateTime']>
   lte?: InputMaybe<Scalars['DateTime']>
   ne?: InputMaybe<Scalars['DateTime']>
+  nei?: InputMaybe<Scalars['DateTime']>
   not?: InputMaybe<DateTimeFilterInput>
   notContains?: InputMaybe<Scalars['DateTime']>
   notContainsi?: InputMaybe<Scalars['DateTime']>
@@ -863,12 +633,14 @@ export type FloatFilterInput = {
   containsi?: InputMaybe<Scalars['Float']>
   endsWith?: InputMaybe<Scalars['Float']>
   eq?: InputMaybe<Scalars['Float']>
+  eqi?: InputMaybe<Scalars['Float']>
   gt?: InputMaybe<Scalars['Float']>
   gte?: InputMaybe<Scalars['Float']>
   in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>
   lt?: InputMaybe<Scalars['Float']>
   lte?: InputMaybe<Scalars['Float']>
   ne?: InputMaybe<Scalars['Float']>
+  nei?: InputMaybe<Scalars['Float']>
   not?: InputMaybe<FloatFilterInput>
   notContains?: InputMaybe<Scalars['Float']>
   notContainsi?: InputMaybe<Scalars['Float']>
@@ -882,10 +654,6 @@ export type FloatFilterInput = {
 export type GenericMorph =
   | Article
   | Author
-  | CmsAnalyzerAnalyse
-  | CmsAnalyzerMatch
-  | CmsAnalyzerMedia
-  | CmsAnalyzerSummary
   | ComponentArticlesSeo
   | ComponentPodcastPodcastLinks
   | ComponentUpcomingProductsUpcomingProducts
@@ -950,12 +718,14 @@ export type IdFilterInput = {
   containsi?: InputMaybe<Scalars['ID']>
   endsWith?: InputMaybe<Scalars['ID']>
   eq?: InputMaybe<Scalars['ID']>
+  eqi?: InputMaybe<Scalars['ID']>
   gt?: InputMaybe<Scalars['ID']>
   gte?: InputMaybe<Scalars['ID']>
   in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>
   lt?: InputMaybe<Scalars['ID']>
   lte?: InputMaybe<Scalars['ID']>
   ne?: InputMaybe<Scalars['ID']>
+  nei?: InputMaybe<Scalars['ID']>
   not?: InputMaybe<IdFilterInput>
   notContains?: InputMaybe<Scalars['ID']>
   notContainsi?: InputMaybe<Scalars['ID']>
@@ -973,12 +743,14 @@ export type IntFilterInput = {
   containsi?: InputMaybe<Scalars['Int']>
   endsWith?: InputMaybe<Scalars['Int']>
   eq?: InputMaybe<Scalars['Int']>
+  eqi?: InputMaybe<Scalars['Int']>
   gt?: InputMaybe<Scalars['Int']>
   gte?: InputMaybe<Scalars['Int']>
   in?: InputMaybe<Array<InputMaybe<Scalars['Int']>>>
   lt?: InputMaybe<Scalars['Int']>
   lte?: InputMaybe<Scalars['Int']>
   ne?: InputMaybe<Scalars['Int']>
+  nei?: InputMaybe<Scalars['Int']>
   not?: InputMaybe<IntFilterInput>
   notContains?: InputMaybe<Scalars['Int']>
   notContainsi?: InputMaybe<Scalars['Int']>
@@ -996,12 +768,14 @@ export type JsonFilterInput = {
   containsi?: InputMaybe<Scalars['JSON']>
   endsWith?: InputMaybe<Scalars['JSON']>
   eq?: InputMaybe<Scalars['JSON']>
+  eqi?: InputMaybe<Scalars['JSON']>
   gt?: InputMaybe<Scalars['JSON']>
   gte?: InputMaybe<Scalars['JSON']>
   in?: InputMaybe<Array<InputMaybe<Scalars['JSON']>>>
   lt?: InputMaybe<Scalars['JSON']>
   lte?: InputMaybe<Scalars['JSON']>
   ne?: InputMaybe<Scalars['JSON']>
+  nei?: InputMaybe<Scalars['JSON']>
   not?: InputMaybe<JsonFilterInput>
   notContains?: InputMaybe<Scalars['JSON']>
   notContainsi?: InputMaybe<Scalars['JSON']>
@@ -1016,10 +790,6 @@ export type Mutation = {
   __typename?: 'Mutation'
   createArticle?: Maybe<ArticleEntityResponse>
   createAuthor?: Maybe<AuthorEntityResponse>
-  createCmsAnalyzerAnalyse?: Maybe<CmsAnalyzerAnalyseEntityResponse>
-  createCmsAnalyzerMatch?: Maybe<CmsAnalyzerMatchEntityResponse>
-  createCmsAnalyzerMedia?: Maybe<CmsAnalyzerMediaEntityResponse>
-  createCmsAnalyzerSummary?: Maybe<CmsAnalyzerSummaryEntityResponse>
   createCopy?: Maybe<CopyEntityResponse>
   createCopyTag?: Maybe<CopyTagEntityResponse>
   createCountry?: Maybe<CountryEntityResponse>
@@ -1038,10 +808,6 @@ export type Mutation = {
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse
   deleteArticle?: Maybe<ArticleEntityResponse>
   deleteAuthor?: Maybe<AuthorEntityResponse>
-  deleteCmsAnalyzerAnalyse?: Maybe<CmsAnalyzerAnalyseEntityResponse>
-  deleteCmsAnalyzerMatch?: Maybe<CmsAnalyzerMatchEntityResponse>
-  deleteCmsAnalyzerMedia?: Maybe<CmsAnalyzerMediaEntityResponse>
-  deleteCmsAnalyzerSummary?: Maybe<CmsAnalyzerSummaryEntityResponse>
   deleteCopy?: Maybe<CopyEntityResponse>
   deleteCopyTag?: Maybe<CopyTagEntityResponse>
   deleteCountry?: Maybe<CountryEntityResponse>
@@ -1072,10 +838,6 @@ export type Mutation = {
   resetPassword?: Maybe<UsersPermissionsLoginPayload>
   updateArticle?: Maybe<ArticleEntityResponse>
   updateAuthor?: Maybe<AuthorEntityResponse>
-  updateCmsAnalyzerAnalyse?: Maybe<CmsAnalyzerAnalyseEntityResponse>
-  updateCmsAnalyzerMatch?: Maybe<CmsAnalyzerMatchEntityResponse>
-  updateCmsAnalyzerMedia?: Maybe<CmsAnalyzerMediaEntityResponse>
-  updateCmsAnalyzerSummary?: Maybe<CmsAnalyzerSummaryEntityResponse>
   updateCopy?: Maybe<CopyEntityResponse>
   updateCopyTag?: Maybe<CopyTagEntityResponse>
   updateCountry?: Maybe<CountryEntityResponse>
@@ -1103,22 +865,6 @@ export type MutationCreateArticleArgs = {
 
 export type MutationCreateAuthorArgs = {
   data: AuthorInput
-}
-
-export type MutationCreateCmsAnalyzerAnalyseArgs = {
-  data: CmsAnalyzerAnalyseInput
-}
-
-export type MutationCreateCmsAnalyzerMatchArgs = {
-  data: CmsAnalyzerMatchInput
-}
-
-export type MutationCreateCmsAnalyzerMediaArgs = {
-  data: CmsAnalyzerMediaInput
-}
-
-export type MutationCreateCmsAnalyzerSummaryArgs = {
-  data: CmsAnalyzerSummaryInput
 }
 
 export type MutationCreateCopyArgs = {
@@ -1182,22 +928,6 @@ export type MutationDeleteArticleArgs = {
 }
 
 export type MutationDeleteAuthorArgs = {
-  id: Scalars['ID']
-}
-
-export type MutationDeleteCmsAnalyzerAnalyseArgs = {
-  id: Scalars['ID']
-}
-
-export type MutationDeleteCmsAnalyzerMatchArgs = {
-  id: Scalars['ID']
-}
-
-export type MutationDeleteCmsAnalyzerMediaArgs = {
-  id: Scalars['ID']
-}
-
-export type MutationDeleteCmsAnalyzerSummaryArgs = {
   id: Scalars['ID']
 }
 
@@ -1297,26 +1027,6 @@ export type MutationUpdateArticleArgs = {
 
 export type MutationUpdateAuthorArgs = {
   data: AuthorInput
-  id: Scalars['ID']
-}
-
-export type MutationUpdateCmsAnalyzerAnalyseArgs = {
-  data: CmsAnalyzerAnalyseInput
-  id: Scalars['ID']
-}
-
-export type MutationUpdateCmsAnalyzerMatchArgs = {
-  data: CmsAnalyzerMatchInput
-  id: Scalars['ID']
-}
-
-export type MutationUpdateCmsAnalyzerMediaArgs = {
-  data: CmsAnalyzerMediaInput
-  id: Scalars['ID']
-}
-
-export type MutationUpdateCmsAnalyzerSummaryArgs = {
-  data: CmsAnalyzerSummaryInput
   id: Scalars['ID']
 }
 
@@ -1620,14 +1330,6 @@ export type Query = {
   articles?: Maybe<ArticleEntityResponseCollection>
   author?: Maybe<AuthorEntityResponse>
   authors?: Maybe<AuthorEntityResponseCollection>
-  cmsAnalyzerAnalyse?: Maybe<CmsAnalyzerAnalyseEntityResponse>
-  cmsAnalyzerAnalyses?: Maybe<CmsAnalyzerAnalyseEntityResponseCollection>
-  cmsAnalyzerMatch?: Maybe<CmsAnalyzerMatchEntityResponse>
-  cmsAnalyzerMatches?: Maybe<CmsAnalyzerMatchEntityResponseCollection>
-  cmsAnalyzerMedia?: Maybe<CmsAnalyzerMediaEntityResponse>
-  cmsAnalyzerMedias?: Maybe<CmsAnalyzerMediaEntityResponseCollection>
-  cmsAnalyzerSummaries?: Maybe<CmsAnalyzerSummaryEntityResponseCollection>
-  cmsAnalyzerSummary?: Maybe<CmsAnalyzerSummaryEntityResponse>
   copies?: Maybe<CopyEntityResponseCollection>
   copy?: Maybe<CopyEntityResponse>
   copyTag?: Maybe<CopyTagEntityResponse>
@@ -1682,46 +1384,6 @@ export type QueryAuthorsArgs = {
   pagination?: InputMaybe<PaginationArg>
   publicationState?: InputMaybe<PublicationState>
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
-}
-
-export type QueryCmsAnalyzerAnalyseArgs = {
-  id?: InputMaybe<Scalars['ID']>
-}
-
-export type QueryCmsAnalyzerAnalysesArgs = {
-  filters?: InputMaybe<CmsAnalyzerAnalyseFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
-}
-
-export type QueryCmsAnalyzerMatchArgs = {
-  id?: InputMaybe<Scalars['ID']>
-}
-
-export type QueryCmsAnalyzerMatchesArgs = {
-  filters?: InputMaybe<CmsAnalyzerMatchFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
-}
-
-export type QueryCmsAnalyzerMediaArgs = {
-  id?: InputMaybe<Scalars['ID']>
-}
-
-export type QueryCmsAnalyzerMediasArgs = {
-  filters?: InputMaybe<CmsAnalyzerMediaFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
-}
-
-export type QueryCmsAnalyzerSummariesArgs = {
-  filters?: InputMaybe<CmsAnalyzerSummaryFiltersInput>
-  pagination?: InputMaybe<PaginationArg>
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
-}
-
-export type QueryCmsAnalyzerSummaryArgs = {
-  id?: InputMaybe<Scalars['ID']>
 }
 
 export type QueryCopiesArgs = {
@@ -1947,12 +1609,14 @@ export type StringFilterInput = {
   containsi?: InputMaybe<Scalars['String']>
   endsWith?: InputMaybe<Scalars['String']>
   eq?: InputMaybe<Scalars['String']>
+  eqi?: InputMaybe<Scalars['String']>
   gt?: InputMaybe<Scalars['String']>
   gte?: InputMaybe<Scalars['String']>
   in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>
   lt?: InputMaybe<Scalars['String']>
   lte?: InputMaybe<Scalars['String']>
   ne?: InputMaybe<Scalars['String']>
+  nei?: InputMaybe<Scalars['String']>
   not?: InputMaybe<StringFilterInput>
   notContains?: InputMaybe<Scalars['String']>
   notContainsi?: InputMaybe<Scalars['String']>

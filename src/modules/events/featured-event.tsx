@@ -16,23 +16,33 @@ interface FeaturedEventsQuery {
   }
 }
 
-export const BorderBox: FC<BoxProps & { children: ReactElement }> = ({ children, ...rest }) => {
+type BorderBoxProps = BoxProps & { children: ReactElement; defaultHovered?: boolean }
+
+const gradientBackground = 'linear-gradient(115deg, #656BFE, #6390FE0A, #60BCFF1A, #5FE2FF)'
+
+export const BorderBox: FC<BorderBoxProps> = ({ children, defaultHovered, ...rest }) => {
   const [hovered, setHovered] = useState(false)
+
+  const handleMouseEnter = () => {
+    if (!defaultHovered) {
+      setHovered(true)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (!defaultHovered) {
+      setHovered(false)
+    }
+  }
 
   return (
     <Box
       padding="1px"
       boxSizing="border-box"
       transition="0.5s ease-in"
-      onMouseEnter={() => {
-        setHovered(true)
-      }}
-      onMouseLeave={() => {
-        setHovered(false)
-      }}
-      {...(hovered && {
-        bg: 'linear-gradient(115deg, #656BFE, #6390FE0A, #60BCFF1A, #5FE2FF)',
-      })}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      {...(defaultHovered || hovered ? { bg: gradientBackground } : {})}
       {...rest}
     >
       <Box background="#020615" height="100%" boxSizing="border-box" py="2">
@@ -68,6 +78,7 @@ const FeaturedEvent = () => {
         base: 'auto',
         lg: 'inherit',
       }}
+      defaultHovered
     >
       <Box
         display="flex"
