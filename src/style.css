@@ -181,3 +181,7 @@ html {
 .event-date-picker-select-date-button {
   background: linear-gradient(105deg, #12b9f7 12.57%, #3f71f8 71.15%) !important;
 }
+
+.react-datepicker__day--disabled {
+  color: #667085 !important;
+}

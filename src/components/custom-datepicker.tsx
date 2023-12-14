@@ -1,4 +1,5 @@
 import { Box, Button, Image, Text } from '@chakra-ui/react'
+import dayjs from 'dayjs'
 import { FC, ReactElement, useRef, useState } from 'react'
 import DatePicker, { CalendarContainer } from 'react-datepicker'
 import { ControllerRenderProps } from 'react-hook-form'
@@ -62,6 +63,7 @@ const CustomDatePicker: FC<
         onChange={(date) => {
           setSelectedDate(date)
         }}
+        minDate={dayjs().toDate()}
         selected={selectedDate || value}
         customInput={<CustomInput w="100%" />}
         calendarStartDay={1}
