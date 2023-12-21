@@ -26,6 +26,10 @@ const EventList = () => {
       return []
     }
 
+    const currentDate = new Date()
+
+    currentDate.setHours(0, 0, 0, 0)
+
     if (selected === 'All') {
       return data.events.data.map((e) => ({
         ...e.attributes,
@@ -39,7 +43,7 @@ const EventList = () => {
           ...e.attributes,
           id: e.id,
         }))
-        .filter((e) => new Date(e?.start_date) > new Date())
+        .filter((e) => (e?.end_date ? new Date(e?.end_date) >= currentDate : new Date(e?.start_date) >= currentDate))
     }
 
     if (selected === 'Past') {
@@ -48,10 +52,9 @@ const EventList = () => {
           ...e.attributes,
           id: e.id,
         }))
-        .filter((e) => new Date(e?.start_date) < new Date())
+        .filter((e) => (e?.end_date ? new Date(e?.end_date) < currentDate : new Date(e?.start_date) < currentDate))
     }
   }, [data, selected])
-
   if (loading) {
     return <Spinner />
   }
