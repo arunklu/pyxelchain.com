@@ -61,9 +61,9 @@ const EventList = () => {
     const dayDiff = dayjs(date).diff(dayjs(), 'day')
 
     if (monthDiff > 0) {
-      return `${monthDiff} months left`
+      return `${monthDiff} ${monthDiff === 1 ? 'month' : 'months'} left`
     } else {
-      return `${dayDiff} days left`
+      return `${dayDiff} ${dayDiff === 1 ? 'day' : 'days'} left`
     }
   }
 
