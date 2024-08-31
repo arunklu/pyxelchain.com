@@ -52,7 +52,7 @@
     "graphql-tag": "^2.12.6",
     "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
-    "next": "^12.2.3",
+    "next": "^12.3.4",
     "next-cookies": "^2.0.3",
     "next-plausible": "^3.7.2",
     "react": "^18.2.0",
